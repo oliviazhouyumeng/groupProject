@@ -7,12 +7,12 @@
 #include "observer.h"
 #include "info.h"
 #include "cellimpl.h"
-
+#include <memory>
 
 class Grid;
 
 class Cell : public Subject<Info, State>, public Observer<Info, State> {
-    CellImpl *pImpl;
+    std::unique_ptr<CellImpl> pImpl;
     // Add other private members if necessary
     
 public:
