@@ -39,7 +39,7 @@ void Grid::init(int hi) {
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
         for(size_t j = 0; j < totc; j++) {
-            Cell c{i, j};
+            Cell c{i, j, currlevel->levelNum};
             rArr.push_back(c);
         }
         theGrid.push_back(rArr);
