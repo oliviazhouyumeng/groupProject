@@ -2,7 +2,7 @@
 #define BLOCK_H
 #include <string>
 #include <vector>
-
+#include "cell.h"
 class Block {
 protected:
     std::shared_ptr<Cell> lowerleft;
