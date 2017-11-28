@@ -17,5 +17,7 @@ public:
     virtual void counterclockwise() = 0;
     virtual void drop() = 0;
     bool isHeavy() const;
+    void cwtype(); // change type clockwise
+    void ccwtype(); // change type counterclockwise
 };
 #endif
