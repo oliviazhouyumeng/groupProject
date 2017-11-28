@@ -1,8 +1,12 @@
 #include "grid.h"
-#include "gridimpl.h"
 using namespace std;
 
-Grid::Grid():pImpl{new GridImpl}{}
+
+
+
+Grid::Grid(){
+    
+}
 
 
 Grid::~Grid(){
