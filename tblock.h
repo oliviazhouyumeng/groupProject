@@ -1,8 +1,8 @@
 #ifndef TBLOCK_H
 #define TBLOCK_H
-#include "abstractblock.h"
+#include "block.h"
 
-class TBlock : public AbstractBlock {
+class TBlock : public Block {
 public:
     void left() override;
     void right() override;
