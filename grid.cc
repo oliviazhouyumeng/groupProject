@@ -19,8 +19,8 @@ void Grid::setObserver(unique_ptr<Observer<Info, State>> ob) {
 
 
 
-bool Grid::isReached() const {
-    // check if there is still room at first position
+bool Grid::endGame() const {
+    //end the game
 }
 
 void Grid::init(int hi) {
@@ -67,8 +67,8 @@ void Grid::init(int hi) {
     // generate blocks
     
 }
-void Grid::setPiece(size_t r, size_t c, Colour colour) {
-    
+void Grid::setNew(size_t r, size_t c, Colour colour) {
+    curr->setNew(*this);
 }
 void Grid::levelUp() {
     
