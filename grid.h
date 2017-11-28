@@ -3,28 +3,39 @@
 #include <iostream>
 #include <vector>
 #include <cstddef>
-#include "cell.hpp"
+#include "cell.h"
 #include "state.h"
 #include "info.h"
 #include "subject.h"
-#include "textdisplay.hpp"
-#include "graphicsdisplay.hpp"
-#include "level.hpp"
+#include "textdisplay.h"
+#include "graphicsdisplay.h"
+#include "level.h"
 #include <memory>
 class TextDisplay;
 class GraphicsDisplay;
 template <typename InfoType, typename StateType> class Observer;
 class InvalidMove{};
-class GridImpl;
 class Grid {
-    std::unique_ptr<GridImpl> pImpl;
+    std::vector<vector<cell>> theGrid; //the actual grid
+    std::vector<unique_ptr<Block>> liveBlocks;
+    int hi_score; //the highest score in game
+    int curr_score; // the current score in game
+    std::unique_ptr<Level> l = nullptr; //the current level
+    std::unique_ptr<Block> curr = nullptr; // the current block on the board
+    std::unique_ptr<Block> next = nullptr; // the next block will appear on the board
+    std::unique_ptr<TextDisplay> td = nullptr; // the text display
+    std::unique_ptr<GraphicsDisplay> gd = nullptr; // the graphics diaplay
+
+    std::unique_ptr<Observer<Info, State>> ob = nullptr; //Another observer
     // Add private members, if necessary.
+    
+
     
     
 public:
     Grid();
     ~Grid();
-    void setObserver(std::unique_ptr<Observer<Info, State>> ob);
+    void setObserver();
     bool isReached() const;  // Is the game over
     void init(size_t r, size_t c, int win_size); // Sets up an n x n grid.  Clears old grid, if necessary.
     void setPiece(size_t r, size_t c, Colour colour);  // Plays piece at row r, col c.
