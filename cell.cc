@@ -14,7 +14,7 @@ void Cell::setPiece(Colour colour) { // Place a new cell here.
 
 }
 void Cell::addScore(Grid &g, int score) { //modify the score field in Grid
-
+    g.updateScore(score);
 }
 void Cell::notify(Subject<Info, State> &whoFrom) {
     // My neighbours will call this
