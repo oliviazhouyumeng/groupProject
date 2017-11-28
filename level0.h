@@ -2,15 +2,19 @@
 #define LEVEL0_H
 
 #include <memory>
+#include <string>
 
-class LevelImpl;
+extern const unsigned seed;
+extern const bool isRandom;
+extern const int levelNum;
+
 class Block;
 
 class Level0: public Level {
-  std::string filename = "sequence.txt";
+  std::string filename;
  public:
-  Level(int levelNum = 0, bool isRandom = false);
-  std::unique_ptr<Block> createBlock();
-}
+  Level0(std::string filename = "sequence.txt");
+  std::unique_ptr<Block> createBlock() override;
+};
 
 #endif

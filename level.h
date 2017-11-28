@@ -3,16 +3,22 @@
 
 #include <memory>
 
-class LevelImpl;
 class Block;
 
 class Level {
-  std::unique_ptr<LevelImpl> pImpl;
+ protected:
+  int levelNum;
+  bool isRandom;
+  unsigned seed;
  public:
-  Level(int levelNum, bool isRandom);
-  std::unique_ptr<LevelImpl> &getPImpl();
+  Level(unsigned seed, bool isRandom, int levelNum);
+  int getLevel() const;
+  bool getRandom() const;
+  void setRandom(bool isR);
+  unsigned getSeed() const;
+  void setSeed(unsigned seedNum);
   virtual std::unique_ptr<Block> createBlock() = 0;
   virtual ~Level() = 0;
-}
+};
 
 #endif

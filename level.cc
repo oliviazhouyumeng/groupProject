@@ -1,24 +1,38 @@
-#include <memory>
 #include "level.h"
-#include "LevelImpl.h"
-#include "block.h"
-#include "iblock.h"
-#include "jblock.h"
-#include "lblock.h"
-#include "oblock.h"
-#include "sblock.h"
-#include "zblock.h"
-#include "tblock.h"
+#include "Block.h"
+#include "IBlock.h"
+#include "JBlock.h"
+#include "LBlock.h"
+#include "OBlock.h"
+#include "SBlock.h"
+#include "ZBlock.h"
+#include "TBlock.h"
 
-#include "starblock.h"
-#include "hintblock.h"
+#include "StarBlock.h"
+#include "HintBlock.h"
 
 using namespace std;
 
-Level::Level(int levelNum, bool isRandom): pimpl{make_unique<LevelImpl>(levelNum, isRandom)} {}
+Level::Level(unsigned seed, bool isRandom, int levelNum): 
+  seed{seed}, isRandom{isRandom}, levelNum{levelNum} {}
 
-unique_ptr<LevelImpl> &Level::getPImpl() {
-  return pimpl;
+int Level::getLevel() const {
+	return levelNum;
+}
+bool Level::getRandom() const{
+	return isRandom;
 }
 
-Level::~Level() = default;
+void Level::setRandom(bool isR) {
+	isRandom = isR;
+}
+
+unsigned Level::getSeed() const {
+	return seed;
+}
+
+void Level::setSeed(unsigned seedNum) {
+	seed = seedNum;
+}
+
+Level::~Level() {};
