@@ -22,7 +22,7 @@ class Grid {
     int curr_score; // the current score in game
     std::unique_ptr<Level> currlevel = nullptr; //the current level
     std::unique_ptr<Block> curr = nullptr; // the current block on the board
-    std::unique_ptr<Block> next = nullptr; // the next block will appear on the board
+    std::string next; // the next block will appear on the board
     std::unique_ptr<TextDisplay> td = nullptr; // the text display
     std::unique_ptr<GraphicsDisplay> gd = nullptr; // the graphics diaplay
     
@@ -42,6 +42,7 @@ public:
     void moveDown(); // clear empty lines
     void getNextBlock(); // update curr & next
     void updateScore(int point); // update curr_score & hi_score
+    Cell &getCell(size_t x, size_t y);
     
     friend std::ostream &operator<<(std::ostream &out, const Grid &g);
 };
