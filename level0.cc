@@ -25,17 +25,33 @@ const int lNum = 0;
 Level0::Level0(string filename):
   Level{seedNum, isRand, lNum}, filename{filename} {}
 
-unique_ptr<Block> Level0::createBlock() {
+shared_ptr<Block> Level0::createBlock() {
   ifstream f{filename};
   string bType;
+  shared_ptr<Block> b;
   while (f >> bType) {
-    if (bType == "I") auto b = make_unique<IBlock>(...);  // need to know how IBlock is constructed (block's ctor)
-    else if (bType == "J") auto b = make_unique<JBlock>(...);
-    else if (bType == "L") auto b = make_unique<LBlock>(...);
-    else if (bType == "O") auto b = make_unique<OBlock>(...);
-    else if (bType == "S") auto b = make_unique<SBlock>(...);
-    else if (bType == "Z") auto b = make_unique<ZBlock>(...);
-    else if (bType == "T") auto b = make_unique<TBlock>(...);
+    if (bType == "I") {
+      b = dynamic_pointer_cast<IBlock>(b);
+      b = make_shared<IBlock>(...);  // need to know how IBlock is constructed for ... (block's ctor)
+    } else if (bType == "J") {
+      b = dynamic_pointer_cast<JBlock>(b);
+      b = make_shared<JBlock>(...);
+    } else if (bType == "L") {
+      b = dynamic_pointer_cast<LBlock>(b);
+      b = make_shared<LBlock>(...);
+    } else if (bType == "O") {
+      b = dynamic_pointer_cast<OBlock>(b);
+      b = make_shared<OBlock>(...);
+    } else if (bType == "S") {
+      b = dynamic_pointer_cast<SBlock>(b);
+      b = make_shared<SBlock>(...);
+    } else if (bType == "Z") {
+      b = dynamic_pointer_cast<ZBlock>(b);
+      b = make_shared<ZBlock>(...);
+    } else if (bType == "T") {
+      b = dynamic_pointer_cast<JBlock>(b);
+      b = make_shared<JBlock>(...);
+    }
   }
   return b;
 }

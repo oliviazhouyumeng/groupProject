@@ -17,7 +17,7 @@ class Level {
   void setRandom(bool isR);
   unsigned getSeed() const;
   void setSeed(unsigned seedNum);
-  virtual std::unique_ptr<Block> createBlock() = 0;
+  virtual std::shared_ptr<Block> createBlock() = 0;
   virtual ~Level() = 0;
 };
 

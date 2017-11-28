@@ -15,7 +15,7 @@ class Level0: public Level {
   std::string filename;
  public:
   Level0(std::string filename = "sequence.txt");
-  std::unique_ptr<Block> createBlock() override;
+  std::shared_ptr<Block> createBlock() override;
 };
 
 #endif
