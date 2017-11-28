@@ -1,8 +1,8 @@
 #ifndef ZBLOCK_H
 #define ZBLOCK_H
-#include "abstractblock.h"
+#include "block.h"
 
-class ZBlock : public AbstractBlock {
+class ZBlock : public Block {
 public:
     void left() override;
     void right() override;
