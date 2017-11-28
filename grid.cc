@@ -76,6 +76,13 @@ void Grid::levelUp() {
 void Grid::levelDown() {
     
 }
+void Grid::moveDown(){
+// check all lines, not only the very bottom one
+}
+void Grid::getNextBlock(){
+    curr = next;
+    next = level->createBlock();
+}
 std::ostream &operator<<(std::ostream &out, const Grid &g) {
 
 }
