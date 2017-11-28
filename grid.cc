@@ -83,6 +83,10 @@ void Grid::getNextBlock(){
     curr = next;
     next = level->createBlock();
 }
+void Grid::updateScore(int point) {
+    curr_score += point;
+    if (hi_score < curr_score) hi_score = curr_score;
+}
 std::ostream &operator<<(std::ostream &out, const Grid &g) {
 
 }
