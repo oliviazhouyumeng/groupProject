@@ -1,22 +1,35 @@
 #include <cstdlib>
 #include <memory>
+#include <string>
 #include "level.h"
-#include "level0.h"
-#include "LevelImpl.h"
-#include "Block.h"
-#include "IBlock.h"
-#include "JBlock.h"
-#include "LBlock.h"
-#include "OBlock.h"
-#include "SBlock.h"
-#include "ZBlock.h"
-#include "TBlock.h"
+#include "level2.h"
+#include "block.h"
+#include "iblock.h"
+#include "jblock.h"
+#include "lblock.h"
+#include "oblock.h"
+#include "sblock.h"
+#include "zblock.h"
+#include "tblock.h"
 
-#include "StarBlock.h"
-#include "HintBlock.h"
+#include "starblock.h"
+#include "hintblock.h"
 
 using namespace std;
 
-Level2::Level2(int levelNum, bool isRandom): pimpl{make_unique<LevelImpl>(levelNum, isRandom)} {}
+const unsigned seedNum = 1;
+const bool isRand = true;
+const int lNum = 2;
 
-unique_ptr<Block> Level2::createBlock() {}
+Level2::Level2(): Level{seedNum, isRand, lNum} {}
+
+string Level2::createBlock() const {
+	int gen = srand(seed) % 7;
+  if (gen == 0) return "I";
+  else if (gen == 1) return "J";
+  else if (gen == 2) return "L";
+  else if (gen == 3) return "O";
+  else if (gen == 4) return "S";
+  else if (gen == 5) return "Z";
+  else if (gen == 6) return "T";
+}

@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <memory>
+#include <string>
 #include "level.h"
 #include "level1.h"
 #include "block.h"
@@ -22,10 +23,9 @@ const int lNum = 1;
 
 Level1::Level1(): Level{seedNum, isRand, lNum} {}
 
-std::string Level1::createBlock() {
-	unsigned seedNum = seed;
+std::string Level1::createBlock() const {
 	int gen = srand(seed) % 12;
-  if (gen == 0 || gen == 1) return "I";  // need to know how IBlock is constructed
+  if (gen == 0 || gen == 1) return "I";
   else if (gen == 2 || gen == 3) return "J";
   else if (gen == 4 || gen == 5) return "L";
   else if (gen == 6 || gen == 7) return "O";

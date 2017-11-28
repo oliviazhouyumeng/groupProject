@@ -25,6 +25,6 @@ const int lNum = 0;
 Level0::Level0(string filename):
   Level{seedNum, isRand, lNum}, filename{filename} {}
 
-std::string Level0::createBlock() {
+std::string Level0::createBlock() const {
   return filename;
 }

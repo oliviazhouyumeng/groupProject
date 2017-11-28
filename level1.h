@@ -2,6 +2,7 @@
 #define LEVEL1_H
 
 #include <memory>
+#include <string>
 #include "level.h"
 
 extern const unsigned seedNum;
@@ -11,7 +12,7 @@ extern const int lNum;
 class Level1: public Level {
  public:
   Level1();
-  std::string createBlock() override;
+  std::string createBlock() const override;
 };
 
 #endif

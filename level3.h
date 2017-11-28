@@ -2,14 +2,19 @@
 #define LEVEL3_H
 
 #include <memory>
+#include <string>
 
-class LevelImpl;
-class Block;
+extern std::string seq;
+extern unsigned seedNum;
+extern bool isRand;
+extern const int lNum;
 
 class Level3: public Level {
+	std::string seqFile;
  public:
-  Level(int levelNum = 3, bool isRandom = true);
-  std::unique_ptr<Block> createBlock();
-}
+  Level3();
+  void setSeq(std::string sfile);
+  std::string createBlock() override;
+};
 
 #endif
