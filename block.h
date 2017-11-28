@@ -2,10 +2,11 @@
 #define BLOCK_H
 #include <string>
 #include <vector>
+#include <memory>
 
 class BlockImpl;
 class Block {
-    BlockImpl *pImpl;
+    std::unique_ptr<BlockImpl> pImpl;
 public:
     virtual void left() = 0;
     virtual void right() = 0;
