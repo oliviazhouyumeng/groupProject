@@ -6,16 +6,22 @@
 #include "subject.h"
 #include "observer.h"
 #include "info.h"
-#include "cellimpl.h"
 #include <memory>
 
 class Grid;
 
 class Cell : public Subject<Info, State>, public Observer<Info, State> {
-    std::unique_ptr<CellImpl> pImpl;
+    const size_t r, c;
+    int level;
+    Colour colour = Colour::White;
     // Add other private members if necessary
     
 public:
+    
+    Cell();
+    
+    ~Cell();
+    
     Cell(size_t r, size_t c);
     
     void setPiece(Colour colour);    // Place a piece of given colour here.
