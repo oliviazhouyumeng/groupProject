@@ -39,6 +39,8 @@ public:
     void setPiece(size_t r, size_t c, Colour colour);  // Plays piece at row r, col c.
     void levelUp();
     void levelDown();
+    void moveDown(); // clear empty lines
+    void getNextBlock(); // update curr & next
     
     friend std::ostream &operator<<(std::ostream &out, const Grid &g);
 };
