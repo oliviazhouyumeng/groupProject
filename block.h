@@ -14,6 +14,7 @@ public:
     virtual void clockwise() = 0;
     virtual void counterclockwise() = 0;
     virtual void drop() = 0;
+    std::unique_ptr<BlockImpl> &getPImpl();
     bool isHeavy() const;
 };
 #endif
