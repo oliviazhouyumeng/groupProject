@@ -11,6 +11,7 @@
 #include "TBlock.h"
 
 #include "StarBlock.h"
+#include "HintBlock.h"
 
 Level::Level(int levelNum, bool isRandom): pimpl{make_unique<LevelImpl>(levelNum, isRandom)} {}
 
