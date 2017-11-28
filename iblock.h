@@ -1,8 +1,8 @@
 #ifndef IBLOCK_H
 #define IBLOCK_H
-#include "abstractblock.h"
+#include "block.h"
 
-class IBlock : public AbstractBlock {
+class IBlock : public Block {
 public:
     void left() override;
     void right() override;
