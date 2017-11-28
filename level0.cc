@@ -49,8 +49,8 @@ shared_ptr<Block> Level0::createBlock() {
       b = dynamic_pointer_cast<ZBlock>(b);
       b = make_shared<ZBlock>(...);
     } else if (bType == "T") {
-      b = dynamic_pointer_cast<JBlock>(b);
-      b = make_shared<JBlock>(...);
+      b = dynamic_pointer_cast<TBlock>(b);
+      b = make_shared<TBlock>(...);
     }
   }
   return b;
