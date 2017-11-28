@@ -7,7 +7,6 @@ enum class StateType {AC, NA}; // Active:default, can move&rotate, cells in the 
                                // NotActive: change to notactive after drop, cannot move&rotate
 
 struct State {
-    Colour colour;
     Direction direction;
     StateType stype;
 };
