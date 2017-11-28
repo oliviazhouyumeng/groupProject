@@ -3,10 +3,11 @@
 
 #include <memory>
 #include <string>
+#include "level.h"
 
-extern const unsigned seed;
-extern const bool isRandom;
-extern const int levelNum;
+extern const unsigned seedNum;
+extern const bool isRand;
+extern const int lNum;
 
 class Block;
 
