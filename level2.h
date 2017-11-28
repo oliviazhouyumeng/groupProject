@@ -6,7 +6,7 @@
 class LevelImpl;
 class Block;
 
-class Level {
+class Level2: public Level {
  public:
   Level(int levelNum = 2, bool isRandom = true);
   std::unique_ptr<Block> createBlock();
