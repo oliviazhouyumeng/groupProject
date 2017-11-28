@@ -18,7 +18,7 @@ public:
     virtual void drop() = 0;
     virtual void setNew(Grid &g) = 0; // set cells of the block
     bool isHeavy() const;
-    void cwtype(); // change type clockwise
-    void ccwtype(); // change type counterclockwise
+    void cw(); // change type clockwise
+    void ccw(); // change type counterclockwise
 };
 #endif
