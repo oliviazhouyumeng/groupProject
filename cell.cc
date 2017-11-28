@@ -6,13 +6,10 @@
 #include <cstddef>
 #include "grid.h"
 
-Cell::Cell() { // default colour:white
-}
 Cell::~Cell() {}
 
-Cell::Cell(size_t r, size_t c): r{r}, c{c} {
-    //colour = white
-}
+Cell::Cell(size_t r, size_t c, int l):r{r}, c{c}, level{l}, colour{Colour::White} {}
+
 void Cell::setPiece(Colour colour) { // Place a new cell here.
 
 }
@@ -24,5 +21,6 @@ void Cell::notify(Subject<Info, State> &whoFrom) {
     // when they've changed state
 }
 Info Cell::getInfo() const {
-
+    Info rt{r, c, colour};
+    return rt;
 }
