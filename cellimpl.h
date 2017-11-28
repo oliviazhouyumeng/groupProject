@@ -1,5 +1,5 @@
-#ifndef cellimpl_h
-#define cellimpl_h
+#ifndef CELLIMPL_H
+#define CELLIMPL_H
 #include "info.h"
 
 struct CellImpl{
