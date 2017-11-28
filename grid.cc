@@ -31,8 +31,9 @@ void Grid::init(int hi) {
     hi_score = hi;
     curr_score = 0;
     
-    const int totr = 18; // total rows
-    const int totc = 15; // total columns
+    const size_t totr = 18; // total rows
+    const size_t totc = 11; // total columns
+    
     td = new TextDisplay{};
     gd = new GraphicsDisplay{};
     
@@ -80,12 +81,15 @@ void Grid::moveDown(){
 // check all lines, not only the very bottom one
 }
 void Grid::getNextBlock(){
-    curr = next;
+    // update current
     next = level->createBlock();
 }
 void Grid::updateScore(int point) {
     curr_score += point;
     if (hi_score < curr_score) hi_score = curr_score;
+}
+Cell &Grid::getCell(size_t x, size_t y) {
+    return theGrid[x][y];
 }
 std::ostream &operator<<(std::ostream &out, const Grid &g) {
 
