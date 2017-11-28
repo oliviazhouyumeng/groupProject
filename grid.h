@@ -34,9 +34,9 @@ public:
     Grid();
     ~Grid();
     void setObserver();
-    bool isReached() const;  // Is the game over no room at first position
+    bool endGame() const;  // end the game
     void init(int hi); // Sets up an n x n grid.  Clears old grid, if necessary. //hi: high score
-    void setPiece(size_t r, size_t c, Colour colour);  // Plays piece at row r, col c.
+    void setNew();  // place curr block on the grid
     void levelUp();
     void levelDown();
     void moveDown(); // clear empty lines
