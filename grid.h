@@ -41,6 +41,7 @@ public:
     void levelDown();
     void moveDown(); // clear empty lines
     void getNextBlock(); // update curr & next
+    void updateScore(int point); // update curr_score & hi_score
     
     friend std::ostream &operator<<(std::ostream &out, const Grid &g);
 };
