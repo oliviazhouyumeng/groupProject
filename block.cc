@@ -6,18 +6,14 @@ bool Block::isHeavy() const{
 }
 
 void Block::cwtype() {
-    switch(string(type)) {
-        case "A": type = "B";
-        case "B": type = "C";
-        case "C": type = "D";
-        case "D": type = "A";
-    }
+    if (type == "A") type = "B";
+    else if (type == "B") type = "C";
+    else if (type == "C") type = "D";
+    else if (type == "D") type = "A";
 }
 void Block::ccwtype() {
-    switch(string(type)) {
-        case"A": type = "D";
-        case"B": type = "A";
-        case"C": type = "B";
-        case"D": type = "C";
-    }
+    if (type == "A") type = "D";
+    else if (type == "B") type = "A";
+    else if (type == "C") type = "B";
+    else if (type == "D") type = "C";
 }
