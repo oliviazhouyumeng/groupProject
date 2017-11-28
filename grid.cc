@@ -92,7 +92,8 @@ Cell &Grid::getCell(size_t x, size_t y) {
     return theGrid[x][y];
 }
 std::ostream &operator<<(std::ostream &out, const Grid &g) {
-
+    out << *(g.td);
+    return out;
 }
 
 
