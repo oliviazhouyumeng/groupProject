@@ -22,6 +22,8 @@ public:
     
     ~Cell();
 
+    Cell(size_t r, size_t c);
+    
     void setPiece(Colour colour);    // Place a piece of given colour here.
     
     void addScore(Grid &g, int score); //modify the score field in Grid
