@@ -13,6 +13,8 @@
 #include "StarBlock.h"
 #include "HintBlock.h"
 
+using namespace std;
+
 Level::Level(int levelNum, bool isRandom): pimpl{make_unique<LevelImpl>(levelNum, isRandom)} {}
 
 unique_ptr<LevelImpl> &Level::getPImpl() {
