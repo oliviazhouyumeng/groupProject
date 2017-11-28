@@ -1,17 +1,17 @@
 #include <memory>
 #include "level.h"
 #include "LevelImpl.h"
-#include "Block.h"
-#include "IBlock.h"
-#include "JBlock.h"
-#include "LBlock.h"
-#include "OBlock.h"
-#include "SBlock.h"
-#include "ZBlock.h"
-#include "TBlock.h"
+#include "block.h"
+#include "iblock.h"
+#include "jblock.h"
+#include "lblock.h"
+#include "oblock.h"
+#include "sblock.h"
+#include "zblock.h"
+#include "tblock.h"
 
-#include "StarBlock.h"
-#include "HintBlock.h"
+#include "starblock.h"
+#include "hintblock.h"
 
 using namespace std;
 
