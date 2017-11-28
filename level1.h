@@ -2,14 +2,16 @@
 #define LEVEL1_H
 
 #include <memory>
+#include "level.h"
 
-class LevelImpl;
-class Block;
+extern const unsigned seedNum;
+extern const bool isRand;
+extern const int lNum;
 
 class Level1: public Level {
  public:
-  Level(int levelNum = 1, bool isRandom = true);
-  std::unique_ptr<Block> createBlock();
-}
+  Level1();
+  std::string createBlock() override;
+};
 
 #endif
