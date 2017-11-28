@@ -14,6 +14,8 @@ int main(int argc, char *argv[]) {
     string cmd;
     Grid g;
     g.init();
+    //set level
+
     try {
         while (true) {
             cin >> cmd;
