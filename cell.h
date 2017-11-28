@@ -22,7 +22,7 @@ public:
 
     Cell(size_t r, size_t c, int l);
     
-    void setPiece(Colour colour, Grid &g);    // Place a piece of given colour here.
+    void setNew(Colour colour, Grid &g);    // Place a piece of given colour here.
     
     void addScore(Grid &g, int score); //modify the score field in Grid
     
