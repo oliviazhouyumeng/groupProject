@@ -18,11 +18,9 @@ class Cell : public Subject<Info, State>, public Observer<Info, State> {
     
 public:
     
-    Cell();
-    
     ~Cell();
 
-    Cell(size_t r, size_t c);
+    Cell(size_t r, size_t c, int l);
     
     void setPiece(Colour colour);    // Place a piece of given colour here.
     
