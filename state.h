@@ -9,7 +9,7 @@ enum class StateType {AC, NA}; // Active:default, can move&rotate
 struct State {
     Colour colour;
     Direction direction;
-    StateType type;
+    StateType stype;
 };
 
 #endif
