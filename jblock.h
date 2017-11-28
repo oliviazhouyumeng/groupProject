@@ -1,8 +1,8 @@
 #ifndef JBLOCK_H
 #define JBLOCK_H
-#include "abstractblock.h"
+#include "block.h"
 
-class JBlock : public AbstractBlock {
+class JBlock : public Block {
 public:
     void left() override;
     void right() override;
