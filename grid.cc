@@ -77,8 +77,7 @@ void Grid::moveDown(){
 // check all lines, not only the very bottom one
 }
 void Grid::getNextBlock(){
-    // update current
-    next = level->createBlock();
+
 }
 void Grid::updateScore(int point) {
     curr_score += point;
