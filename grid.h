@@ -17,11 +17,12 @@ template <typename InfoType, typename StateType> class Observer;
 class InvalidMove{};
 class Grid {
     std::vector<vector<cell>> theGrid; //the actual grid
-    std::vector<unique_ptr<Block>> liveBlocks;
+    std::vector<shared_ptr<Block>> liveBlocks;
     int hi_score; //the highest score in game
     int curr_score; // the current score in game
-    std::unique_ptr<Level> currlevel = nullptr; //the current level
-    std::unique_ptr<Block> curr = nullptr; // the current block on the board
+    int currlevel;//the current level
+    std::unique_ptr<vector<Level>> levels = nullptr; //[level0,level1,level2,...]
+    std::shared_ptr<Block> curr = nullptr; // the current block on the board
     std::string next; // the next block will appear on the board
     std::unique_ptr<TextDisplay> td = nullptr; // the text display
     std::unique_ptr<GraphicsDisplay> gd = nullptr; // the graphics diaplay
