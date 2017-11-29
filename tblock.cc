@@ -1,5 +1,5 @@
-#include "block.hpp"
-#include "tblock.hpp"
+#include "block.h"
+#include "tblock.h"
 
 using namespace std;
 
