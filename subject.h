@@ -22,13 +22,12 @@ template <typename InfoType, typename StateType> class Observer;
 template <typename InfoType, typename StateType> class Subject {
     std::vector<std::unique_ptr<Observer<InfoType, StateType>>> observers;
     StateType state;
-protected:
-    void setState(StateType newS);
 public:
     void attach(std::unique_ptr<Observer<InfoType, StateType>> o);
     void notifyObservers();
     virtual InfoType getInfo() const = 0;
     StateType getState() const;
+    void setState(StateType newS);
 };
 
 template <typename InfoType, typename StateType>
