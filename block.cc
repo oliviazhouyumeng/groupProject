@@ -1,6 +1,9 @@
 #include "block.h"
 using namespace std;
 
+Block::Block(size_t x, size_t y, int level, std::string type, bool heavy): x{x}, y{y}, level{level}, type{type}, heavy{heavy}, cells{}{}
+
+
 bool Block::isHeavy() const{
     return heavy;
 }
@@ -17,3 +20,4 @@ void Block::ccwtype() {
     else if (type == "C") type = "B";
     else if (type == "D") type = "C";
 }
+
