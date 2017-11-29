@@ -73,8 +73,18 @@ void Grid::levelUp() {
 void Grid::levelDown() {
     
 }
-void Grid::moveDown(){
-    // check all lines, not only the very bottom one
+void Grid::moveDown(){ // rows cleared by cell
+    for (size_t i = 17; i > 2; i--) {
+        while (isEmpty(i)) {
+            //
+        }
+    }
+}
+void Grid::isEmpty(size_t r) {
+    for (size_t c = 0; c < 11; c++) {
+        if (getCell(r, c).getInfo().colour != Colour::White) return false;
+    }
+    return true;
 }
 void Grid::getNextBlock(){
     
