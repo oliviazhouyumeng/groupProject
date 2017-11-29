@@ -1,4 +1,4 @@
-#include "grid.hpp"
+#include "grid.h"
 using namespace std;
 
 
