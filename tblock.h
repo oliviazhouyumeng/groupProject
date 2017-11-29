@@ -1,9 +1,10 @@
 #ifndef TBLOCK_H
 #define TBLOCK_H
-#include "block.h"
+#include "block.hpp"
 
 class TBlock : public Block {
 public:
+    TBlock();
     void left() override;
     void right() override;
     void down() override;
