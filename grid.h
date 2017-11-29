@@ -41,6 +41,7 @@ public:
     void levelUp();
     void levelDown();
     void moveDown(); // clear empty lines
+    void isEmpty(size_t r); // return true if rth row is empty
     void getNextBlock(); // update curr & next
     void updateScore(int point); // update curr_score & hi_score
     Cell &getCell(size_t x, size_t y);
