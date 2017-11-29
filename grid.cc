@@ -1,4 +1,4 @@
-#include "grid.h"
+#include "grid.hpp"
 using namespace std;
 
 
@@ -40,7 +40,7 @@ void Grid::init(int hi) {
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
         for(size_t j = 0; j < totc; j++) {
-            Cell c{i, j, currlevel->levelNum};
+            Cell c{i, j, currlevel};
             rArr.push_back(c);
         }
         theGrid.push_back(rArr);
@@ -74,10 +74,10 @@ void Grid::levelDown() {
     
 }
 void Grid::moveDown(){
-// check all lines, not only the very bottom one
+    // check all lines, not only the very bottom one
 }
 void Grid::getNextBlock(){
-
+    
 }
 void Grid::updateScore(int point) {
     curr_score += point;
