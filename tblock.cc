@@ -1,5 +1,5 @@
-#include "block.h"
-#include "tblock.h"
+#include "block.hpp"
+#include "tblock.hpp"
 
 using namespace std;
 
@@ -23,7 +23,18 @@ TBlock::TBlock(Grid &g): Block{3, 0, level, "A", false}{
 //std::vector<std::shared_ptr<Cell>> cells; // a Block originally contains four Cell
 
 void TBlock::left(Grid &g){///////////not done
-    
+    if (type == "A") {
+        <#statements#>
+    }
+    else if (type == "B"){
+        
+    }
+    else if(type == "C"){
+        
+    }
+    else { // type "D"
+        
+    }
 }
 
 
@@ -53,9 +64,10 @@ void TBlock::right(Grid &g){
             old_lm->notifyObservers();
             new_ur->notifyObservers();
             new_lm->notifyObservers();
+            y++;
         }
     }
-    if (type == "B") {
+    else if (type == "B") {
         auto mr = make_shared<Cell>(cells.at(1)); //middle right cell
         size_t mr_x = mr->getInfo().row;
         size_t mr_y = mr->getInfo().col;
@@ -89,10 +101,11 @@ void TBlock::right(Grid &g){
             new_ur->notifyObservers();
             new_mr->notifyObservers();
             new_lr->notifyObservers();
+            y++;
         }
         
     }
-    if (type == "C") {
+    else if (type == "C") {
         auto lr = make_shared<Cell>(cells.at(0)); // lower right cell
         size_t lr_x = lr->getInfo().row;
         size_t lr_y = lr->getInfo().col;
@@ -117,6 +130,7 @@ void TBlock::right(Grid &g){
             old_ll->notifyObservers();
             new_um->notifyObservers();
             new_lr->notifyObservers();
+            y++;
         }
     }
     else{ // "D" type
@@ -153,6 +167,7 @@ void TBlock::right(Grid &g){
             new_ul->notifyObservers();
             new_mr->notifyObservers();
             new_ll->notifyObservers();
+            y++;
         }
     }
 }
