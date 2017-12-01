@@ -13,17 +13,31 @@ Cell::Cell(size_t r, size_t c, int l):r{r}, c{c}, level{l}, colour{Colour::White
     setState(s);
 }
 
-void Cell::setPiece(Colour colour, Grid &g) { // Place a new cell here.
-    if (this->colour != Colour::White) {
-        g.endGame();
-    }
-    this->colour = colour;
-    State s{StateType::AC};
-    setState(s);
-    notifyObservers();
+
+bool Cell::checkWhite(Grid &g){
+    if(colour == Colour::White) return true;
+    return false;
 }
 
+//void Cell::setPiece(Colour colour, Grid &g) { // Place a new cell here.
+//    if (this->colour != Colour::White) {
+//        g.endGame();
+//    }
+//    this->colour = colour;
+//    State s{StateType::AC};
+//    setState(s);
+//    notifyObservers();
+//}
+
 void Cell::setColour(Colour colour, Grid &g){ // Modifies colour of the cell
+    State old_S = State{StateType::NA};
+    State new_S = State{StateType::AC};
+    if(colour == Colour::White){
+        g.gSetState(r, c, old_S);
+    }
+    else{
+        g.gSetState(r, c, new_S);
+    }
     this->colour = colour;
     notifyObservers();
 }
@@ -32,8 +46,9 @@ void Cell::addScore(Grid &g, int score) { //modify the score field in Grid
     g.updateScore(score);
 }
 void Cell::notify(Subject<Info, State> &whoFrom) {
-    // My neighbours will call this
-    // when they've changed state
+    if(getInfo().colour == Colour::White) return;
+    if(getState().stype == StateType::AC) return;
+    
 }
 Info Cell::getInfo() const {
     Info rt{r, c, colour};
