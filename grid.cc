@@ -36,7 +36,7 @@ void Grid::init() {
     const size_t totc = 11; // total columns
     
     td = new TextDisplay{};
-    if (gdavailable) gd = new GraphicsDisplay{};
+    if (graphicsOn) gd = new GraphicsDisplay{};
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -63,7 +63,7 @@ void Grid::init() {
 }
 
 void Grid::setGraphics(bool b) {
-    gdavailable = b;
+    graphicsOn = b;
 }
 
 void Grid::levelUp() {
