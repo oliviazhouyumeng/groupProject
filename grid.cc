@@ -76,14 +76,14 @@ void Grid::clearRow(size_t r) {
 void Grid::moveDown(size_t r) {
 }
 
-void Grid::isFull(size_t r) {
+bool Grid::isFull(size_t r) {
     for (size_t c = 0; c < 11; ++c) {
         if (getCell(r, c).getInfo().colour == Colour::White) return false;
     }
     return false;
 }
 
-void Grid::isEmpty(size_t r) {
+bool Grid::isEmpty(size_t r) {
     for (size_t c = 0; c < 11; ++c) {
         if (getCell(r, c).getInfo().colour != Colour::White) return false;
     }
