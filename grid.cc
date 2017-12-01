@@ -74,8 +74,16 @@ void Grid::levelDown() {
 void setLevel(int l) {
     currlevel = l;
 }
-
-void Grid::moveDown(size_t r){
+    
+void Grid::clearRow(size_t r) {
+    for (auto c : theGrid[r]) {
+        c.setColour = Colour::White;
+        State s{StateType::NA};
+        c.setState(s);
+    }
+}
+    
+void Grid::moveDown(size_t r) {
     if (isEmpty(r)) {
         int currRow = r;
         while (r >= 3) {
