@@ -9,12 +9,11 @@
 class Cell;
 
 class GraphicsDisplay: public Observer<Info, State> {
-  const int gridSize, winSize;
+  const int gridWidth, gridHeight, winWidth, winHeight;
   Xwindow xw;
 
  public:
-  GraphicsDisplay(int gridSize, int winSize);
-
+  GraphicsDisplay(int gridWidth, int gridHeight, int winWidth, int winHeight);
   void notify(Subject<Info, State> &whoNotified) override;
 };
 #endif
