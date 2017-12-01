@@ -45,11 +45,11 @@ public:
     void levelDown();
     void setLevel(int l);
     void clearRow(size_t r);
-    void moveDown(); // clear empty lines
+    void moveDown(size_t r); // clear empty lines
     bool isFull(size_t r);
     bool isEmpty(size_t r); // return true if rth row is empty
     void setCurrtoGrid();
-    void Grid::updateNext();
+    void updateNext();
     void setNext(std::string nextcmd); // set next, modify next level
     void setColour(size_t row, size_t col, Colour col);
     void setPiece(size_t row, size_t col, Colour colour);
