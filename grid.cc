@@ -165,6 +165,10 @@ Cell &Grid::getCell(size_t x, size_t y) {
     return theGrid[x][y];
 }
 
+Block &Grid::currBlock() {
+    return curr;
+}
+
 std::ostream &operator<<(std::ostream &out, const Grid &g) {
     out << *(g.td);
     return out;
