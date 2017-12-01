@@ -42,6 +42,7 @@ public:
     void levelUp();
     void levelDown();
     void setLevel(int l);
+    void clearRow(size_t r);
     void moveDown(); // clear empty lines
     void isEmpty(size_t r); // return true if rth row is empty
     void getNextBlock(); // update curr & next
