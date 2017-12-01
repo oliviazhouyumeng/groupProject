@@ -145,6 +145,10 @@ void Grid::gSetState(size_t row, size_t col, State s) {
     getCell(row, col).setState(s);
 }
 
+State Grid::getState(size_t row, size_t col) {
+    return getCell(row, col).getState();
+}
+
 void Grid::updateScore(int point) {
     curr_score += point;
     if (hi_score < curr_score) hi_score = curr_score;
