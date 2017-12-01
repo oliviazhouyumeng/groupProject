@@ -49,10 +49,10 @@ void Grid::init() {
     for (size_t i = 0; i < totr; i++) {
         for (size_t j = 0; j < totc; j++) {
             //(theGrid[i])[j].attach(&theGrid[i][j]);
-            if (j > 0) theGrid[i][j].attach(&theGrid[i][j-1]); // up
+            //if (j > 0) theGrid[i][j].attach(&theGrid[i][j-1]); // up
             if (i > 0) theGrid[i][j].attach(&theGrid[i-1][j]); // left
             if (i < totr-1) theGrid[i][j].attach(&theGrid[i+1][j]); // right
-            if (j < totc-1) theGrid[i][j].attach(&theGrid[i][j+1]); // down
+            //if (j < totc-1) theGrid[i][j].attach(&theGrid[i][j+1]); // down
             theGrid[i][j].attach(td);
             if (gdavailable) theGrid[i][j].attach(gd);
         }
