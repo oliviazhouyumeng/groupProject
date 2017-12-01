@@ -4,12 +4,13 @@
 #include <vector>
 #include "cell.h"
 #include "posn.h"
+
 class Block {
 protected:
     int level;
-    std::string type; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
-    bool heavy; // default: false
-    std::vector<Posn> pos; // a Block originally contains four Cell
+    std::string type = "A"; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
+    bool heavy = false; // default: false
+    std::vector<Posn> pos(4); // a Block originally contains four Cell
 public:
     Block(int level, std::string type, bool heavy);
     virtual void left(Grid &g) = 0;
