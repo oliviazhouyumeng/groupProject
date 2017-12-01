@@ -72,7 +72,7 @@ void Xwindow::fillRectangle(int x, int y, int width, int height, int colour) {
 
 void Xwindow::drawString(int x, int y, string msg, int colour) {
   XSetForeground(d, gc, colours[colour]);
-  Font f = XLoadFont(d, "6x13");
+  Font f = XLoadFont(d, "-adobe-times-medium-i-normal--0-0-100-100-p-0-iso8859-4");
   XTextItem ti;
   ti.chars = const_cast<char*>(msg.c_str());
   ti.nchars = msg.length();
