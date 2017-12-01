@@ -1,11 +1,13 @@
 #include "grid.h"
+#include "info.h"
+#include "state.h"
 using namespace std;
 
 Grid::Grid() {}
 
 Grid::~Grid() {}
 
-void Grid::setObserver(unique_ptr<Observer<Info, State>> ob) {
+void Grid::setObserver(shared_ptr<Observer<Info, State>> ob) {
     this->ob = ob;
 }
 
@@ -46,9 +48,8 @@ void Grid::init(int hi) {
             if (gdavailable) theGrid[i][j].attach(gd);
         }
     }
-    updateNext();
-    setCurrtoGrid();
-    updateNext();
+    getNextBlock();
+    getNextBlock();
 }
 
 void Grid::setGraphics(bool b) {
@@ -63,7 +64,7 @@ void Grid::levelDown() {
     if (currlevel > 0) --currlevel;
 }
 
-void setLevel(int l) {
+void Grid::setLevel(int l) {
     currlevel = l;
 }
 
@@ -87,7 +88,7 @@ void Grid::isEmpty(size_t r) {
     return true;
 }
 
-void Grid::setCurrtoGrid() {
+void Grid::getNextBlock(){
     switch(next) {
         case NULL:
             return;
@@ -110,9 +111,6 @@ void Grid::setCurrtoGrid() {
         case "Star":
             curr = StarBlock(*this, nextlevel);
     }
-}
-
-void Grid::updateNext() {
     if (currlevel == 0) {
         if (iss == NULL) {
             string newLevel = levels[currlevel].createBlock();
@@ -130,7 +128,7 @@ voig Grid::setNext(string nextcmd) {
     nextlevel = currlevel;
 }
 
-void Grid::setColour(size_t row, size_t col, Colour colour) {
+void Grid::setColour(size_t row, size_t col, Colour col) {
     getCell(row, col).setColour(colour, *this);
 }
 
