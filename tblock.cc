@@ -1,5 +1,5 @@
-#include "block.h"
-#include "tblock.h"
+#include "block.hpp"
+#include "tblock.hpp"
 
 using namespace std;
 
@@ -7,15 +7,19 @@ using namespace std;
 TBlock::TBlock(Grid &g): Block{3, 0, level, "A", false}{
     auto a = make_shared<Cell>(&g.getCell(2, 0));
     State newS = {StateType::AC};
+    a->setColour(Colour::Orange, g);
     a->setState(newS);
     cells.push_back(a);
     auto b = make_shared<Cell>(&g.getCell(2, 1));
+    b->setColour(Colour::Orange, g);
     b->setState(newS);
     cells.push_back(b);
     auto c = make_shared<Cell>(&g.getCell(2, 2));
+    c->setColour(Colour::Orange, g);
     c->setState(newS);
     cells.push_back(c);
     auto d = make_shared<Cell>(&g.getCell(3, 1));
+    d->setColour(Colour::Orange, g);
     d->setState(newS);
     cells.push_back(d);
 }
@@ -375,19 +379,60 @@ void TBlock::down(Grid &g){
 
 
 void TBlock::clockwise(Grid &g){
+    State old_S = State{StateType::NA};
+    State new_S = State{StateType::AC};
     
-    
-    
-    
-    
-    
-    
-    shared_ptr<Cell> origin(&g.getCell(x, y));
-    origin->notifyObservers();
+    auto new_first = make_shared<Cell>(&g.getCell(x-2, y+1));
+    if(new_first->getInfo().colour == Colour::White){
+        
+        auto old_first = make_shared<Cell>(cells.at(0));
+        auto old_second = make_shared<Cell>(cells.at(1));
+        auto old_third = make_shared<Cell>(cells.at(2));
+        auto old_forth = make_shared<Cell>(cells.at(3));
+        old_third->setColour(Colour::White, g);
+        old_third->setState(old_S);
+        auto new_second = make_shared<Cell>(old_second);
+        auto new_third = make_shared<Cell>(old_forth);
+        auto new_forth = make_shared<Cell>(old_first);
+        cells.clear();
+        new_first->setColour(Colour::Orange, g);
+        new_first->setState(new_S);
+        cells.push_back(new_first);
+        cells.push_back(new_second);
+        cells.push_back(new_third);
+        cells.push_back(new_forth);
+        old_third->notifyObservers();
+        new_first->notifyObservers();
+        this->cwtype();
+    }
 }
+
 void TBlock::counterclockwise(Grid &g){
-    shared_ptr<Cell> origin(&g.getCell(x, y));
-    origin->notifyObservers();
+    State old_S = State{StateType::NA};
+    State new_S = State{StateType::AC};
+    auto new_third = make_shared<Cell>(&g.getCell(x-2, y+1));
+    if(new_third->getInfo().colour == Colour::White) {
+        auto old_first = make_shared<Cell>(cells.at(0));
+        auto old_second = make_shared<Cell>(cells.at(1));
+        auto old_third = make_shared<Cell>(cells.at(2));
+        auto old_forth = make_shared<Cell>(cells.at(3));
+        old_first->setColour(Colour::White, g);
+        old_first->setState(old_S);
+        auto new_first = make_shared<Cell>(old_forth);
+        auto new_second = make_shared<Cell>(old_second);
+        auto new_forth = make_shared<Cell>(old_third);
+        cells.clear();
+        new_third->setColour(Colour::Orange, g);
+        new_third->setState(new_S);
+        cells.push_back(new_first);
+        cells.push_back(new_second);
+        cells.push_back(new_third);
+        cells.push_back(new_forth);
+        old_first->notifyObservers();
+        new_third->notifyObservers();
+        this->ccwtype();
+    }
+    
 }
 
 
@@ -395,6 +440,19 @@ void TBlock::drop(Grid &g){
     for(int i = 0; i < 18; i++){ //for 21 rows
         down(g);
     }
+    State old_S = State{StateType::NA};
+    auto first = make_shared<Cell>(cells.at(0));
+    auto second = make_shared<Cell>(cells.at(1));
+    auto third = make_shared<Cell>(cells.at(2));
+    auto forth = make_shared<Cell>(cells.at(3));
+    first->setState(old_S);
+    second->setState(old_S);
+    third->setState(old_S);
+    forth->setState(old_S);
+    first->notifyObservers();
+    second->notifyObservers();
+    third->notifyObservers();
+    forth->notifyObservers();
 }
 
 
