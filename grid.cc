@@ -46,8 +46,10 @@ void Grid::init(int hi) {
             if (gdavailable) theGrid[i][j].attach(gd);
         }
     }
-    getNextBlock();
-    getNextBlock();
+    setCurrtoGrid()
+    setCurrtoGrid()
+    updateNext();
+    updateNext();
 }
 
 void Grid::setGraphics(bool b) {
@@ -86,7 +88,7 @@ void Grid::isEmpty(size_t r) {
     return true;
 }
 
-void Grid::getNextBlock(){
+void Grid::setCurrtoGrid() {
     switch(next) {
         case NULL:
             return;
@@ -109,6 +111,9 @@ void Grid::getNextBlock(){
         case "Star":
             curr = StarBlock(*this, nextlevel);
     }
+}
+
+void Grid::updateNext() {
     if (currlevel == 0) {
         if (iss == NULL) {
             string newLevel = levels[currlevel].createBlock();
