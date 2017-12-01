@@ -51,6 +51,7 @@ public:
     void getNextBlock(); // update curr & next
     void setNext(std::string nextcmd); // set next, modify next level
     void setColour(size_t row, size_t col, Colour col);
+    void setPiece(size_t row, size_t col, Colour colour);
     void gSetState(size_t row, size_t col, State s);
     void updateScore(int point); // update curr_score & hi_score
     Cell &getCell(size_t x, size_t y);
