@@ -1,23 +1,25 @@
-#include "block.h"
-using namespace std;
-
-Block::Block(size_t x, size_t y, int level, string type, bool heavy): x{x}, y{y}, level{level}, type{type}, heavy{heavy}, cells{}{}
-
-
-bool Block::isHeavy() const{
-    return heavy;
-}
-
-void Block::cwtype() {
-    if (type == "A") type = "B";
-    else if (type == "B") type = "C";
-    else if (type == "C") type = "D";
-    else if (type == "D") type = "A";
-}
-void Block::ccwtype() {
-    if (type == "A") type = "D";
-    else if (type == "B") type = "A";
-    else if (type == "C") type = "B";
-    else if (type == "D") type = "C";
-}
-
+#ifndef BLOCK_H
+#define BLOCK_H
+#include <string>
+#include <vector>
+#include "cell.hpp"
+#include "posn.h"
+class Block {
+protected:
+    int level;
+    std::string type; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
+    bool heavy; // default: false
+    std::vector<Posn> pos; // a Block originally contains four Cell
+public:
+    Block(int level, std::string type, bool heavy);
+    virtual void left(Grid &g) = 0;
+    virtual void right(Grid &g) = 0;
+    virtual void down(Grid &g) = 0;
+    virtual void clockwise(Grid &g) = 0;
+    virtual void counterclockwise(Grid &g) = 0;
+    virtual void drop(Grid &g) = 0;
+    bool isHeavy() const;
+    void cwtype(); // change type clockwise
+    void ccwtype(); // change type counterclockwise
+};
+#endif
