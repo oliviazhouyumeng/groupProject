@@ -130,6 +130,10 @@ void Grid::setColour(size_t row, size_t col, Colour col) {
     getCell(row, col).setColour(colour, *this);
 }
 
+void setPiece(size_t row, size_t col, Colour colour) {
+    getCell(row,col).setPiece(colour, *this);
+}
+
 void Grid::gSetState(size_t row, size_t col, State s) {
     getCell(row, col).setState(s);
 }
