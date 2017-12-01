@@ -17,12 +17,9 @@ bool Grid::endGame() const {
     throw EndException{};
 }
 
-void Grid::init(int hi) {
+void Grid::init() {
     theGrid.clear();
-    //delete td;
-    //delete gd;
     
-    hi_score = hi;
     curr_score = 0;
     
     const size_t totr = 18; // total rows
