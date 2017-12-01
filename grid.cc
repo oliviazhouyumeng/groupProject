@@ -36,7 +36,7 @@ void Grid::init() {
     const size_t totc = 11; // total columns
     
     td = new TextDisplay{};
-    if (graphicsOn) gd = new GraphicsDisplay{};
+    if (gdavailable) gd = new GraphicsDisplay{};
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -63,7 +63,7 @@ void Grid::init() {
 }
 
 void Grid::setGraphics(bool b) {
-    graphicsOn = b;
+    gdavailable = b;
 }
 
 void Grid::levelUp() {
@@ -145,8 +145,12 @@ void Grid::setColour(size_t row, size_t col, Colour colour) {
     getCell(row, col).setColour(colour, *this);
 }
 
-void setPiece(size_t row, size_t col, Colour colour) {
-    getCell(row,col).setPiece(colour, *this);
+//void setPiece(size_t row, size_t col, Colour colour) {
+//    getCell(row,col).setPiece(colour, *this);
+//}
+
+bool Grid::checkWhite(size_t row, size_t col) {
+    return getCell(row, col).getInfo().colour == Colour::White;
 }
 
 void Grid::gSetState(size_t row, size_t col, State s) {
