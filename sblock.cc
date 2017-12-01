@@ -4,15 +4,19 @@
 using namespace std;
 
 SBlock(Grid &g, int level): Block{level, "A", false} {
-    if (level > 2) heavy = true;
+    if (level > 2) {heavy = true;}
     Posn p1{4, 0};
     Posn p2{4, 1};
     Posn p3{3, 1};
     Posn p4{3, 2};
-    g.setPiece(4, 0, Colour::Yellow);
-    g.setPiece(4, 1, Colour::Yellow);
-    g.setPiece(3, 1, Colour::Yellow);
-    g.setPiece(3, 2, Colour::Yellow);
+    bool canSet = true;
+    for (auto p : pos) {
+        if (!g.checkWhite(p.x, p.y)) canSet = false;
+    }
+    g.setColour(4, 0, Colour::Yellow);
+    g.setColour(4, 1, Colour::Yellow);
+    g.setColour(3, 1, Colour::Yellow);
+    g.setColour(3, 2, Colour::Yellow);
     pos.emplace_back(p1);
     pos.emplace_back(p2);
     pos.emplace_back(p3);
@@ -20,23 +24,21 @@ SBlock(Grid &g, int level): Block{level, "A", false} {
 }
 
 void SBlock::left(Grid &g) {
-    bool canMove = true;
     for (auto p : pos) {
-        if (p.x == 0) return;
-        if (g.getCell(p.x-1, p.y).getInfo().colour != Colour::White) canMove = false;
+        if (p.y == 0) return;
+        if ((!g.checkWhite(p.x, p.y-1))&&g.getCell(p.x, p.y-1).getState().stype==StateType::NA) return;
     }
-    if (canMove) {
         for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
-        for (auto p : pos) p.x--;
+        for (auto p : pos) p.y--;
         for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
-    }
+    if (heavy) down(g);
 }
 
 void SBlock::right(Grid &g) {
     bool canMove = true;
     for (auto p : pos) {
         if (p.y == 10) return;
-        if (g.getCell(p.x, p.y+1).getInfo().colour != Colour::White) canMove = false;
+        if (!g.checkWhite(p.x, p.y+1)&&g.getCell(p.x, p.y+1).getState().stype==StateType::NA) canMove = false;
     }
     if (canMove) {
         for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
@@ -73,7 +75,8 @@ void SBlock::clockwise(Grid &g) {
         }
     } else if (type == "B" || type == "D") {
         if (g.getCell(pos[2].x+1, pos[2].y).getInfo().colour == Colour::White &&
-            g.getCell(pos[3].x, pos[3].y+1).getInfo().colour == Colour::White) {
+            g.getCell(pos[3].x, pos[3].y+1).getInfo().colour == Colour::White &&
+            pos[3].y != 10) {
             cwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[1].x += 2;
@@ -101,7 +104,8 @@ void SBlock::counterclockwise(Grid &g) {
         }
     } else if (type == "B" || type == "D") {
         if (g.getCell(pos[2].x+1, pos[2].y).getInfo().colour == Colour::White &&
-            g.getCell(pos[3].x, pos[3].y+1).getInfo().colour == Colour::White) {
+            g.getCell(pos[3].x, pos[3].y+1).getInfo().colour == Colour::White &&
+            pos[3].y != 10) {
             ccwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[1].x += 2;
