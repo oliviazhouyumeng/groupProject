@@ -32,7 +32,7 @@ class Grid {
     std::unique_ptr<Observer<Info, State>> ob = nullptr; //Another observer
     // Add private members, if necessary.
     
-
+    
 public:
     Grid();
     ~Grid();
@@ -47,6 +47,8 @@ public:
     void isEmpty(size_t r); // return true if rth row is empty
     void getNextBlock(); // update curr & next
     void setNext(std::string nextcmd); // set next, modify next level
+    void setColour(size_t row, size_t col, Colour col);
+    void gSetState(size_t row, size_t col, State s);
     void updateScore(int point); // update curr_score & hi_score
     Cell &getCell(size_t x, size_t y);
     
