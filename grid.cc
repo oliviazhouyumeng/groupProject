@@ -3,6 +3,15 @@
 #include "state.h"
 #include "endexception.h"
 #include "block.h"
+#include "iblock.h"
+#include "jblock.h"
+#include "lblock.h"
+#include "sblock.h"
+#include "zblock.h"
+#include "oblock.h"
+#include "tblock.h"
+#include "hintblock.h"
+#include "starblock.h"
 using namespace std;
 
 Grid::Grid() {}
