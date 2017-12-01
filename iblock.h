@@ -4,6 +4,7 @@
 
 class IBlock : public Block {
 public:
+    IBlock(int level, bool heavy);
     void left() override;
     void right() override;
     void down() override;
