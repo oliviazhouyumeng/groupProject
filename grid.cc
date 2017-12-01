@@ -13,9 +13,8 @@ void Grid::setObserver(unique_ptr<Observer<Info, State>> ob) {
 }
 
 
-
 bool Grid::endGame() const {
-    //end the game
+    throw EndException{};
 }
 
 
