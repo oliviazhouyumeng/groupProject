@@ -45,9 +45,9 @@ int main(int argc, char *argv[]) {
     
     Grid g;
     string cmd;
+    g.setLevel(startLevel);
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
-    g.init();  // Fill in parameters!
-    g.setLevel(startLevel); //generate new blocks
+    g.init();
     
     try {
         while (true) {
