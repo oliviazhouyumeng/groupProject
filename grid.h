@@ -4,13 +4,9 @@
 #include <vector>
 #include <cstddef>
 #include "cell.h"
-#include "state.h"
-#include "info.h"
-#include "subject.h"
-#include "textdisplay.h"
-#include "graphicsdisplay.h"
-#include "level.h"
+#include "level.h" // forward declare?
 #include <memory>
+struct State;
 class TextDisplay;
 class GraphicsDisplay;
 template <typename InfoType, typename StateType> class Observer;
