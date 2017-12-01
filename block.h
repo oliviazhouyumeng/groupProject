@@ -2,16 +2,15 @@
 #define BLOCK_H
 #include <string>
 #include <vector>
-#include "cell.h"
 #include "posn.h"
 
 class Block {
-protected:
+  protected:
     int level;
     bool heavy; // default: false
     std::vector<Posn> pos; // Storing default cells coordinates
     std::string type; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
-public:
+  public:
     Block(int level, bool heavy);
     virtual void left(Grid &g) = 0;
     virtual void right(Grid &g) = 0;
