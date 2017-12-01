@@ -26,6 +26,7 @@ class Grid {
     std::shared_ptr<Block> curr = nullptr; // the current block on the board
     std::string next; // the next block will appear on the board
     int nextlevel; // the level of next block
+    bool gdavailable; // default = true = gd available, false = textonly
     std::unique_ptr<TextDisplay> td = nullptr; // the text display
     std::unique_ptr<GraphicsDisplay> gd = nullptr; // the graphics diaplay
     
@@ -39,6 +40,7 @@ public:
     void setObserver();
     bool endGame() const;  // end the game
     void init(int hi); // Sets up an n x n grid.  Clears old grid, if necessary. //hi: high score
+    void setGraphics(bool b);
     void levelUp();
     void levelDown();
     void setLevel(int l);
