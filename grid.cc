@@ -4,14 +4,9 @@ using namespace std;
 
 
 
-Grid::Grid() {
-    
-}
+Grid::Grid() {}
 
-Grid::~Grid(){ // default?
-    //delete td;
-    //delete gd;
-}
+Grid::~Grid() {}
 
 void Grid::setObserver(unique_ptr<Observer<Info, State>> ob) {
     this->ob = ob;
@@ -60,23 +55,33 @@ void Grid::init(int hi) {
             theGrid[i][j].attach(gd);
         }
     }
-    
-    // generate blocks
-    
-}
-void Grid::setNew(size_t r, size_t c, Colour colour) {
-    curr->setNew(*this);
+    getNextBlock();
+    getNextBlock();
 }
 void Grid::levelUp() {
-    
+    currlevel++;
 }
 void Grid::levelDown() {
-    
+    currlevel--;
 }
-void Grid::moveDown(){ // rows cleared by cell
-    for (size_t i = 17; i > 2; i--) {
-        while (isEmpty(i)) {
-            //
+void setLevel(int l) {
+    currlevel = l;
+}
+void Grid::moveDown(size_t r){
+    if (isEmpty(r)) {
+        int currRow = r;
+        while (r >= 3) {
+            for (auto b : liveBlocks) {
+                for (auto c : cells) {
+                    if (c.getInfo().row == r) {
+                        Colour currColour = c.getInfo().colour;
+                        c.setColour(Colour::White, *this);
+                        auto c = make_shared<getCell(r+1, c.getInfo().col)>;
+                        c.setColour(currColour, *this);
+                    }
+                }
+            }
+            r--;
         }
     }
 }
@@ -87,7 +92,42 @@ void Grid::isEmpty(size_t r) {
     return true;
 }
 void Grid::getNextBlock(){
-    
+    switch(next) {
+        case NULL:
+            return;
+        case "I":
+            curr = IBlock(*this, nextlevel);
+        case "J":
+            curr = JBlock(*this, nextlevel);
+        case "L":
+            curr = LBlock(*this, nextlevel);
+        case "S":
+            curr = SBlock(*this, nextlevel);
+        case "Z":
+            curr = ZBlock(*this, nextlevel);
+        case "T":
+            curr = TBlock(*this, nextlevel);
+        case "O":
+            curr = OBlock(*this, nextlevel);
+        case "Hint":
+            curr = HintBlock(*this, nextlevel);
+        case "Star":
+            curr = StarBlock(*this, nextlevel);
+    }
+    if (currlevel == 0) {
+        if (iss == NULL) {
+            string newLevel = levels[currlevel].createBlock();
+            iss{newLevel};
+            iss >> next;
+        }
+        else iss >> next;
+    }
+    else next = levels[currlevel].createBlock();
+    nextlevel = currlevel;
+}
+voig Grid::setNext(string nextcmd) {
+    next = nextcmd;
+    nextlevel = currlevel;
 }
 void Grid::updateScore(int point) {
     curr_score += point;
