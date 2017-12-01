@@ -1,9 +1,6 @@
 #include "grid.h"
 using namespace std;
 
-
-
-
 Grid::Grid() {}
 
 Grid::~Grid() {}
@@ -12,18 +9,9 @@ void Grid::setObserver(unique_ptr<Observer<Info, State>> ob) {
     this->ob = ob;
 }
 
-
 bool Grid::endGame() const {
     throw EndException{};
 }
-
-
-void Grid::init(size_t n) {
-  if (isInit) this->resetGrid();
-  size = n;
-  isInit = true;
-  
-
 
 void Grid::init(int hi) {
     theGrid.clear();
@@ -75,11 +63,7 @@ void setLevel(int l) {
 }
     
 void Grid::clearRow(size_t r) {
-    for (auto c : theGrid[r]) {
-        c.setColour = Colour::White;
-        State s{StateType::NA};
-        c.setState(s);
-    }
+
 }
     
 void Grid::moveDown(size_t r) {
