@@ -16,15 +16,15 @@ class InvalidMove{};
 class Grid {
     std::vector<std::vector<Cell>> theGrid; //the actual grid
     std::vector<std::shared_ptr<Block>> liveBlocks;
-    int hi_score; //the highest score in game
-    int curr_score; // the current score in game
+    int hi_score = 100; //the highest score in game
+    int curr_score = 0; // the current score in game
     int currlevel;//the current level
     std::unique_ptr<std::vector<Level>> levels = nullptr; //[level0,level1,level2,...]
-    std::istringstream iss; // return from level
+    std::istringstream iss; // for block types reading if Level returns a seq file name
     std::shared_ptr<Block> curr = nullptr; // the current block on the board
     std::string next; // the next block will appear on the board
     int nextlevel; // the level of next block
-    bool gdavailable; // default = true = gd available, false = textonly
+    bool graphicsOn = true; // default = true, false = textonly
     std::unique_ptr<TextDisplay> td = nullptr; // the text display
     std::unique_ptr<GraphicsDisplay> gd = nullptr; // the graphics diaplay
     
@@ -33,7 +33,7 @@ class Grid {
     
     
 public:
-    Grid();
+    Grid(int currlevel);
     ~Grid();
     void setObserver(std::unique_ptr<Observer<Info, State>> ob);
     bool endGame() const;  // end the game
