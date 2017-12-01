@@ -18,6 +18,14 @@ bool Grid::endGame() const {
     //end the game
 }
 
+
+void Grid::init(size_t n) {
+  if (isInit) this->resetGrid();
+  size = n;
+  isInit = true;
+  
+
+
 void Grid::init(int hi) {
     theGrid.clear();
     //delete td;
@@ -36,21 +44,17 @@ void Grid::init(int hi) {
         vector<Cell> rArr;
         for(size_t j = 0; j < totc; j++) {
             Cell c{i, j, currlevel};
-            rArr.push_back(c);
+            rArr.emplace_back(c);
         }
-        theGrid.push_back(rArr);
+        theGrid.emplace_back(rArr);
     }
     for (size_t i = 0; i < totr; i++) {
         for (size_t j = 0; j < totc; j++) {
             //(theGrid[i])[j].attach(&theGrid[i][j]);
-            if (j > 0) theGrid[i][j].attach(&theGrid[i][j-1]);
-            if (i > 0) theGrid[i][j].attach(&theGrid[i-1][j]);
-            if (i < totr-1) theGrid[i][j].attach(&theGrid[i+1][j]);
-            if (j < totc-1) theGrid[i][j].attach(&theGrid[i][j+1]);
-        }
-    }
-    for (size_t i = 0; i < totr; i++) {
-        for (size_t j = 0; j < totc; j++) {
+            if (j > 0) theGrid[i][j].attach(&theGrid[i][j-1]); // up
+            if (i > 0) theGrid[i][j].attach(&theGrid[i-1][j]); // left
+            if (i < totr-1) theGrid[i][j].attach(&theGrid[i+1][j]); // right
+            if (j < totc-1) theGrid[i][j].attach(&theGrid[i][j+1]); // down
             theGrid[i][j].attach(td);
             theGrid[i][j].attach(gd);
         }
@@ -58,15 +62,19 @@ void Grid::init(int hi) {
     getNextBlock();
     getNextBlock();
 }
+
 void Grid::levelUp() {
-    currlevel++;
+    if (currlevel < 4) ++currlevel;
 }
+
 void Grid::levelDown() {
-    currlevel--;
+    if (currlevel > 0) --currlevel;
 }
+
 void setLevel(int l) {
     currlevel = l;
 }
+
 void Grid::moveDown(size_t r){
     if (isEmpty(r)) {
         int currRow = r;
@@ -81,16 +89,18 @@ void Grid::moveDown(size_t r){
                     }
                 }
             }
-            r--;
+            --r;
         }
     }
 }
+
 void Grid::isEmpty(size_t r) {
-    for (size_t c = 0; c < 11; c++) {
+    for (size_t c = 0; c < 11; ++c) {
         if (getCell(r, c).getInfo().colour != Colour::White) return false;
     }
     return true;
 }
+
 void Grid::getNextBlock(){
     switch(next) {
         case NULL:
@@ -125,20 +135,22 @@ void Grid::getNextBlock(){
     else next = levels[currlevel].createBlock();
     nextlevel = currlevel;
 }
+
 voig Grid::setNext(string nextcmd) {
     next = nextcmd;
     nextlevel = currlevel;
 }
+
 void Grid::updateScore(int point) {
     curr_score += point;
     if (hi_score < curr_score) hi_score = curr_score;
 }
+
 Cell &Grid::getCell(size_t x, size_t y) {
     return theGrid[x][y];
 }
+
 std::ostream &operator<<(std::ostream &out, const Grid &g) {
     out << *(g.td);
     return out;
 }
-
-
