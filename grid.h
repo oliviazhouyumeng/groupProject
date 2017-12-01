@@ -22,8 +22,10 @@ class Grid {
     int curr_score; // the current score in game
     int currlevel;//the current level
     std::unique_ptr<vector<Level>> levels = nullptr; //[level0,level1,level2,...]
+    std::istringstream iss; // return from level
     std::shared_ptr<Block> curr = nullptr; // the current block on the board
     std::string next; // the next block will appear on the board
+    int nextlevel; // the level of next block
     std::unique_ptr<TextDisplay> td = nullptr; // the text display
     std::unique_ptr<GraphicsDisplay> gd = nullptr; // the graphics diaplay
     
@@ -37,12 +39,13 @@ public:
     void setObserver();
     bool endGame() const;  // end the game
     void init(int hi); // Sets up an n x n grid.  Clears old grid, if necessary. //hi: high score
-    void setNew();  // place curr block on the grid
     void levelUp();
     void levelDown();
+    void setLevel(int l);
     void moveDown(); // clear empty lines
     void isEmpty(size_t r); // return true if rth row is empty
     void getNextBlock(); // update curr & next
+    void setNext(std::string nextcmd); // set next, modify next level
     void updateScore(int point); // update curr_score & hi_score
     Cell &getCell(size_t x, size_t y);
     
