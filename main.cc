@@ -50,6 +50,7 @@ int main(int argc, char *argv[]) {
             else if (cmd == "down") g.currBlock()->down();
             else if (cmd == "clockwise") g.currBlock()->clockwise();
             else if (cmd == "counterclockwise") g.currBlock()->counterclockwise();
+            else if (cmd == "skip") g.getNextBlock(); //
             else if (cmd == "drop") {
                 g.currBlock()->drop();
                 g.moveDown();
