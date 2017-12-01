@@ -28,6 +28,7 @@ bool Grid::endGame() const {
 
 void Grid::init() {
     theGrid.clear();
+    liveBlocks.clear();
     
     curr_score = 0;
     
