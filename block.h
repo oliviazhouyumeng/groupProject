@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "cell.h"
+
 class Block {
 protected:
     size_t x, y;
