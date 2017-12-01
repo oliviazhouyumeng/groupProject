@@ -16,7 +16,7 @@ class GraphicsDisplay;
 template <typename InfoType, typename StateType> class Observer;
 class InvalidMove{};
 class Grid {
-    std::vector<vector<cell>> theGrid; //the actual grid
+    std::vector<std::vector<cell>> theGrid; //the actual grid
     std::vector<shared_ptr<Block>> liveBlocks;
     int hi_score; //the highest score in game
     int curr_score; // the current score in game
@@ -37,7 +37,7 @@ class Grid {
 public:
     Grid();
     ~Grid();
-    void setObserver();
+    void setObserver(unique_ptr<Observer<Info, State>> ob);
     bool endGame() const;  // end the game
     void init(int hi); // Sets up an n x n grid.  Clears old grid, if necessary. //hi: high score
     void setGraphics(bool b);
@@ -48,7 +48,8 @@ public:
     void moveDown(); // clear empty lines
     void isFull(size_t r);
     void isEmpty(size_t r); // return true if rth row is empty
-    void getNextBlock(); // update curr & next
+    void setCurrtoGrid();
+    void Grid::updateNext();
     void setNext(std::string nextcmd); // set next, modify next level
     void setColour(size_t row, size_t col, Colour col);
     void setPiece(size_t row, size_t col, Colour colour);
