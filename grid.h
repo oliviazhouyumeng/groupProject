@@ -10,14 +10,14 @@
 #include "textdisplay.h"
 #include "graphicsdisplay.h"
 #include "level.h"
-#include "endexception.h"
 #include <memory>
 class TextDisplay;
 class GraphicsDisplay;
 template <typename InfoType, typename StateType> class Observer;
+class InvalidMove{};
 class Grid {
     std::vector<std::vector<Cell>> theGrid; //the actual grid
-    std::vector<std::shared_ptr<Block>> liveBlocks;
+    std::vector<shared_ptr<Block>> liveBlocks;
     int hi_score; //the highest score in game
     int curr_score; // the current score in game
     int currlevel;//the current level
@@ -30,14 +30,14 @@ class Grid {
     std::unique_ptr<TextDisplay> td = nullptr; // the text display
     std::unique_ptr<GraphicsDisplay> gd = nullptr; // the graphics diaplay
     
-    std::shared_ptr<Observer<Info, State>> ob = nullptr; //Another observer
+    std::unique_ptr<Observer<Info, State>> ob = nullptr; //Another observer
     // Add private members, if necessary.
     
     
 public:
     Grid();
     ~Grid();
-    void setObserver(std::shared_ptr<Observer<Info, State>> ob);
+    void setObserver(unique_ptr<Observer<Info, State>> ob);
     bool endGame() const;  // end the game
     void init(int hi); // Sets up an n x n grid.  Clears old grid, if necessary. //hi: high score
     void setGraphics(bool b);
@@ -48,11 +48,13 @@ public:
     void moveDown(); // clear empty lines
     bool isFull(size_t r);
     bool isEmpty(size_t r); // return true if rth row is empty
-    void getNextBlock(); // update curr & next
+    void setCurrtoGrid();
+    void Grid::updateNext();
     void setNext(std::string nextcmd); // set next, modify next level
-    void setColour(size_t row, size_t col, Colour colour);
+    void setColour(size_t row, size_t col, Colour col);
     void setPiece(size_t row, size_t col, Colour colour);
     void gSetState(size_t row, size_t col, State s);
+    State getState(size_t row, size_t col);
     void updateScore(int point); // update curr_score & hi_score
     Cell &getCell(size_t x, size_t y);
     
