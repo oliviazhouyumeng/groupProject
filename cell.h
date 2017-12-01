@@ -22,7 +22,9 @@ public:
     
     Cell(size_t r, size_t c, int l);
     
-    void setPiece(Colour colour, Grid &g);    // Place a piece of given colour here.
+    //void setPiece(Colour colour, Grid &g);    // Place a piece of given colour here.
+    
+    //bool checkWhite(Grid &g);
     
     void setColour(Colour colour, Grid &g); // Modifies colour of the cell
     
