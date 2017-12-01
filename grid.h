@@ -39,7 +39,7 @@ public:
     ~Grid();
     void setObserver(unique_ptr<Observer<Info, State>> ob);
     bool endGame() const;  // end the game
-    void init(int hi); // Sets up an n x n grid.  Clears old grid, if necessary. //hi: high score
+    void init(); // Sets up an n x n grid.  Clears old grid, if necessary.
     void setGraphics(bool b);
     void levelUp();
     void levelDown();
