@@ -13,7 +13,7 @@ Cell::Cell(size_t r, size_t c, int l):r{r}, c{c}, level{l}, colour{Colour::White
     setState(s);
 }
 
-void Cell::setNew(Colour colour, Grid &g) { // Place a new cell here.
+void Cell::setPiece(Colour colour, Grid &g) { // Place a new cell here.
     if (this->colour != Colour::White) {
         g.endGame();
     }
@@ -22,6 +22,12 @@ void Cell::setNew(Colour colour, Grid &g) { // Place a new cell here.
     setState(s);
     notifyObservers();
 }
+
+void Cell::setColour(Colour colour, Grid &g){ // Modifies colour of the cell
+    this->colour = colour;
+    notifyObservers();
+}
+
 void Cell::addScore(Grid &g, int score) { //modify the score field in Grid
     g.updateScore(score);
 }
