@@ -1,150 +1,65 @@
+#ifndef GRID_H
+#define GRID_H
 #include <iostream>
-#include <string>
 #include <vector>
-#include "window.h"
-#include "grid.h"
+#include <cstddef>
+#include "cell.h"
 #include "state.h"
-#include "block.h"#include <iostream>
-#include <string>
-#include <vector>
-#include "window.h"
-#include "grid.h"
-#include "state.h"
-#include "block.h"
+#include "info.h"
+#include "subject.h"
+#include "textdisplay.h"
+#include "graphicsdisplay.h"
 #include "level.h"
-#include <sstream>
-using namespace std;
-
-int main(int argc, char *argv[]) {
-    cin.exceptions(ios::eofbit|ios::failbit);
-    bool textMode = false;
-    int startLevel = 0;
-    for (int i = 1; i < argc; ++i){
-        string curArg = argv[i];
-        if (curArg == "-text") {
-            textMode = true;
-        } else if (curArg == "-seed") {
-            ++i;
-            int seedNum = argv[i];
-            // sets the random number generator’s seed to xxx(seedNum)
-        } else if (curArg == "scriptfile") {
-            if (i + 1 < argc && argv[i + 1] != "-seed" && argv[i + 1] != "-text" &&
-                argv[i + 1] != "startlevel" && argv[i + 1] != "scriptfile") {
-                ++i;
-                string scriptFile = argv[i];
-            }
-            // Use scriptFile instead of sequence.txt as a source of blocks for level 0
-        } else if (curArg == "startlevel") {
-            ++i;
-            startLevel = argv[i];
-            // Starts the game in level n
-        }
-    }
+#include <memory>
+class TextDisplay;
+class GraphicsDisplay;
+template <typename InfoType, typename StateType> class Observer;
+class InvalidMove{};
+class Grid {
+    std::vector<std::vector<Cell>> theGrid; //the actual grid
+    std::vector<shared_ptr<Block>> liveBlocks;
+    int hi_score; //the highest score in game
+    int curr_score; // the current score in game
+    int currlevel;//the current level
+    std::unique_ptr<vector<Level>> levels = nullptr; //[level0,level1,level2,...]
+    std::istringstream iss; // return from level
+    std::shared_ptr<Block> curr = nullptr; // the current block on the board
+    std::string next; // the next block will appear on the board
+    int nextlevel; // the level of next block
+    bool gdavailable; // default = true = gd available, false = textonly
+    std::unique_ptr<TextDisplay> td = nullptr; // the text display
+    std::unique_ptr<GraphicsDisplay> gd = nullptr; // the graphics diaplay
     
-    Grid g;
-    string cmd;
-    if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
-    g.init(0);  // Fill in parameters!
-    g.setLevel(startLevel); //generate new blocks
+    std::unique_ptr<Observer<Info, State>> ob = nullptr; //Another observer
+    // Add private members, if necessary.
     
-    try {
-        while (true) {
-            cin >> cmd;
-            if (cmd == "left") g.currBlock()->left(); // g.currBlock() accessor
-            else if (cmd == "right") g.currBlock()->right();
-            else if (cmd == "down") g.currBlock()->down();
-            else if (cmd == "clockwise") g.currBlock()->clockwise();
-            else if (cmd == "counterclockwise") g.currBlock()->counterclockwise();
-            else if (cmd == "skip") g.updateNext();
-            else if (cmd == "drop") {
-                g.currBlock()->drop();
-                g.moveDown();
-                try {
-                    g.getNextBlock();
-                }
-                catch(EndException &e) {
-                    break;
-                }
-            }
-            else if (cmd == "levelop") g.levelUp();
-            else if (cmd == "leveldown") g.levelDown();
-            //else if (cmd == "norandom") file
-            //else if (cmd == "random")
-            //else if (cmd == "sequence") file
-            else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "z"||cmd == "T"||cmd == "O") g.setNext(cmd);
-            else if (cmd == "restart") g.init();
-            //hint
-        }
-    }
-    catch (ios::failure &) {}  // Any I/O failure quits
-}
-
-
-#include "level.h"
-#include <sstream>
-using namespace std;
-
-int main(int argc, char *argv[]) {
-    cin.exceptions(ios::eofbit|ios::failbit);
-    bool textMode = false;
-    int startLevel = 0;
-    for (int i = 1; i < argc; ++i){
-        string curArg = argv[i];
-        if (curArg == "-text") {
-            textMode = true;
-        } else if (curArg == "-seed") {
-            ++i;
-            int seedNum = argv[i];
-            // sets the random number generator’s seed to xxx(seedNum)
-        } else if (curArg == "scriptfile") {
-            if (i + 1 < argc && argv[i + 1] != "-seed" && argv[i + 1] != "-text" && 
-                argv[i + 1] != "startlevel" && argv[i + 1] != "scriptfile") {
-                ++i;
-                string scriptFile = argv[i];
-            }
-            // Use scriptFile instead of sequence.txt as a source of blocks for level 0
-        } else if (curArg == "startlevel") {
-            ++i;
-            startLevel = argv[i];
-            // Starts the game in level n
-        }
-    }
     
-    Grid g;
-    string cmd;
-    if (textMode)
-        g.setGraphics(false); // init a grid w/ graphics disabled
-    g.init();  // Fill in parameters!
-    g.setLevel(startLevel); //generate new blocks
+public:
+    Grid();
+    ~Grid();
+    void setObserver(unique_ptr<Observer<Info, State>> ob);
+    bool endGame() const;  // end the game
+    void init(); // Sets up an n x n grid.  Clears old grid, if necessary.
+    void setGraphics(bool b);
+    void levelUp();
+    void levelDown();
+    void setLevel(int l);
+    void clearRow(size_t r);
+    void moveDown(size_t r); // clear empty lines
+    bool isFull(size_t r);
+    bool isEmpty(size_t r); // return true if rth row is empty
+    void setCurrtoGrid();
+    void updateNext();
+    void setNext(std::string nextcmd); // set next, modify next level
+    void setColour(size_t row, size_t col, Colour col);
+    void setPiece(size_t row, size_t col, Colour colour);
+    void gSetState(size_t row, size_t col, State s);
+    State getState(size_t row, size_t col);
+    void updateScore(int point); // update curr_score & hi_score
+    Cell &getCell(size_t x, size_t y);
+    Block &currBlock();
+    
+    friend std::ostream &operator<<(std::ostream &out, const Grid &g);
+};
 
-    try {
-        while (true) {
-            cin >> cmd;
-            if (cmd == "left") g.currBlock()->left(); // g.currBlock() accessor
-            else if (cmd == "right") g.currBlock()->right();
-            else if (cmd == "down") g.currBlock()->down();
-            else if (cmd == "clockwise") g.currBlock()->clockwise();
-            else if (cmd == "counterclockwise") g.currBlock()->counterclockwise();
-            else if (cmd == "skip") g.getNextBlock(); //
-            else if (cmd == "drop") {
-                g.currBlock()->drop();
-                g.moveDown();
-                try {
-                    g.getNextBlock();
-                }
-                catch(EndException &e) {
-                    break;
-                }
-            }
-            else if (cmd == "levelop") g.levelUp();
-            else if (cmd == "leveldown") g.levelDown();
-            //else if (cmd == "norandom") file
-            //else if (cmd == "random")
-            //else if (cmd == "sequence") file
-            else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "z"||cmd == "T"||cmd == "O") g.setNext(cmd);
-            else if (cmd == "restart") g.init();
-            //hint
-        }
-    }
-    catch (ios::failure &) {}  // Any I/O failure quits
-}
+#endif
