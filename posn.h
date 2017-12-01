@@ -2,7 +2,7 @@
 #define POSN_H
 
 struct Posn {
-  int x,y;
+  size_t x,y;
 };
 
 #endif
