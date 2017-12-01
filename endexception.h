@@ -1,5 +1,5 @@
 #ifndef ENDEXCEPTION_H
-#define ENDREXCEPTION_H
+#define ENDEXCEPTION_H
 #include <string>
 
 class EndException {
