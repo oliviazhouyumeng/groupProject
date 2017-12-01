@@ -25,7 +25,7 @@ void Grid::init(int hi) {
     const size_t totc = 11; // total columns
     
     td = new TextDisplay{};
-    gd = new GraphicsDisplay{};
+    if (gdavailable) gd = new GraphicsDisplay{};
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -43,11 +43,15 @@ void Grid::init(int hi) {
             if (i < totr-1) theGrid[i][j].attach(&theGrid[i+1][j]); // right
             if (j < totc-1) theGrid[i][j].attach(&theGrid[i][j+1]); // down
             theGrid[i][j].attach(td);
-            theGrid[i][j].attach(gd);
+            if (gdavailable) theGrid[i][j].attach(gd);
         }
     }
     getNextBlock();
     getNextBlock();
+}
+
+void Grid::setGraphics(bool b) {
+    gdavailable = b;
 }
 
 void Grid::levelUp() {
@@ -63,26 +67,16 @@ void setLevel(int l) {
 }
 
 void Grid::clearRow(size_t r) {
-    
 }
 
 void Grid::moveDown(size_t r) {
-    if (isEmpty(r)) {
-        int currRow = r;
-        while (r >= 3) {
-            for (auto b : liveBlocks) {
-                for (auto c : b.cells) {
-                    if (c.getInfo().row == r) {
-                        Colour currColour = c.getInfo().colour;
-                        c.setColour(Colour::White, *this);
-                        auto c = make_shared<getCell(r+1, c.getInfo().col)>;
-                        c.setColour(currColour, *this);
-                    }
-                }
-            }
-            --r;
-        }
+}
+
+void Grid::isFull(size_t r) {
+    for (size_t c = 0; c < 11; ++c) {
+        if (getCell(r, c).getInfo().colour == Colour::White) return false;
     }
+    return false;
 }
 
 void Grid::isEmpty(size_t r) {
