@@ -14,20 +14,6 @@ Cell::Cell(size_t r, size_t c, int l):r{r}, c{c}, level{l}, colour{Colour::White
 }
 
 
-bool Cell::checkWhite(Grid &g){
-    if(colour == Colour::White) return true;
-    return false;
-}
-
-//void Cell::setPiece(Colour colour, Grid &g) { // Place a new cell here.
-//    if (this->colour != Colour::White) {
-//        g.endGame();
-//    }
-//    this->colour = colour;
-//    State s{StateType::AC};
-//    setState(s);
-//    notifyObservers();
-//}
 
 void Cell::setColour(Colour colour, Grid &g){ // Modifies colour of the cell
     State old_S = State{StateType::NA};
