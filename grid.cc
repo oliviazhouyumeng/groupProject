@@ -126,7 +126,7 @@ voig Grid::setNext(string nextcmd) {
     nextlevel = currlevel;
 }
 
-void Grid::setColour(size_t row, size_t col, Colour col) {
+void Grid::setColour(size_t row, size_t col, Colour color) {
     getCell(row, col).setColour(colour, *this);
 }
 
