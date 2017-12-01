@@ -125,12 +125,15 @@ voig Grid::setNext(string nextcmd) {
     next = nextcmd;
     nextlevel = currlevel;
 }
+
 void Grid::setColour(size_t row, size_t col, Colour col) {
     getCell(row, col).setColour(colour, *this);
 }
+
 void Grid::gSetState(size_t row, size_t col, State s) {
     getCell(row, col).setState(s);
 }
+
 void Grid::updateScore(int point) {
     curr_score += point;
     if (hi_score < curr_score) hi_score = curr_score;
