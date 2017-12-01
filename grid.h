@@ -44,6 +44,7 @@ public:
     void setLevel(int l);
     void clearRow(size_t r);
     void moveDown(); // clear empty lines
+    void isFull(size_t r);
     void isEmpty(size_t r); // return true if rth row is empty
     void getNextBlock(); // update curr & next
     void setNext(std::string nextcmd); // set next, modify next level
