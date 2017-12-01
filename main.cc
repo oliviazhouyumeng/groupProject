@@ -4,7 +4,8 @@
 #include "window.h"
 #include "grid.h"
 #include "state.h"
-#include "block.h"#include <iostream>
+#include "block.h"
+#include <iostream>
 #include <string>
 #include <vector>
 #include "window.h"
@@ -13,6 +14,7 @@
 #include "block.h"
 #include "level.h"
 #include <sstream>
+#include "endexception.h"
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -44,11 +46,12 @@ int main(int argc, char *argv[]) {
     Grid g;
     string cmd;
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
-    g.init(0);  // Fill in parameters!
+    g.init();  // Fill in parameters!
     g.setLevel(startLevel); //generate new blocks
     
     try {
         while (true) {
+            cout << ">" << endl;
             cin >> cmd;
             if (cmd == "left") g.currBlock()->left(); // g.currBlock() accessor
             else if (cmd == "right") g.currBlock()->right();
@@ -58,12 +61,13 @@ int main(int argc, char *argv[]) {
             else if (cmd == "skip") g.updateNext();
             else if (cmd == "drop") {
                 g.currBlock()->drop();
-                g.moveDown();
+                //g.moveDown();
                 try {
                     g.getNextBlock();
                 }
                 catch(EndException &e) {
                     break;
+                    cout << "Game over!" << endl;
                 }
             }
             else if (cmd == "levelop") g.levelUp();
