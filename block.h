@@ -9,7 +9,7 @@ protected:
     int level;
     std::string type; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
     bool heavy; // default: false
-    std::vector<std::shared_ptr<Cell>> cells; // a Block originally contains four Cell
+    std::vector<std::shared_ptr<Cell>> cells(4); // a Block originally contains four Cell
 public:
     Block(size_t x, size_t y, int level, std::string type, bool heavy);
     virtual void left(Grid &g) = 0;
