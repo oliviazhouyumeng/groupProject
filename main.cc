@@ -23,8 +23,8 @@ int main(int argc, char *argv[]) {
             // sets the random number generator’s seed to xxx(seedNum)
         } else if (curArg == "scriptfile") {
             ++i;
-            // xxx : argv[i];
-            // Uses xxx instead of sequence.txt as a source of blocks for level 0
+            string scriptFile = argv[i];
+            // Use scriptFile instead of sequence.txt as a source of blocks for level 0
         } else if (curArg == "startlevel") {
             ++i;
             startLevel = argv[i];
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
     if (textMode) Grid g; // text only grid
     else Grid g; // text & graphic
     g.init();
-    //set level to startLevel
+    g.setLevel(startLevel);
     //generate new blocks
 
     try {
@@ -50,14 +50,20 @@ int main(int argc, char *argv[]) {
             else if (cmd == "counterclockwise") g.currBlock()->counterclockwise();
             else if (cmd == "drop") {
                 g.currBlock()->drop();
-                //setPiece
+                g.moveDown();
+                try {
+                    g.getNextBlock();
+                }
+                catch() {
+                    break;
+                }
             }
             else if (cmd == "levelop") g.levelUp();
             else if (cmd == "leveldown") g.levelDown();
             //else if (cmd == "norandom") file
             //else if (cmd == "random")
             //else if (cmd == "sequence") file
-            // I J L
+            else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "z"||cmd == "T"||cmd == "O") g.setNext(cmd);
             else if (cmd == "restart") g.init();
             //hint
         }
