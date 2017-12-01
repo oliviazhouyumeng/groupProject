@@ -1,26 +1,21 @@
-#include "block.hpp"
-#include "tblock.hpp"
+#include "block.h"
+#include "tblock.h"
 
 using namespace std;
 
 
-TBlock::TBlock(Grid &g): Block{3, 0, level, "A", false}{
+TBlock::TBlock(int level, Grid &g): Block{3, 0, level, "A", false}{
     auto a = make_shared<Cell>(&g.getCell(2, 0));
-    State newS = {StateType::AC};
-    a->setColour(Colour::Orange, g);
-    a->setState(newS);
+    a->setPiece(Colour::Orange, g);
     cells.push_back(a);
     auto b = make_shared<Cell>(&g.getCell(2, 1));
-    b->setColour(Colour::Orange, g);
-    b->setState(newS);
+    b->setPiece(Colour::Orange, g);
     cells.push_back(b);
     auto c = make_shared<Cell>(&g.getCell(2, 2));
-    c->setColour(Colour::Orange, g);
-    c->setState(newS);
+    c->setPiece(Colour::Orange, g);
     cells.push_back(c);
     auto d = make_shared<Cell>(&g.getCell(3, 1));
-    d->setColour(Colour::Orange, g);
-    d->setState(newS);
+    d->setPiece(Colour::Orange, g);
     cells.push_back(d);
 }
     
@@ -34,6 +29,7 @@ TBlock::TBlock(Grid &g): Block{3, 0, level, "A", false}{
 void TBlock::left(Grid &g){///////////not done
     State old_S = State{StateType::NA};
     State new_S = State{StateType::AC};
+    if(y == 0) return;
     if (type == "A") {
         Cell &new_ul_ref = g.getCell(x-1, y-1);//upper left
         Cell &new_lm_ref = g.getCell(x, y); //lower middle
@@ -60,6 +56,9 @@ void TBlock::left(Grid &g){///////////not done
             new_ul->notifyObservers();
             new_lm->notifyObservers();
             y--;
+            if(heavy == true){
+                this->down(g);
+            }
         }
     }
     else if (type == "B"){
@@ -99,6 +98,9 @@ void TBlock::left(Grid &g){///////////not done
             new_ml->notifyObservers();
             new_lr->notifyObservers();
             y--;
+            if(heavy == true){
+                this->down(g);
+            }
         }
     }
     else if(type == "C"){
@@ -127,6 +129,9 @@ void TBlock::left(Grid &g){///////////not done
             new_um->notifyObservers();
             new_ll->notifyObservers();
             y--;
+            if(heavy == true){
+                this->down(g);
+            }
         }
     }
     else { // type "D"
@@ -166,6 +171,9 @@ void TBlock::left(Grid &g){///////////not done
             new_ml->notifyObservers();
             new_ll->notifyObservers();
             y--;
+            if(heavy == true){
+                this->down(g);
+            }
         }
     }
 }
@@ -176,6 +184,7 @@ void TBlock::right(Grid &g){
     State old_S = State{StateType::NA};
     State new_S = State{StateType::AC};
     if (type == "A") {
+        if(y >= 8) return;
         auto ur = make_shared<Cell>(cells.at(2)); //upper right cell
         size_t ur_x = ur->getInfo().row;
         size_t ur_y = ur->getInfo().col;
@@ -204,9 +213,13 @@ void TBlock::right(Grid &g){
             new_ur->notifyObservers();
             new_lm->notifyObservers();
             y++;
+            if(heavy == true){
+                this->down(g);
+            }
         }
     }
     else if (type == "B") {
+        if(y >= 9) return;
         auto mr = make_shared<Cell>(cells.at(1)); //middle right cell
         size_t mr_x = mr->getInfo().row;
         size_t mr_y = mr->getInfo().col;
@@ -247,10 +260,14 @@ void TBlock::right(Grid &g){
             new_mr->notifyObservers();
             new_lr->notifyObservers();
             y++;
+            if(heavy == true){
+                this->down(g);
+            }
         }
         
     }
     else if (type == "C") {
+        if(y >= 8) return;
         auto lr = make_shared<Cell>(cells.at(0)); // lower right cell
         size_t lr_x = lr->getInfo().row;
         size_t lr_y = lr->getInfo().col;
@@ -280,9 +297,13 @@ void TBlock::right(Grid &g){
             new_um->notifyObservers();
             new_lr->notifyObservers();
             y++;
+            if(heavy == true){
+                this->down(g);
+            }
         }
     }
     else{ // "D" type
+        if(y >= 9) return;
         auto mr = make_shared<Cell>(cells.at(3)); //middle right
         size_t mr_x = mr->getInfo().row;
         size_t mr_y = mr->getInfo().col;
@@ -323,6 +344,9 @@ void TBlock::right(Grid &g){
             new_mr->notifyObservers();
             new_ll->notifyObservers();
             y++;
+            if(heavy == true){
+                this->down(g);
+            }
         }
     }
 }
@@ -330,6 +354,7 @@ void TBlock::right(Grid &g){
 
 
 void TBlock::down(Grid &g){
+    if(x == 17) return;
     auto old_ul = make_shared<Cell>(cells.at(0));
     auto old_um = make_shared<Cell>(cells.at(1));
     auto old_ur = make_shared<Cell>(cells.at(2));
@@ -381,6 +406,15 @@ void TBlock::down(Grid &g){
 void TBlock::clockwise(Grid &g){
     State old_S = State{StateType::NA};
     State new_S = State{StateType::AC};
+    if(type == "B"){
+        if(y == 9) return;
+    }
+    if(type == "C"){
+        if(x == 17) return;
+    }
+    if(type == "D"){
+        if(y == 0) return;
+    }
     
     auto new_first = make_shared<Cell>(&g.getCell(x-2, y+1));
     if(new_first->getInfo().colour == Colour::White){
@@ -404,12 +438,24 @@ void TBlock::clockwise(Grid &g){
         old_third->notifyObservers();
         new_first->notifyObservers();
         this->cwtype();
+        if(heavy == true){
+            this->down(g);
+        }
     }
 }
 
 void TBlock::counterclockwise(Grid &g){
     State old_S = State{StateType::NA};
     State new_S = State{StateType::AC};
+    if(type == "B"){
+        if(y == 9) return;
+    }
+    if(type == "C"){
+        if(x == 17) return;
+    }
+    if(type == "D"){
+        if(y == 0) return;
+    }
     auto new_third = make_shared<Cell>(&g.getCell(x-2, y+1));
     if(new_third->getInfo().colour == Colour::White) {
         auto old_first = make_shared<Cell>(cells.at(0));
@@ -431,6 +477,9 @@ void TBlock::counterclockwise(Grid &g){
         old_first->notifyObservers();
         new_third->notifyObservers();
         this->ccwtype();
+        if(heavy == true){
+            this->down(g);
+        }
     }
     
 }
