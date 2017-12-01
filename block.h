@@ -8,8 +8,8 @@ class Block {
 protected:
     size_t x, y;
     int level;
-    std::string type; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
-    bool heavy; // default: false
+    std::string type = "A"; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
+    bool heavy = false; // default: false
     std::vector<std::shared_ptr<Cell>> cells(4); // a Block originally contains four Cell
 public:
     Block(size_t x, size_t y, int level, std::string type, bool heavy);
