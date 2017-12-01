@@ -4,7 +4,7 @@
 #include "grid.h"
 class TBlock : public Block {
 public:
-    TBlock(Grid &g);
+    TBlock(int level, Grid &g);
     void left(Grid &g) override;
     void right(Grid &g) override;
     void down(Grid &g) override;
