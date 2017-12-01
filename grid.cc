@@ -1,6 +1,7 @@
 #include "grid.h"
 #include "info.h"
 #include "state.h"
+#include "endexception.h"
 using namespace std;
 
 Grid::Grid() {}
