@@ -19,10 +19,12 @@ class Cell : public Subject<Info, State>, public Observer<Info, State> {
 public:
     
     ~Cell();
-
+    
     Cell(size_t r, size_t c, int l);
     
-    void setNew(Colour colour, Grid &g);    // Place a piece of given colour here.
+    void setPiece(Colour colour, Grid &g);    // Place a piece of given colour here.
+    
+    void setColour(Colour colour, Grid &g); // Modifies colour of the cell
     
     void addScore(Grid &g, int score); //modify the score field in Grid
     
