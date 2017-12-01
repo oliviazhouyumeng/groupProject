@@ -72,7 +72,7 @@ void Grid::moveDown(size_t r){
         int currRow = r;
         while (r >= 3) {
             for (auto b : liveBlocks) {
-                for (auto c : cells) {
+                for (auto c : b.cells) {
                     if (c.getInfo().row == r) {
                         Colour currColour = c.getInfo().colour;
                         c.setColour(Colour::White, *this);
