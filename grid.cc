@@ -14,7 +14,7 @@
 #include "starblock.h"
 using namespace std;
 
-Grid::Grid() {}
+Grid::Grid(currlevel): currlevel{currlevel} {}
 
 Grid::~Grid() {}
 
@@ -36,7 +36,7 @@ void Grid::init() {
     const size_t totc = 11; // total columns
     
     td = new TextDisplay{};
-    if (gdavailable) gd = new GraphicsDisplay{};
+    if (graphicsOn) gd = new GraphicsDisplay{};
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -63,7 +63,7 @@ void Grid::init() {
 }
 
 void Grid::setGraphics(bool b) {
-    gdavailable = b;
+    graphicsOn = b;
 }
 
 void Grid::levelUp() {
@@ -104,22 +104,31 @@ void Grid::setCurrtoGrid() {
             return;
         case "I":
             curr = IBlock(*this, nextlevel);
+            break;
         case "J":
             curr = JBlock(*this, nextlevel);
+            break;
         case "L":
             curr = LBlock(*this, nextlevel);
+            break;
         case "S":
             curr = SBlock(*this, nextlevel);
+            break;
         case "Z":
             curr = ZBlock(*this, nextlevel);
+            break;
         case "T":
             curr = TBlock(*this, nextlevel);
+            break;
         case "O":
             curr = OBlock(*this, nextlevel);
+            break;
         case "Hint":
             curr = HintBlock(*this, nextlevel);
+            break;
         case "Star":
             curr = StarBlock(*this, nextlevel);
+            break;
     }
 }
 
