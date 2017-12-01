@@ -2,6 +2,7 @@
 #include "info.h"
 #include "state.h"
 #include "endexception.h"
+#include "block.h"
 using namespace std;
 
 Grid::Grid() {}
