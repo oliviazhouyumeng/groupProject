@@ -8,11 +8,11 @@
 class Block {
 protected:
     int level;
-    std::string type = "A"; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
-    bool heavy = false; // default: false
-    std::vector<Posn> pos(4); // a Block originally contains four Cell
+    bool heavy; // default: false
+    std::vector<Posn> pos; // Storing default cells coordinates
+    std::string type; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
 public:
-    Block(int level, std::string type, bool heavy);
+    Block(int level, bool heavy);
     virtual void left(Grid &g) = 0;
     virtual void right(Grid &g) = 0;
     virtual void down(Grid &g) = 0;
