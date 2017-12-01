@@ -46,9 +46,8 @@ void Grid::init(int hi) {
             if (gdavailable) theGrid[i][j].attach(gd);
         }
     }
-    setCurrtoGrid()
-    setCurrtoGrid()
     updateNext();
+    setCurrtoGrid();
     updateNext();
 }
 
