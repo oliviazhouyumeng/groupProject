@@ -1,7 +1,7 @@
 #include "block.h"
 using namespace std;
 
-Block::Block(size_t x, size_t y, int level, std::string type, bool heavy): x{x}, y{y}, level{level}, type{type}, heavy{heavy}, cells{}{}
+Block::Block(size_t x, size_t y, int level, string type, bool heavy): x{x}, y{y}, level{level}, type{type}, heavy{heavy}, cells{}{}
 
 
 bool Block::isHeavy() const{
