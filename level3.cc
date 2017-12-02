@@ -39,7 +39,7 @@ string Level3::createBlock() const {
     else if (gen == 3) return "O";
     else if (gen == 4 || gen == 5) return "S";
     else if (gen == 6 || gen == 7) return "Z";
-    else if (gen == 8) return "T";
+    else return "T";
   } else {
     ifstream f{seqFile};
     ostringstream oss;
