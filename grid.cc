@@ -181,10 +181,12 @@ void Grid::updateNext() {
     if (currlevel == 0) {
         if (blockSeq == "" || blockSeq == " ") {
             blockSeq = levels[currlevel]->createBlock();
+            seqCount = 0;
         }
-        istringstream iss{blockSeq};
-        iss >> next;
-        blockSeq = iss.str();
+        stringstream ss{blockSeq};
+        ss >> next;
+        seqCount += (next.size()+1);
+        blockSeq = blockSeq.substr(seqCount);
     }
     else next = levels[currlevel]->createBlock();
     nextlevel = currlevel;
