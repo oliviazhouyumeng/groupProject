@@ -204,11 +204,11 @@ void Grid::setNext(string nextcmd) {
 }
 
 void Grid::setColour(size_t row, size_t col, Colour colour) {
-    getCell(row, col).setColour(colour, *this);
+    setColour(row, col, colour);
 }
 
 void Grid::changeColour(size_t row, size_t col, Colour colour) {
-    getCell(row, col).changeColour(colour, *this);
+    changeColour(row, col, colour);
 }
 
 bool Grid::checkWhite(size_t row, size_t col) {
@@ -216,11 +216,11 @@ bool Grid::checkWhite(size_t row, size_t col) {
 }
 
 void Grid::gSetState(size_t row, size_t col, State s) const {
-    getCell(row, col).setState(s);
+    gSetState(row, col, s);
 }
 
 State Grid::getState(size_t row, size_t col) const {
-    return getCell(row, col).getState();
+    return getState(row, col);
 }
 
 void Grid::updateScore(int point) {
@@ -241,7 +241,7 @@ Cell &Grid::getCell(size_t x, size_t y) {
 }
 
 Block &Grid::currBlock() {
-    return curr;
+    return *curr;
 }
 
 ostream &operator<<(std::ostream &out, const Grid &g) {
