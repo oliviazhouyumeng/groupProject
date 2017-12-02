@@ -179,11 +179,12 @@ void Grid::setCurrtoGrid() {
 
 void Grid::updateNext() {
     if (currlevel == 0) {
-        string newLevel = levels[currlevel]->createBlock();
-        if (!(iss >> next)) {
-            iss{newLevel};
+        if (blockSeq == "" || blockSeq == " ") {
+            blockSeq = levels[currlevel]->createBlock();
         }
-        else {iss >> next;}
+        istringstream iss{blockSeq};
+        iss >> next;
+        blockSeq = iss.str();
     }
     else next = levels[currlevel]->createBlock();
     nextlevel = currlevel;
