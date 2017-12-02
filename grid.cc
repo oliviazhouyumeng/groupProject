@@ -14,10 +14,23 @@
 #include "starblock.h"
 #include <vector>
 #include <memory>
+#include "level0.h"
+#include "level1.h"
+#include "level2.h"
+#include "level3.h"
+#include "level4.h"
+#include "level.h"
+
 using namespace std;
 
+/*
 Grid::Grid(int currlevel, int hi_score = 100, int curr_score = 0): 
-currlevel{currlevel}, hi_score{hi_score}, curr_score{curr_score} {}
+currlevel{currlevel}, hi_score{hi_score}, curr_score{curr_score} {
+    unique_ptr<Level> l0 = make_unique<Level0>();
+    unique_ptr<Level> l1 = make_unique<Level1>();
+    unique_ptr<Level> l2 = make_unique<Level2>();
+    unique_ptr<Level> l3 = make_unique<Level3>();
+}*/
 
 Grid::~Grid() {}
 
