@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
             else if (cmd == "counterclockwise") g.currBlock().counterclockwise(g);
             else if (cmd == "skip") g.updateNext();
             else if (cmd == "drop") {
-                g.currBlock().drop();
+                g.currBlock().drop(g);
                 try {
                     g.setCurrtoGrid();
                 }
