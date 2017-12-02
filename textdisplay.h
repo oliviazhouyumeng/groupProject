@@ -16,7 +16,7 @@ class TextDisplay: public Observer {
  public:
   ~TextDisplay();
     
-  TextDisplay(int width == 11, int length == 18);
+  TextDisplay(int width = 11, int length = 18);
     
   void notify(Subject<Info, State> &whoNotified, Grid &g) override;
     
