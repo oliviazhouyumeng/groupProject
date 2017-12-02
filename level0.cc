@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <memory>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include "level.h"
@@ -25,6 +26,13 @@ const int lNum = 0;
 Level0::Level0(string filename):
   Level{seedNum, isRand, lNum}, filename{filename} {}
 
-std::string Level0::createBlock() const {
-  return filename;
+string Level0::createBlock() const {
+  ifstream f{filename};
+  ostringstream oss;
+  string blocks;
+  while (f >> block) {
+    oss << blocks << " ";
+  }
+  string blocks = oss.str();
+  return blocks;
 }
