@@ -9,7 +9,7 @@ TextDisplay::TextDisplay(int width, int length): theDisplay(length, vector<char>
 //enum class Colour {White=0, Black, Red, Green, Blue, Cyan, Yellow, Magenta, Orange, Brown};
 
 
-void TextDisplay::notify(Subject<Info, State> &whoNotified){
+void TextDisplay::notify(Subject<Info, State> &whoNotified, Grid &g){
     Colour cl = whoNotified.getInfo().colour;
     size_t r = whoNotified.getInfo().row;
     size_t c = whoNotified.getInfo().col;
