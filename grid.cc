@@ -74,7 +74,25 @@ void Grid::setLevel(int l) {
 void Grid::clearRow(size_t r) {
 }
 
-void Grid::moveDown(size_t r) {
+void Grid::moveDown() {
+    size_t firstCellRow = 18;
+    for (size_t currRow= 3; currRow < 18; currRow++) {
+        if (!isEmpty(currRow) && firstCellRow == 18) firstCellRow = currRow;
+        if (isEmpty(currRow) && firstCellRow != 18) {
+            for (auto b : liveBlocks) {
+                for (auto p : b->getPos()) {
+                    if (p.x < currRow) {p.x++;}
+                }
+            }
+            firstCellRow++;
+            for (size_t rBack = currRow; rBack >= firstCellRow; rBack--) {
+                for (size_t lBack = 0; lBack < 11; lBack++) {
+                    Colour newcolour = getCell(rBack-1, lBack).getInfo().colour;
+                    getCell(rBack, lBack).setColour(newcolour, *this);
+                }
+            }
+        }
+    }
 }
 
 bool Grid::isFull(size_t r) {
