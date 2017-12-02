@@ -1,45 +1,35 @@
 #include "textdisplay.h"
+#include "info.h"
 using namespace std;
 
 TextDisplay::~TextDisplay(){
 }
 
-TextDisplay::TextDisplay(int width, int length): theDisplay(length, vector<char> (width, '-')), width{width}, length{length}{}
-
-//enum class Colour {White=0, Black, Red, Green, Blue, Cyan, Yellow, Magenta, Orange, Brown};
-
+TextDisplay::TextDisplay(int width, int length): theDisplay(length, vector<char>(width, '-')), width{width}, length{length}{}
 
 void TextDisplay::notify(Subject<Info, State> &whoNotified, Grid &g){
-    Colour cl = whoNotified.getInfo().colour;
-    size_t r = whoNotified.getInfo().row;
-    size_t c = whoNotified.getInfo().col;
-    if(cl == Colour::Brown){
-        theDisplay[r][c] = '*';
-    }
-    if(cl == Colour::Black){
-        theDisplay[r][c] = '?';
-    }
-    if(cl == Colour::Red){
-        theDisplay[r][c] = 'I';
-    }
-    if(cl == Colour::Green){
-        theDisplay[r][c] = 'J';
-    }
-    if(cl == Colour::Blue){
-        theDisplay[r][c] = 'L';
-    }
-    if(cl == Colour::Cyan){
-        theDisplay[r][c] = 'O';
-    }
-    if(cl == Colour::Yellow){
-        theDisplay[r][c] = 'S';
-    }
-    if(cl == Colour::Magenta){
-        theDisplay[r][c] = 'Z';
-    }
-    if(cl == Colour::Orange){
-        theDisplay[r][c] = 'T';
-    }
+  Colour cl = whoNotified.getInfo().colour;
+  size_t r = whoNotified.getInfo().row;
+  size_t c = whoNotified.getInfo().col;
+  if (cl == Colour::Brown) {
+    theDisplay[r][c] = '*';
+  } else if (cl == Colour::Black) {
+    theDisplay[r][c] = '?';
+  } else if (cl == Colour::Red) {
+    theDisplay[r][c] = 'I';
+  } else if (cl == Colour::Green) {
+    theDisplay[r][c] = 'J';
+  } else if (cl == Colour::Blue) {
+    theDisplay[r][c] = 'L';
+  } else if (cl == Colour::Cyan) {
+    theDisplay[r][c] = 'O';
+  } else if (cl == Colour::Yellow){
+    theDisplay[r][c] = 'S';
+  } else if (cl == Colour::Magenta){
+    theDisplay[r][c] = 'Z';
+  } else if (cl == Colour::Orange){
+    theDisplay[r][c] = 'T';
+  }
 }
 
 ostream &operator<<(std::ostream &out, const TextDisplay &td){
