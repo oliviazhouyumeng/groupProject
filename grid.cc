@@ -74,6 +74,10 @@ void Grid::levelDown() {
     if (currlevel > 0) --currlevel;
 }
 
+int Grid::getLevel() const {
+    return currlevel;
+}
+
 void Grid::setLevel(int l) {
     currlevel = l;
 }
