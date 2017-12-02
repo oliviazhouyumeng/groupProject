@@ -92,9 +92,9 @@ void Grid::setLevel(int l) {
 }
 
 void Grid::clearRow(size_t r) {
-    int btemp = (int)liveBlocks.size();
+    int btemp = liveBlocks.size();
     for (int i = btemp-1; i >= 0; i--) {
-        int ptemp = (int)liveBlocks[i]->getPos().size();
+        int ptemp = liveBlocks[i]->getPos().size();
         for (int j = ptemp-1; j >= 0; j--) {
             if (liveBlocks[i]->getPos()[i].x == r) {
                 changeColour(r, liveBlocks[i]->getPos()[j].y, Colour::White);
@@ -102,16 +102,16 @@ void Grid::clearRow(size_t r) {
                 liveBlocks[i]->getPos().erase(liveBlocks[i]->getPos().begin()+j);
             }
         }
-        // modify curr_score
         if (liveBlocks[i]->getPos().size() == 0) {
+            updateScore((liveBlocks[i]->getBlockLevel()+1)*(liveBlocks[i]->getBlockLevel()+1));
             liveBlocks.erase(liveBlocks.begin()+btemp);
-            // modify curr_score
         }
     }
 }
 
 void Grid::moveDown() {
     size_t firstCellRow = 18;
+    int count = 0;
     for (size_t currRow= 3; currRow < 18; currRow++) {
         if (!isEmpty(currRow) && firstCellRow == 18) firstCellRow = currRow;
         if (isEmpty(currRow) && firstCellRow != 18) {
@@ -128,8 +128,10 @@ void Grid::moveDown() {
                     setCellLevel(rBack, lBack, getLevel(rBack-1, lBack));
                 }
             }
+            count++;
         }
     }
+    if (count!=0) updateScore((count+currlevel)*(count+currlevel));
 }
 
 bool Grid::isFull(size_t r) {
