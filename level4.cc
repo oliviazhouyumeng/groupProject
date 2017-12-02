@@ -13,7 +13,7 @@
 #include "zblock.h"
 #include "tblock.h"
 
-#include "StarBlock.h"
+#include "starblock.h"
 
 using namespace std;
 
