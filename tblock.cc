@@ -8,7 +8,6 @@ using namespace std;
 
 const string startType = "A";
 const bool is_Heavy = false;
-bool empty = true;
 
 TBlock::TBlock(Grid &g, int level): Block{level, startType, is_Heavy}{
     
