@@ -31,7 +31,7 @@ Grid::Grid(int hi_score, int curr_score, bool graphicsOn):
     shared_ptr<Level> l1 = dynamic_pointer_cast<Level1>(l1);
     shared_ptr<Level> l2 = dynamic_pointer_cast<Level2>(l2);
     shared_ptr<Level> l3 = dynamic_pointer_cast<Level3>(l3);
-    shared_ptr<Level> l4 = dynamic_pointer_cast<Level3>(l4);
+    shared_ptr<Level> l4 = dynamic_pointer_cast<Level4>(l4);
     levels.emplace_back(l0);
     levels.emplace_back(l1);
     levels.emplace_back(l2);
