@@ -17,7 +17,7 @@ OBlock(Grid &g, int level): Block{level, "A", false} {
         if (!g.checkWhite(p.x, p.y)) {g.endGame();}
     }
     for (auto p : pos) {
-        g.getColour(p.x, p.y, Colour::Yellow);
+        g.getColour(p.x, p.y, Colour::Cyan);
         g.setCellLevel(p.x, p.y, level);
     }
 }
