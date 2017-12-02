@@ -31,7 +31,7 @@ string Level0::createBlock() const {
   while (f >> blocks) {
     oss << blocks << " ";
   }
-  string blocks = oss.str();
+  blocks = oss.str();
   return blocks;
 }
 
