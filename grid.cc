@@ -56,11 +56,8 @@ void Grid::init() {
     const size_t totr = 18; // total rows
     const size_t totc = 11; // total columns
     
-    shared_ptr<Observer> td = dynamic_pointer_cast<TextDisplay>(td);
     td = make_shared<TextDisplay>(totc, totr);
-    
-    
-    if (graphicsOn) auto gd = make_shared<GraphicsDisplay>();
+    if (graphicsOn) gd = make_shared<GraphicsDisplay>();
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -177,7 +174,7 @@ void Grid::setCurrtoGrid() {
     starCount--;
 }
 
-void Grid::updateNext() {
+void Grid::updateNext() { //seqCount
     if (currlevel == 0) {
         if (blockSeq == "" || blockSeq == " ") {
             blockSeq = levels[currlevel]->createBlock();
