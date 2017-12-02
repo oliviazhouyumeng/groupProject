@@ -37,6 +37,10 @@ void Cell::addScore(Grid &g, int score) { //modify the score field in Grid
     g.updateScore(score);
 }
 
+void Cell::setLevel(int lev, Grid &g) {
+    level = lev;
+}
+
 Info Cell::getInfo() const {
     Info rt{r, c, colour};
     return rt;
