@@ -2,7 +2,6 @@
 #define BLOCK_H
 #include <string>
 #include <vector>
-#include "cell.h"
 #include "posn.h"
 class Block {
 protected:
