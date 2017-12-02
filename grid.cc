@@ -107,6 +107,7 @@ void Grid::clearRow(size_t r) {
             liveBlocks.erase(liveBlocks.begin()+btemp);
         }
     }
+    starCount = 5;
 }
 
 void Grid::moveDown() {
@@ -149,6 +150,10 @@ bool Grid::isEmpty(size_t r) {
 }
 
 void Grid::setCurrtoGrid() {
+    if (starCount == 0) {
+        StarBlock(*this, currlevel);
+        starCount = 5;
+    }
     if (next == "I") curr = IBlock(*this, nextlevel);
     else if (next == "J") curr = JBlock(*this, nextlevel);
     else if (next == "L") curr = LBlock(*this, nextlevel);
@@ -158,6 +163,7 @@ void Grid::setCurrtoGrid() {
     else if (next == "O") curr = OBlock(*this, nextlevel);
     else if (next == "Hint") curr = HintBlock(*this, nextlevel);
     else if (next == "Star") curr = StarBlock(*this, nextlevel);
+    starCount--;
 }
 
 void Grid::updateNext() {
