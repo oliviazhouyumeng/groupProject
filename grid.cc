@@ -149,6 +149,10 @@ void Grid::updateNext() {
     nextlevel = currlevel;
 }
 
+string Grid::getNextType() const {
+    return next;
+}
+
 voig Grid::setNext(string nextcmd) {
     next = nextcmd;
     nextlevel = currlevel;
