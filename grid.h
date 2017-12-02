@@ -27,16 +27,16 @@ class Grid {
     std::string next; // the next block will appear on the board
     int nextlevel; // the level of next block
     bool graphicsOn; // default = true, false = textonly
-    std::unique_ptr<TextDisplay> td; // the text display
-    std::unique_ptr<GraphicsDisplay> gd; // the graphics diaplay
+    std::shared_ptr<TextDisplay> td; // the text display
+    std::shared_ptr<GraphicsDisplay> gd; // the graphics diaplay
     
-    std::unique_ptr<Observer<Info, State>> ob; //Another observer
+    std::shared_ptr<Observer<Info, State>> ob; //Another observer
     // Add private members, if necessary.
     
 public:
     Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true);
     ~Grid();
-    void setObserver(std::unique_ptr<Observer<Info, State>> ob);
+    void setObserver(std::shared_ptr<Observer<Info, State>> ob);
     void endGame() const;  // end the game
     void init(); // Sets up an n x n grid.  Clears old grid, if necessary.
     void setGraphics(bool b);
