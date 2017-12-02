@@ -26,7 +26,7 @@ class Grid {
     std::shared_ptr<Block> curr; // the current block on the board
     std::string next; // the next block will appear on the board
     int nextlevel; // the level of next block
-    bool graphicsOn = true; // default = true, false = textonly
+    bool graphicsOn; // default = true, false = textonly
     std::unique_ptr<TextDisplay> td; // the text display
     std::unique_ptr<GraphicsDisplay> gd; // the graphics diaplay
     
@@ -34,7 +34,7 @@ class Grid {
     // Add private members, if necessary.
     
 public:
-    Grid(int currlevel, int hi_score = 100, int curr_score = 0);
+    Grid(int currlevel, int hi_score = 100, int curr_score = 0, bool graphicsOn = true);
     ~Grid();
     void setObserver(std::unique_ptr<Observer<Info, State>> ob);
     bool endGame() const;  // end the game
