@@ -4,7 +4,6 @@
 #include <vector>
 #include <cstddef>
 #include "cell.h"
-#include "level.h" // forward declare?
 #include <memory>
 #include <sstream>
 
@@ -22,7 +21,7 @@ class Grid {
     int hi_score; //the highest score in game
     int curr_score; // the current score in game
     int currlevel; //the current level
-    std::vector<std::unique_ptr<Level>> levels = nullptr;
+    std::vector<std::shared_ptr<Level>> levels = nullptr;
     std::istringstream iss; // for block types reading if Level returns a seq file name
     std::shared_ptr<Block> curr = nullptr; // the current block on the board
     std::string next; // the next block will appear on the board
