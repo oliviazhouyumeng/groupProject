@@ -21,6 +21,69 @@ GraphicsDisplay::GraphicsDisplay(int gridWidth, int gridHeight, int winWidth, in
   xw.drawString(125, 110, "100", Xwindow::Cyan);
 }
 
+void GraphicsDisplay::ScoreBoard(Grid &g) {
+  int curscore = g.getScore();
+  int hiscore = g.getHiScore();
+  int curLevel = g.getLevel();
+  string cs = to_string(curscore);
+  string hs = to_string(hiscore);
+  string cl = to_string(curLevel);
+
+  xw.drawString(140, 50, cl, Xwindow::Cyan);
+  xw.drawString(140, 80, cs, Xwindow::Cyan);
+  xw.drawString(125, 110, hs, Xwindow::Cyan);
+}
+
+void GraphicsDisplay::NextBlock(Grid &g) {
+  string nt = g.getNextType();
+  int colNum = 11;
+  int initC = 30;
+  int initR = 230;
+  int cellSize = gridWidth / colNum;
+  if (nt == "I") {
+    xw.fillRectangle(initC, initR, cellSize, cellSize, Xwindow::Red);
+    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Red);
+    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Red);
+    xw.fillRectangle(initC + (3 * cellSize), initR, cellSize, cellSize, Xwindow::Red);
+  }
+  else if (nt == "J") {
+    xw.fillRectangle(initC, initR, cellSize, cellSize, Xwindow::Green);
+    xw.fillRectangle(initC, initR + cellSize, cellSize, cellSize, Xwindow::Green);
+    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Green);
+    xw.fillRectangle(initC + (2 * cellSize), initR + cellSize, cellSize, cellSize, Xwindow::Green);
+  }
+  else if (nt == "L") {
+    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Blue);
+    xw.fillRectangle(initC, initR + cellSize, cellSize, cellSize, Xwindow::Blue);
+    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Blue);
+    xw.fillRectangle(initC + (2 * cellSize), initR + cellSize, cellSize, cellSize, Xwindow::Blue);
+  }
+  else if (nt == "O") {
+    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Cyan);
+    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Cyan);
+    xw.fillRectangle(initC + (2 * cellSize), initR + cellSize, cellSize, cellSize, Xwindow::Cyan);
+    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Cyan);
+  }
+  else if (nt == "S") {
+    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Yellow);
+    xw.fillRectangle(initC, initR + cellSize, cellSize, cellSize, Xwindow::Yellow);
+    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Yellow);
+    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Yellow);
+  }
+  else if (nt == "T") {
+    xw.fillRectangle(initC, initR, cellSize, cellSize, Xwindow::Orange);
+    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Orange);
+    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Orange);
+    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Orange);
+  }
+  else if (nt == "Z") {
+    xw.fillRectangle(initC, initR, cellSize, cellSize, Xwindow::Magenta);
+    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Magenta);
+    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Magenta);
+    xw.fillRectangle(initC + (2 * cellSize), initR + cellSize, cellSize, cellSize, Xwindow::Magenta);
+  }
+}
+
 void GraphicsDisplay::notify(Subject<Info, State> &whoNotified, Grid &g) {
   xw.fillRectangle(0, 0, winWidth - gridWidth, winHeight, Xwindow::Brown);
   xw.drawString(30, 50, "Level:", Xwindow::Cyan);
@@ -66,69 +129,5 @@ void GraphicsDisplay::notify(Subject<Info, State> &whoNotified, Grid &g) {
    case Colour::White:
     xw.fillRectangle(start + info.col * cellSize, info.row * cellSize, cellSize, cellSize, Xwindow::White);
     break;
-  }
-}
-
-void GraphicsDisplay::ScoreBoard(Grid &g) {
-  int curscore = g.getScore();
-  int hiscore = g.getHiScore();
-  int curLevel = g.getLevel();
-  string cs = to_string(curscore);
-  string hs = to_string(hiscore);
-  string cl = to_string(curLevel);
-
-  xw.drawString(140, 50, cl, Xwindow::Cyan);
-  xw.drawString(140, 80, cs, Xwindow::Cyan);
-  xw.drawString(125, 110, hs, Xwindow::Cyan);
-}
-
-void GraphicsDisplay::NextBlock(Grid &g) {
-  string nt = g.getNextType();
-  int colNum = 11;
-  int initC = 30;
-  int initR = 230;
-  int gridWidth = 396;
-  int cellSize = gridWidth / colNum;
-  if (nt == "I") {
-    xw.fillRectangle(initC, initR, cellSize, cellSize, Xwindow::Red);
-    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Red);
-    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Red);
-    xw.fillRectangle(initC + (3 * cellSize), initR, cellSize, cellSize, Xwindow::Red);
-  }
-  else if (nt == "J") {
-    xw.fillRectangle(initC, initR, cellSize, cellSize, Xwindow::Green);
-    xw.fillRectangle(initC, initR + cellSize, cellSize, cellSize, Xwindow::Green);
-    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Green);
-    xw.fillRectangle(initC + (2 * cellSize), initR + cellSize, cellSize, cellSize, Xwindow::Green);
-  }
-  else if (nt == "L") {
-    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Blue);
-    xw.fillRectangle(initC, initR + cellSize, cellSize, cellSize, Xwindow::Blue);
-    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Blue);
-    xw.fillRectangle(initC + (2 * cellSize), initR + cellSize, cellSize, cellSize, Xwindow::Blue);
-  }
-  else if (nt == "O") {
-    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Cyan);
-    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Cyan);
-    xw.fillRectangle(initC + (2 * cellSize), initR + cellSize, cellSize, cellSize, Xwindow::Cyan);
-    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Cyan);
-  }
-  else if (nt == "S") {
-    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Yellow);
-    xw.fillRectangle(initC, initR + cellSize, cellSize, cellSize, Xwindow::Yellow);
-    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Yellow);
-    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Yellow);
-  }
-  else if (nt == "T") {
-    xw.fillRectangle(initC, initR, cellSize, cellSize, Xwindow::Orange);
-    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Orange);
-    xw.fillRectangle(initC + (2 * cellSize), initR, cellSize, cellSize, Xwindow::Orange);
-    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Orange);
-  }
-  else if (nt == "Z") {
-    xw.fillRectangle(initC, initR, cellSize, cellSize, Xwindow::Magenta);
-    xw.fillRectangle(initC + cellSize, initR, cellSize, cellSize, Xwindow::Magenta);
-    xw.fillRectangle(initC + cellSize, initR + cellSize, cellSize, cellSize, Xwindow::Magenta);
-    xw.fillRectangle(initC + (2 * cellSize), initR + cellSize, cellSize, cellSize, Xwindow::Magenta);
   }
 }
