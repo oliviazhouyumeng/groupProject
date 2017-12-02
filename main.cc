@@ -5,13 +5,6 @@
 #include "grid.h"
 #include "state.h"
 #include "block.h"
-#include <iostream>
-#include <string>
-#include <vector>
-#include "window.h"
-#include "grid.h"
-#include "state.h"
-#include "block.h"
 #include "level.h"
 #include <sstream>
 #include "endexception.h"
