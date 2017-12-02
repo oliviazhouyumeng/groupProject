@@ -47,7 +47,7 @@ public:
     int getLevel() const;
     void setLevel(int l);
     void clearRow(size_t r);
-    void moveDown(size_t r); // clear empty lines
+    void moveDown(); // clear empty lines
     bool isFull(size_t r);
     bool isEmpty(size_t r); // return true if rth row is empty
     void setCurrtoGrid();
