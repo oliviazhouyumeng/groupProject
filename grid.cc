@@ -168,6 +168,7 @@ void Grid::setCurrtoGrid() {
     else if (next == "O") curr = OBlock(*this, nextlevel);
     else if (next == "Hint") curr = HintBlock(*this, nextlevel);
     else if (next == "Star") curr = StarBlock(*this, nextlevel);
+    liveBlocks.emplace_back(curr);
     starCount--;
 }
 
