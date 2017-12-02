@@ -1,7 +1,7 @@
 #ifndef TBLOCK_H
 #define TBLOCK_H
 #include "block.h"
-#include "grid.h"
+class Grid;
 class TBlock : public Block {
 public:
     TBlock(Grid &g, int level);
