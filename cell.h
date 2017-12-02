@@ -12,7 +12,6 @@ class Grid;
 
 class Cell : public Subject<Info, State> {
     const size_t r, c;
-    int level;
     Colour colour;
     // Add other private members if necessary
     
@@ -20,17 +19,13 @@ public:
     
     ~Cell();
     
-    Cell(size_t r, size_t c, int l);
+    Cell(size_t r, size_t c);
     
     void setPiece(Colour colour, Grid &g);    // Place a piece of given colour here.
     
     void setColour(Colour colour, Grid &g); // Modifies colour of the cell, change state
     
     void changeColour(Colour colour, Grid &g); // Modifies colour of the cell, does not change state
-    
-    void addScore(Grid &g, int score); //modify the score field in Grid
-    
-    void setLevel(int lev, Grid &g);
     
     Info getInfo() const override;
     
