@@ -52,6 +52,7 @@ public:
     bool isEmpty(size_t r); // return true if rth row is empty
     void setCurrtoGrid();
     void updateNext();
+    std::string getNextType() const;
     void setNext(std::string nextcmd); // set next, modify next level
     void setColour(size_t row, size_t col, Colour colour);
     //void setPiece(size_t row, size_t col, Colour colour);
