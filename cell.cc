@@ -8,7 +8,7 @@
 
 Cell::~Cell() {}
 
-Cell::Cell(size_t r, size_t c, int l):r{r}, c{c}, level{l}, colour{Colour::White} {
+Cell::Cell(size_t r, size_t c):r{r}, c{c}, colour{Colour::White} {
     State s{StateType::NA};
     setState(s);
 }
@@ -33,13 +33,7 @@ void Cell::changeColour(Colour colour, Grid &g){ // Modifies colour of the cell,
     notifyObservers();
 }
 
-void Cell::addScore(Grid &g, int score) { //modify the score field in Grid
-    g.updateScore(score);
-}
 
-void Cell::setLevel(int lev, Grid &g) {
-    level = lev;
-}
 
 Info Cell::getInfo() const {
     Info rt{r, c, colour};
