@@ -22,8 +22,8 @@
 
 using namespace std;
 
-Grid::Grid(int currlevel, int hi_score, int curr_score, bool graphicsOn): 
-currlevel{currlevel}, hi_score{hi_score}, curr_score{curr_score} {
+Grid::Grid(int hi_score, int curr_score, bool graphicsOn):
+    hi_score{hi_score}, curr_score{curr_score} {
     shared_ptr<Level> l0 = dynamic_pointer_cast<Level0>(l0);
     shared_ptr<Level> l1 = dynamic_pointer_cast<Level1>(l1);
     shared_ptr<Level> l2 = dynamic_pointer_cast<Level2>(l2);
@@ -61,7 +61,7 @@ void Grid::init() {
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
         for(size_t j = 0; j < totc; j++) {
-            Cell c{i, j, currlevel};
+            Cell c{i, j};
             rArr.emplace_back(c);
         }
         theGrid.emplace_back(rArr);
@@ -83,7 +83,7 @@ void Grid::levelDown() {
     if (currlevel > 0) --currlevel;
 }
 
-vector<unique_ptr<Level>> &Grid::getLevels() {
+vector<shared_ptr<Level>> &Grid::getLevels() {
     return levels;
 }
 
