@@ -9,7 +9,6 @@
 #include "tblock.h"
 
 #include "starblock.h"
-#include "hintblock.h"
 
 using namespace std;
 

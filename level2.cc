@@ -1,5 +1,4 @@
 #include <cstdlib>
-#include <memory>
 #include <string>
 #include "level.h"
 #include "level2.h"
@@ -13,7 +12,6 @@
 #include "tblock.h"
 
 #include "starblock.h"
-#include "hintblock.h"
 
 using namespace std;
 

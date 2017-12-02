@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <string>
-#include <memory>
+#include <fstream>
+#include <sstream>
 #include "level.h"
 #include "level4.h"
 #include "Block.h"
@@ -13,7 +14,6 @@
 #include "TBlock.h"
 
 #include "StarBlock.h"
-#include "HintBlock.h"
 
 using namespace std;
 
@@ -25,7 +25,7 @@ const int lNum = 4;
 Level4::Level4(): 
   seqFile{seq}, Level{seedNum, isRand, lNum} {}
 
-void setSeq(std::string sfile) {
+void Level4::setSeq(std::string sfile) {
   seqFile = sfile;
 }
 
@@ -40,6 +40,13 @@ string Level4::createBlock() {
     else if (gen == 6 || gen == 7) return "Z";
     else if (gen == 8) return "T";
   } else {
-    return seqFile;
+    ifstream f{seqFile};
+    ostringstream oss;
+    string blocks;
+    while (f >> blocks) {
+      oss << blocks << " ";
+    }
+    string blocks = oss.str();
+    return blocks;
   }
 }

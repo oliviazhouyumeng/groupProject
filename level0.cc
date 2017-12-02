@@ -1,5 +1,4 @@
 #include <cstdlib>
-#include <memory>
 #include <sstream>
 #include <fstream>
 #include <string>
@@ -15,7 +14,6 @@
 #include "tblock.h"
 
 #include "starblock.h"
-#include "hintblock.h"
 
 using namespace std;
 
