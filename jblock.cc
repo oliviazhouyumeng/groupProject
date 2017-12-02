@@ -1,5 +1,8 @@
 #include "block.h"
 #include "jblock.h"
+#include "grid.h"
+#include "info.h"
+#include <vector>
 using namespace std;
 
 JBlock(Grid &g, int level): Jlock{level, "A", false} {
