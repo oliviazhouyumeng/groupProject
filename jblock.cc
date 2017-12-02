@@ -123,7 +123,7 @@ void JBlock::counterclockwise(Grid &g) {
             if (heavy) down(g);
         }
     } else if (type == "B") {
-        if (pos[0] != 10 && g.checkWhite(pos[3].x, pos[3].y+1) &&
+        if (pos[0].y != 10 && g.checkWhite(pos[3].x, pos[3].y+1) &&
             g.checkWhite(pos[3].x, pos[3].y+2)) {
             ccwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
