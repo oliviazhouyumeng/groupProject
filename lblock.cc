@@ -1,6 +1,9 @@
 #include "block.h"
 #include "lblock.h"
 #include "grid.h"
+#include "info.h"
+#include "state.h"
+#include <vector>
 using namespace std;
 
 LBlock(Grid &g, int level): Llock{level, "A", false} {
