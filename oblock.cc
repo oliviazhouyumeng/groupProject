@@ -16,7 +16,7 @@ OBlock(Grid &g, int level): Block{level, "A", false} {
     for (auto p : pos) {
         if (!g.checkWhite(p.x, p.y)) {g.endGame();}
     }
-    for (auto p : pos) g.getColour(p.x, p.y, Colour::Cyan);
+    for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
 }
 
 void OBlock::left(Grid &g) {
