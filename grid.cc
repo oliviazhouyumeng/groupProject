@@ -10,7 +10,6 @@
 #include "zblock.h"
 #include "oblock.h"
 #include "tblock.h"
-#include "hintblock.h"
 #include "starblock.h"
 #include <vector>
 #include <memory>
