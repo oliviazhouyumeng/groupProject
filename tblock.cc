@@ -26,16 +26,18 @@ TBlock::TBlock(Grid &g, int level): Block{level, startType, is_Heavy}{
     if(!g.checkWhite(lm.x, lm.y)) {
         g.endGame();
     }
-    
-    g.setColour(ul.x, ul.y, Colour::Orange);
-    g.setColour(um.x, um.y, Colour::Orange);
-    g.setColour(ur.x, ur.y, Colour::Orange);
-    g.setColour(lm.x, lm.y, Colour::Orange);
+
     
     pos.push_back(ul);
     pos.push_back(um);
     pos.push_back(ur);
     pos.push_back(lm);
+    
+    for(auto p : pos){
+        g.setColour(p.x, p.y, Colour::Orange);
+        g.setCellLevel(p.x, p.y, level);
+    }
+    
 }
 
 
