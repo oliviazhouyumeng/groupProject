@@ -73,3 +73,7 @@ void OBlock::drop(Grid &g) {
     }
     g.moveDown();
 }
+
+void OBlock::giveHint(Grid &g) {}
+
+void OBlock::cancelHint(Grid &g) {};
