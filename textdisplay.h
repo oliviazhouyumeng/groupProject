@@ -18,7 +18,7 @@ public:
     
     TextDisplay(int width, int length);
     
-    void notify(Subject<Info, State> &whoNotified) override;
+    void notify(Subject<Info, State> &whoNotified, Grid &g) override;
     
     friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
 };
