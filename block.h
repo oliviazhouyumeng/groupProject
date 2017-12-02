@@ -10,6 +10,7 @@ protected:
     std::string type; // type: "A"(default), "B", "C", "D" clockwise:A->B->C->D
     bool heavy; // default: false
     std::vector<Posn> pos; // a Block originally contains four Cell
+    std::vector<Posn> h_pos;
 public:
     Block(int level, std::string type, bool heavy);
     virtual void left(Grid &g) = 0;
