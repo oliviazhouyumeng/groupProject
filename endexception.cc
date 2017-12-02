@@ -5,6 +5,6 @@ using namespace std;
 
 EndException::EndException(): s{"EndOfGame"} {}
 
-string ExprException::getErrorMessage(){
+string EndException::getErrorMessage(){
   return s;
 }
