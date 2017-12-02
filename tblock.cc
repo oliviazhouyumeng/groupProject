@@ -1,5 +1,5 @@
-#include "block.hpp"
-#include "tblock.hpp"
+#include "block.h"
+#include "tblock.h"
 using namespace std;
 
 const string startType = "A";
@@ -35,7 +35,6 @@ TBlock::TBlock(Grid &g, int level): Block{level, startType, is_Heavy}{
     
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Orange);
-        g.setCellLevel(p.x, p.y, level);
     }
     
 }
@@ -53,12 +52,10 @@ void TBlock::left(Grid &g){
         if ((!g.checkWhite(p.x, p.y-1))&&g.getCell(p.x, p.y-1).getState().stype==StateType::NA) return;
     }
     for (auto p : pos) {
-        g.setCellLevel(p.x, p.y, -1);
         g.setColour(p.x, p.y, Colour::White);
     }
     for (auto p : pos) p.y--;
     for (auto p : pos){
-        g.setCellLevel(p.x, p.y, level);
         g.setColour(p.x, p.y, Colour::Orange);
     }
     if (heavy) down(g);
@@ -73,12 +70,10 @@ void TBlock::right(Grid &g){
         if((!g.checkWhite(p.x, p.y+1)) && g.getCell(p.x, p.y+1).getState().stype == StateType::NA) return;
     }
     for(auto p : pos){
-        g.setCellLevel(p.x, p.y, -1);
         g.setColour(p.x, p.y, Colour::White);
     }
     for(auto p : pos) p.y++;
     for(auto p : pos){
-        g.setCellLevel(p.x, p.y, level);
         g.setColour(p.x, p.y, Colour::Orange);
     }
     if(heavy) down(g);
@@ -93,12 +88,10 @@ void TBlock::down(Grid &g){
         if(!g.checkWhite(p.x+1, p.y) && g.getCell(p.x+1, p.y).getState().stype == StateType::NA) return;
     }
     for(auto p : pos){
-        g.setCellLevel(p.x, p.y, -1);
         g.setColour(p.x, p.y, Colour::White);
     }
     for(auto p : pos) p.x++;
     for(auto p : pos){
-        g.setCellLevel(p.x, p.y, level);
         g.setColour(p.x, p.y, Colour::Orange);
     }
 }
@@ -109,7 +102,6 @@ void TBlock::down(Grid &g){
 void TBlock::clockwise(Grid &g){
     if (type == "A") {
         for(auto p : pos){
-            g.setCellLevel(p.x, p.y, -1);
             g.setColour(p.x, p.y, Colour::White);
         }
         pos[0].x--;
@@ -119,7 +111,6 @@ void TBlock::clockwise(Grid &g){
         pos[3].x--;
         pos[3].y--;
         for(auto p : pos){
-            g.setCellLevel(p.x, p.y, level);
             g.setColour(p.x, p.y, Colour::Orange);
         }
         cwtype();
@@ -129,7 +120,6 @@ void TBlock::clockwise(Grid &g){
         Posn edge = pos.at(0);
         if(edge.y == 10) return;
         for (auto p : pos){
-            g.setCellLevel(p.x, p.y, -1);
             g.setColour(p.x, p.y, Colour::White);
         }
         pos[0].x+=2;
@@ -138,7 +128,6 @@ void TBlock::clockwise(Grid &g){
         pos[2].y--;
         pos[3].y++;
         for(auto p : pos){
-            g.setCellLevel(p.x, p.y, level);
             g.setColour(p.x, p.y, Colour::Orange);
         }
         cwtype();
@@ -146,7 +135,6 @@ void TBlock::clockwise(Grid &g){
     }
     if(type == "C"){
         for (auto p : pos){
-            g.setCellLevel(p.x, p.y, -1);
             g.setColour(p.x, p.y, Colour::White);
         }
         pos[0].y-=2;
@@ -154,7 +142,6 @@ void TBlock::clockwise(Grid &g){
         pos[1].y--;
         pos[2].x-=2;
         for(auto p : pos){
-            g.setCellLevel(p.x, p.y, level);
             g.setColour(p.x, p.y, Colour::Orange);
         }
         cwtype();
@@ -164,7 +151,6 @@ void TBlock::clockwise(Grid &g){
         Posn edge = pos.at(3);
         if(edge.y == 10) return;
         for (auto p : pos) {
-            g.setCellLevel(p.x, p.y, -1);
             g.setColour(p.x, p.y, Colour::White);
         }
         pos[0].x--;
@@ -173,7 +159,6 @@ void TBlock::clockwise(Grid &g){
         pos[2].y+=2;
         pos[3].x++;
         for(auto p : pos){
-            g.setCellLevel(p.x, p.y, level);
             g.setColour(p.x, p.y, Colour::Orange);
         }
         cwtype();
@@ -186,7 +171,6 @@ void TBlock::clockwise(Grid &g){
 void TBlock::counterclockwise(Grid &g){
     if(type == "A"){
         for (auto p : pos){
-            g.setCellLevel(p.x, p.y, -1);
             g.setColour(p.x, p.y, Colour::White);
         }
         pos[0].x++;
@@ -195,7 +179,6 @@ void TBlock::counterclockwise(Grid &g){
         pos[2].y-=2;
         pos[3].x--;
         for(auto p : pos){
-            g.setCellLevel(p.x, p.y, level);
             g.setColour(p.x, p.y, Colour::Orange);
         }
         ccwtype();
@@ -205,7 +188,6 @@ void TBlock::counterclockwise(Grid &g){
         Posn edge = pos.at(0);
         if(edge.y == 10) return;
         for (auto p : pos){
-            g.setCellLevel(p.x, p.y, -1);
             g.setColour(p.x, p.y, Colour::White);
         }
         pos[0].x++;
@@ -215,7 +197,6 @@ void TBlock::counterclockwise(Grid &g){
         pos[3].x++;
         pos[3].y++;
         for(auto p : pos){
-            g.setCellLevel(p.x, p.y, level);
             g.setColour(p.x, p.y, Colour::Orange);
         }
         ccwtype();
@@ -223,7 +204,6 @@ void TBlock::counterclockwise(Grid &g){
     }
     if (type == "C") {
         for (auto p : pos){
-            g.setCellLevel(p.x, p.y, -1);
             g.setColour(p.x, p.y, Colour::White);
         }
         pos[0].x-=2;
@@ -232,7 +212,6 @@ void TBlock::counterclockwise(Grid &g){
         pos[2].y++;
         pos[3].y--;
         for(auto p : pos){
-            g.setCellLevel(p.x, p.y, level);
             g.setColour(p.x, p.y, Colour::Orange);
         }
         ccwtype();
@@ -242,7 +221,6 @@ void TBlock::counterclockwise(Grid &g){
         Posn edge = pos.at(3);
         if(edge.y == 10) return;
         for (auto p : pos){
-            g.setCellLevel(p.x, p.y, -1);
             g.setColour(p.x, p.y, Colour::White);
         }
         pos[0].y+=2;
@@ -250,7 +228,6 @@ void TBlock::counterclockwise(Grid &g){
         pos[1].y++;
         pos[2].x+=2;
         for(auto p : pos){
-            g.setCellLevel(p.x, p.y, level);
             g.setColour(p.x, p.y, Colour::Orange);
         }
         ccwtype();
@@ -281,6 +258,24 @@ void TBlock::drop(Grid &g){
 void TBlock::giveHint(Grid &g){
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
