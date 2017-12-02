@@ -1,7 +1,7 @@
 #ifndef OBLOCK_H
 #define OBLOCK_H
 #include "block.h"
-
+class Grid;
 class OBlock : public Block {
 public:
     OBlock(Grid &g, int level);
