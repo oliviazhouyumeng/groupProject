@@ -116,7 +116,7 @@ void JBlock::counterclockwise(Grid &g) {
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x++;
             pos[1].y++;
-            pos[2].x-;
+            pos[2].x--;
             pos[3].x-=2;
             pos[3].y--;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
