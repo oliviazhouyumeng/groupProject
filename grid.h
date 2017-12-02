@@ -34,7 +34,7 @@ class Grid {
     // Add private members, if necessary.
     
 public:
-    Grid(int currlevel, int hi_score = 100, int curr_score = 0, bool graphicsOn = true);
+    Grid(int currlevel, int hi_score = 0, int curr_score = 0, bool graphicsOn = true);
     ~Grid();
     void setObserver(std::unique_ptr<Observer<Info, State>> ob);
     void endGame() const;  // end the game
