@@ -72,9 +72,20 @@ int main(int argc, char *argv[]) {
             }
             else if (cmd == "levelop") g.levelUp();
             else if (cmd == "leveldown") g.levelDown();
-            //else if (cmd == "norandom") file
-            //else if (cmd == "random")
-            //else if (cmd == "sequence") file
+            else if (cmd == "norandom") {
+                string seq;
+                cin >> seq;
+                int curlev = g.getLevel();
+                if (curlev >= 3) {
+                    g.getLevels()[g.getLevel()]->setSeq(seq);
+                    g.getLevels()[g.getLevel()]->setRandom(false);
+                }
+            }
+            else if (cmd == "random") {
+                int curlev = g.getLevel();
+                if (curlev >= 3) g.getLevels()[g.getLevel()]->setRandom(true);
+            }
+            // else if (cmd == "sequence")
             else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "z"||cmd == "T"||cmd == "O") g.setNext(cmd);
             else if (cmd == "restart") g.init();
             //else if (cmd == "hint")
