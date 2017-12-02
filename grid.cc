@@ -23,14 +23,19 @@
 
 using namespace std;
 
-/*
 Grid::Grid(int currlevel, int hi_score = 100, int curr_score = 0): 
 currlevel{currlevel}, hi_score{hi_score}, curr_score{curr_score} {
-    unique_ptr<Level> l0 = make_unique<Level0>();
-    unique_ptr<Level> l1 = make_unique<Level1>();
-    unique_ptr<Level> l2 = make_unique<Level2>();
-    unique_ptr<Level> l3 = make_unique<Level3>();
-}*/
+    shared_ptr<Level> l0 = dynamic_pointer_cast<Level0>(l0);
+    shared_ptr<Level> l1 = dynamic_pointer_cast<Level1>(l1);
+    shared_ptr<Level> l2 = dynamic_pointer_cast<Level2>(l2);
+    shared_ptr<Level> l3 = dynamic_pointer_cast<Level3>(l3);
+    shared_ptr<Level> l4 = dynamic_pointer_cast<Level3>(l4);
+    levels.emplace_back(l0);
+    levels.emplace_back(l1);
+    levels.emplace_back(l2);
+    levels.emplace_back(l3);
+    levels.emplace_back(l4);
+}
 
 Grid::~Grid() {}
 
