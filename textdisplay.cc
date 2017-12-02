@@ -36,10 +36,8 @@ ostream &operator<<(std::ostream &out, const TextDisplay &td){
     for(int i = 0; i < td.length; i++){
         for(int j = 0; j < td.width; j++){
             out << td.theDisplay[i][j];
-            if(j == td.width-1){
-                out << endl;
-            }
         }
+        out << endl;
     }
     return out;
 }
