@@ -178,3 +178,7 @@ void LBlock::drop(Grid &g) {
     }
     g.moveDown();
 }
+
+void LBlock::giveHint(Grid &g) {}
+
+void LBlock::cancelHint(Grid &g) {};
