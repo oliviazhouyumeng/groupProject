@@ -22,9 +22,13 @@ void StarBlock::down(Grid &g){
         if(p.x == 17) return;
         if(!g.checkWhite(p.x+1, p.y) && g.getCell(p.x+1, p.y).getState().stype == StateType::NA) return;
     }
-    for(auto p : pos) g.setColour(p.x, p.y, Colour::White);
+    for(auto p : pos){
+        g.setColour(p.x, p.y, Colour::White);
+    }
     for(auto p : pos) p.x++;
-    for(auto p : pos) g.setColour(p.x, p.y, Colour::Brown);
+    for(auto p : pos){
+        g.setColour(p.x, p.y, Colour::Brown);
+    }
 }
 void StarBlock::clockwise(Grid &g) {} // remains the same
 void StarBlock::counterclockwise(Grid &g) {} // remains the same
@@ -41,3 +45,17 @@ void StarBlock::drop(Grid &g){
     }
     g.moveDown();
 }
+
+void StarBlock::giveHint(Grid &g){
+}
+
+void StarBlock::cancelHint(Grid &g){
+}
+
+
+
+
+
+
+
+
