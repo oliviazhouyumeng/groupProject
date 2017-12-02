@@ -31,11 +31,7 @@ void Cell::setColour(Colour colour, Grid &g){ // Modifies colour of the cell
 void Cell::addScore(Grid &g, int score) { //modify the score field in Grid
     g.updateScore(score);
 }
-void Cell::notify(Subject<Info, State> &whoFrom, Grid &g) {
-    if(getInfo().colour == Colour::White) return;
-    if(getState().stype == StateType::AC) return;
-    
-}
+
 Info Cell::getInfo() const {
     Info rt{r, c, colour};
     return rt;
