@@ -8,7 +8,7 @@ class Level3: public Level {
  public:
   Level3();
   void setSeq(std::string sfile) override;
-  std::string createBlock() override;
+  std::string createBlock() const override;
 };
 
 #endif
