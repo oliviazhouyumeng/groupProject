@@ -12,7 +12,7 @@ class TextDisplay;
 class GraphicsDisplay;
 class Block;
 class Level;
-template <typename InfoType, typename StateType> class Observer;
+class Observer;
 class InvalidMove{};
 
 class Grid {
@@ -22,7 +22,8 @@ class Grid {
     int curr_score; // the current score in game
     int currlevel; //the current level
     std::vector<std::shared_ptr<Level>> levels;
-    std::istringstream iss; // for block types reading if Level returns a seq file name
+    int seqCount;
+    std::string blockSeq;// for block types reading if Level returns a seq file name
     std::shared_ptr<Block> curr; // the current block on the board
     std::string next; // the next block will appear on the board
     int nextlevel; // the level of next block
