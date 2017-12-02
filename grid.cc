@@ -22,7 +22,7 @@
 
 using namespace std;
 
-Grid::Grid(int currlevel, int hi_score = 100, int curr_score = 0): 
+Grid::Grid(int currlevel, int hi_score = 100, int curr_score = 0, bool graphicsOn): 
 currlevel{currlevel}, hi_score{hi_score}, curr_score{curr_score} {
     shared_ptr<Level> l0 = dynamic_pointer_cast<Level0>(l0);
     shared_ptr<Level> l1 = dynamic_pointer_cast<Level1>(l1);
