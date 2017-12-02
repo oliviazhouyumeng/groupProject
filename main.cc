@@ -21,25 +21,24 @@ int main(int argc, char *argv[]) {
     cin.exceptions(ios::eofbit|ios::failbit);
     bool textMode = false;
     int startLevel = 0;
+    unsigned seedNum = 1;
+    string seqFile = "";
     for (int i = 1; i < argc; ++i){
         string curArg = argv[i];
         if (curArg == "-text") {
             textMode = true;
         } else if (curArg == "-seed") {
             ++i;
-            int seedNum = *argv[i];
-            // sets the random number generator’s seed to xxx(seedNum)
+            seedNum = *argv[i];
         } else if (curArg == "-scriptfile") {
             if (!(i+1 >= argc || argv[i+1] == "-seed" || argv[i+1] == "-text" ||
                 argv[i+1] == "-startlevel" || argv[i+1] == "-scriptfile")) {
                 ++i;
-                string scriptFile = argv[i];
+                seqFile = argv[i];
             }
-            // Use scriptFile instead of sequence.txt as a source of blocks for level 0
         } else if (curArg == "-startlevel") {
             ++i;
             startLevel = *argv[i];
-            // Starts the game in level n
         }
     }
     
@@ -47,6 +46,12 @@ int main(int argc, char *argv[]) {
     string cmd;
     g.setLevel(startLevel);
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
+    if (seedNum != 1) {
+        for (auto l : g.getLevels()) l->getSeed(seedNum);
+    }
+    if (seqFile != "") {
+        g.getLevels()[0]->setSeq(seqFile);
+    }
     g.init();
     
     try {
