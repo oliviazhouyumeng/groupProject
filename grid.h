@@ -64,8 +64,6 @@ public:
     void updateScore(int point); // update curr_score & hi_score
     int getScore() const;
     int getHiScore() const;
-    void setCellLevel(size_t row, size_t col, int lev);
-    int getLevel(size_t row, size_t col);
     Cell &getCell(size_t x, size_t y);
     Block &currBlock();
     
