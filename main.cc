@@ -90,13 +90,13 @@ int main(int argc, char *argv[]) {
         while (true) {
             cout << "> "; // wait for input
             cin >> cmd;
-            if (cmd != "sequence") try {Game(g, cmd);}
+            if (cmd != "sequence") Game(g, cmd);
             else if (cmd == "sequence") {
                 string cmdSeq;
                 cin >> cmdSeq;
                 ifstream f{cmdSeq};
                 while (f >> cmd) {
-                    try {Game(g, cmd);}
+                    Game(g, cmd);
                 }
             }
             else {
