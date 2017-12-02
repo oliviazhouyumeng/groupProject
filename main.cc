@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
             int seedNum = *argv[i];
             // sets the random number generator’s seed to xxx(seedNum)
         } else if (curArg == "-scriptfile") {
-            if (!(i+1 < argc || argv[i+1] == "-seed" || argv[i+1] == "-text" ||
+            if (!(i+1 >= argc || argv[i+1] == "-seed" || argv[i+1] == "-text" ||
                 argv[i+1] == "-startlevel" || argv[i+1] == "-scriptfile")) {
                 ++i;
                 string scriptFile = argv[i];
@@ -53,14 +53,14 @@ int main(int argc, char *argv[]) {
         while (true) {
             cout << "> "; // wait for input
             cin >> cmd;
-            if (cmd == "left") g.currBlock()->left();
-            else if (cmd == "right") g.currBlock()->right();
-            else if (cmd == "down") g.currBlock()->down();
-            else if (cmd == "clockwise") g.currBlock()->clockwise();
-            else if (cmd == "counterclockwise") g.currBlock()->counterclockwise();
+            if (cmd == "left") g.currBlock().left(g);
+            else if (cmd == "right") g.currBlock().right(g);
+            else if (cmd == "down") g.currBlock().down(g);
+            else if (cmd == "clockwise") g.currBlock().clockwise(g);
+            else if (cmd == "counterclockwise") g.currBlock().counterclockwise(g);
             else if (cmd == "skip") g.updateNext();
             else if (cmd == "drop") {
-                g.currBlock()->drop();
+                g.currBlock().drop();
                 try {
                     g.setCurrtoGrid();
                 }
