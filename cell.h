@@ -30,6 +30,8 @@ public:
     
     void addScore(Grid &g, int score); //modify the score field in Grid
     
+    void setLevel(int lev, Grid &g);
+    
     Info getInfo() const override;
     
     
