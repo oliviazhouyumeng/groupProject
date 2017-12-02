@@ -30,7 +30,7 @@ public:
     
     void addScore(Grid &g, int score); //modify the score field in Grid
     
-    void notify(Subject<Info, State> &whoFrom) override;// My neighbours will call this
+    void notify(Subject<Info, State> &whoFrom, Grid &g) override;// My neighbours will call this
     // when they've changed state
     Info getInfo() const override;
     
