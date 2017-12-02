@@ -109,14 +109,14 @@ void Grid::moveDown() {
 
 bool Grid::isFull(size_t r) {
     for (size_t c = 0; c < 11; ++c) {
-        if (getCell(r, c).getInfo().colour == Colour::White) return false;
+        if (checkWhite(r, c)) return false;
     }
     return false;
 }
 
 bool Grid::isEmpty(size_t r) {
     for (size_t c = 0; c < 11; ++c) {
-        if (getCell(r, c).getInfo().colour != Colour::White) return false;
+        if (!checkWhite(r, c)) return false;
     }
     return true;
 }
