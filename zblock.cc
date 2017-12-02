@@ -1,6 +1,9 @@
 #include "block.h"
 #include "zblock.h"
 #include "grid.h"
+#include "info.h"
+#include "state.h"
+#include <vector>
 using namespace std;
 
 ZBlock(Grid &g, int level): Block{level, "A", false} {
