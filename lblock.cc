@@ -95,7 +95,7 @@ void LBlock::clockwise(Grid &g) {
         }
     } else if (type == "D") {
         if (pos[1].y != 10 && g.checkWhite(pos[2].x, pos[2].y+1) &&
-            g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y-1) {
+            g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y-1)) {
             cwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x++;
