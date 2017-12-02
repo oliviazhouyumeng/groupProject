@@ -258,5 +258,45 @@ ostream &operator<<(std::ostream &out, const Grid &g) {
     out << s << endl;
     
     out << *(g.td);
+    
+    out << endl << s << endl;
+    s = "Next:";
+    out << s << endl;
+    
+    string next = g.getNextType();
+    if (next == "I") {
+        s = "IIII";
+        out << s;
+    } else if (next == "J") {
+        s = "J";
+        out << s << endl;
+        s = "JJJ";
+        out << s;
+    } else if (next == "L") {
+        s = "   L";
+        out << s << endl;
+        s = "LLL";
+        out << s;
+    } else if (next == "O") {
+        s = "OO";
+        out << s << endl;
+        s = "OO";
+        out << s;
+    } else if (next == "S") {
+        s = " SS";
+        out << s << endl;
+        s = "SS";
+        out << s;
+    } else if (next == "Z") {
+        s = "ZZ";
+        out << s << endl;
+        s = " ZZ";
+        out << s;
+    } else if (next == "T") {
+        s = "TTT";
+        out << s << endl;
+        s = " T";
+        out << s;
+    }
     return out;
 }
