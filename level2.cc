@@ -19,7 +19,7 @@ const unsigned seedNum = 1;
 const bool isRand = true;
 const int lNum = 2;
 
-Level2::Level2(): Level{seedNum, isRand, lNum} {}
+Level2::Level2(): Level{lNum, isRand, seedNum} {}
 
 string Level2::createBlock() const {
 	srand(seed);

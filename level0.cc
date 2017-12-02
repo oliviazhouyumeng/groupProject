@@ -22,7 +22,7 @@ const bool isRand = false;
 const int lNum = 0;
 
 Level0::Level0(string filename):
-  Level{seedNum, isRand, lNum}, filename{filename} {}
+  Level{lNum, isRand, seedNum}, filename{filename} {}
 
 string Level0::createBlock() const {
   ifstream f{filename};

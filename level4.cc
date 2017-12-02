@@ -22,7 +22,7 @@ bool isRand = true;
 const int lNum = 4;
 
 Level4::Level4(): 
-  seqFile{seq}, Level{seedNum, isRand, lNum} {}
+  Level{lNum, isRand, seedNum}, seqFile{seq} {}
 
 void Level4::setSeq(std::string sfile) {
   seqFile = sfile;

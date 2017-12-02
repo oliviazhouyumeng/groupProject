@@ -12,8 +12,8 @@
 
 using namespace std;
 
-Level::Level(unsigned seed, bool isRandom, int levelNum): 
-  seed{seed}, isRandom{isRandom}, levelNum{levelNum} {}
+Level::Level(int levelNum, bool isRandom, unsigned seed): 
+  levelNum{levelNum}, isRandom{isRandom}, seed{seed} {}
 
 int Level::getLevel() const {
 	return levelNum;
