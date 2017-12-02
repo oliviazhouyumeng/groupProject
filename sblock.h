@@ -1,8 +1,7 @@
 #ifndef SBLOCK_H
 #define SBLOCK_H
 #include "block.h"
-#include "grid.h"
-
+class Grid;
 class SBlock : public Block {
 public:
     SBlock(Grid &g, int level);
