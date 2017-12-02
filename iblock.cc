@@ -33,11 +33,8 @@ IBlock::IBlock(Grid &g, int level):Block{level, startType, is_Heavy}{
     pos.push_back(forth);
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Red);
-    }
-    
+    } 
 }
-
-
 
 void IBlock::left(Grid &g){
     for (auto p : pos) {
@@ -53,6 +50,7 @@ void IBlock::left(Grid &g){
     }
     if (heavy) down(g);
 }
+
 void IBlock::right(Grid &g){
     for(auto p : pos) {
         if(p.y == 10)  return;
@@ -67,6 +65,7 @@ void IBlock::right(Grid &g){
     }
     if(heavy) down(g);
 }
+
 void IBlock::down(Grid &g){
     for(auto p : pos) {
         if(p.x == 17) return;
@@ -80,6 +79,7 @@ void IBlock::down(Grid &g){
         g.setColour(p.x, p.y, Colour::Red);
     }
 }
+
 void IBlock::clockwise(Grid &g){
     if(type == "A" || type == "C"){
         if(g.checkWhite(pos[0].x-1, pos[0].y) && g.checkWhite(pos[0].x-2, pos[0].y) &&
@@ -121,7 +121,6 @@ void IBlock::clockwise(Grid &g){
         }
     }
 }
-
 
 void IBlock::counterclockwise(Grid &g){
     if(type == "A" || type == "C"){
@@ -165,7 +164,6 @@ void IBlock::counterclockwise(Grid &g){
     }
 }
 
-
 void IBlock::drop(Grid &g){
     size_t lowest = pos[3].x;
     for(size_t i = lowest; i < 18; i++){
@@ -181,11 +179,6 @@ void IBlock::drop(Grid &g){
     g.moveDown();
 }
 
+void IBlock::giveHint(Grid &g) {}
 
-
-void IBlock::giveHint(Grid &g){
-    
-}
-
-
-
+void IBlock::cancelHint(Grid &g) {};
