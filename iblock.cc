@@ -3,58 +3,189 @@
 using namespace std;
 
 const string startType = "A";
-const bool isHeavy = false;
+const bool is_Heavy = false;
+bool empty = true;
 
-IBlock::Iblock(Grid &g, int level): Block{level, startType, isHeavy} {
-  if (level > 2) heavy = true;
-  Posn p1{3, 0};
-  Posn p2{3, 1};
-  Posn p3{3, 2};
-  Posn p4{3, 3};
-  pos.emplace_back(p1);
-  pos.emplace_back(p2);
-  pos.emplace_back(p3);
-  pos.emplace_back(p4);
-}
-  
-void IBlock::left() {
-  for (auto p : pos) {
-    if (p.y == 0) return;
-  }
-  for (auto p : pos) {
-    
-    p.y -= 1;
-    
-    // change colour
-  }
-}
-  
-void IBlock::right() {
-  for (auto p : pos) {
-    if (p.y == 0) return;
-  }
-  for (auto p : pos) {
-    p.y += 1;  // change colour
-  }
-}
-
-void IBlock::down() {
-  for (auto p : pos) {
-    if (p.y == 0) return;
-  }
-  for (auto p : pos) {
-    p.x += 1;  // change colour
-  }
-}
-
-void IBlock::clockwise() {
-  if (type == "A") {
-    for (auto p : pos) {
+IBlock::IBlock(Grid &g, int level):Block{level, startType, is_Heavy}{
+    if(level > 2) {
+        heavy = true;
     }
-    type = "B";
-  } else if (type == "B") {
+    Posn first = Posn{3,0};
+    Posn second = Posn{3,1};
+    Posn third = Posn{3, 2};
+    Posn forth = Posn{3,3};
+    if(!g.checkWhite(first.x, first.y)) {
+        g.endGame();
+    }
+    if(!g.checkWhite(second.x, second.y)) {
+        g.endGame();
+    }
+    if(!g.checkWhite(third.x, third.y)) {
+        g.endGame();
+    }
+    if(!g.checkWhite(forth.x, forth.y)) {
+        g.endGame();
+    }
+    
+    pos.push_back(first);
+    pos.push_back(second);
+    pos.push_back(third);
+    pos.push_back(forth);
+    for(auto p : pos){
+        g.setColour(p.x, p.y, Colour::Red);
+    }
+    
+}
+
+
+
+void IBlock::left(Grid &g){
     for (auto p : pos) {
-      
-      
-void IBlock::counterclockwise();
-void IBlock::drop();
+        if (p.y == 0) return;
+        if ((!g.checkWhite(p.x, p.y-1))&&g.getCell(p.x, p.y-1).getState().stype==StateType::NA) return;
+    }
+    for (auto p : pos) {
+        g.setColour(p.x, p.y, Colour::White);
+    }
+    for (auto p : pos) p.y--;
+    for (auto p : pos){
+        g.setColour(p.x, p.y, Colour::Red);
+    }
+    if (heavy) down(g);
+}
+void IBlock::right(Grid &g){
+    for(auto p : pos) {
+        if(p.y == 10)  return;
+        if((!g.checkWhite(p.x, p.y+1)) && g.getCell(p.x, p.y+1).getState().stype == StateType::NA) return;
+    }
+    for(auto p : pos){
+        g.setColour(p.x, p.y, Colour::White);
+    }
+    for(auto p : pos) p.y++;
+    for(auto p : pos){
+        g.setColour(p.x, p.y, Colour::Red);
+    }
+    if(heavy) down(g);
+}
+void IBlock::down(Grid &g){
+    for(auto p : pos) {
+        if(p.x == 17) return;
+        if(!g.checkWhite(p.x+1, p.y) && g.getCell(p.x+1, p.y).getState().stype == StateType::NA) return;
+    }
+    for(auto p : pos){
+        g.setColour(p.x, p.y, Colour::White);
+    }
+    for(auto p : pos) p.x++;
+    for(auto p : pos){
+        g.setColour(p.x, p.y, Colour::Red);
+    }
+}
+void IBlock::clockwise(Grid &g){
+    if(type == "A" || type == "C"){
+        if(g.checkWhite(pos[0].x-1, pos[0].y) && g.checkWhite(pos[0].x-2, pos[0].y) &&
+           g.checkWhite(pos[0].x-3, pos[0].y)){
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Red);
+            }
+            pos[0].x-=3;
+            pos[1].x-=2;
+            pos[1].y--;
+            pos[2].x--;
+            pos[2].y-=2;
+            pos[3].y-=3;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Red);
+            }
+            cwtype();
+            if(heavy) down(g);
+        }
+    }
+    if(type == "B" || type == "D"){
+        if(pos[0].y == 8) return;
+        if(g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y+2) &&
+           g.checkWhite(pos[3].x, pos[3].y+3)){
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Red);
+            }
+            pos[0].x+=3;
+            pos[1].x+=2;
+            pos[1].y++;
+            pos[2].x++;
+            pos[2].y+=2;
+            pos[3].y+=3;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Red);
+            }
+            cwtype();
+            if(heavy) down(g);
+        }
+    }
+}
+
+
+void IBlock::counterclockwise(Grid &g){
+    if(type == "A" || type == "C"){
+        if(g.checkWhite(pos[0].x-1, pos[0].y) && g.checkWhite(pos[0].x-2, pos[0].y) &&
+           g.checkWhite(pos[0].x-3, pos[0].y)){
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Red);
+            }
+            pos[0].x-=3;
+            pos[1].x-=2;
+            pos[1].y--;
+            pos[2].x--;
+            pos[2].y-=2;
+            pos[3].y-=3;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Red);
+            }
+            ccwtype();
+            if(heavy) down(g);
+        }
+    }
+    if(type == "B" || type == "D"){
+        if(pos[0].y == 8) return;
+        if(g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y+2) &&
+           g.checkWhite(pos[3].x, pos[3].y+3)){
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Red);
+            }
+            pos[0].x+=3;
+            pos[1].x+=2;
+            pos[1].y++;
+            pos[2].x++;
+            pos[2].y+=2;
+            pos[3].y+=3;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Red);
+            }
+            ccwtype();
+            if(heavy) down(g);
+        }
+    }
+}
+
+
+void IBlock::drop(Grid &g){
+    size_t lowest = pos[3].x;
+    for(size_t i = lowest; i < 18; i++){
+        down(g);
+    }
+    State s = State{StateType::NA};
+    for(auto p : pos){
+        g.gSetState(p.x, p.y, s);
+    }
+    for (auto p : pos){
+        if(g.isFull(p.x)) g.clearRow(p.x);
+    }
+    g.moveDown();
+}
+
+
+
+void IBlock::giveHint(Grid &g){
+    
+}
+
+
+
