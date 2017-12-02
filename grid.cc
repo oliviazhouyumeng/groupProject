@@ -42,7 +42,7 @@ void Grid::setObserver(shared_ptr<Observer<Info, State>> ob) {
     this->ob = ob;
 }
 
-bool Grid::endGame() const {
+void Grid::endGame() const {
     throw EndException{};
 }
 
