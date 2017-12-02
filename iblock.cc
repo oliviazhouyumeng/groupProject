@@ -1,8 +1,9 @@
 #include "block.h"
 #include "iblock.h"
 #include "grid.h"
-#include <vector>
+#include "state.h"
 #include "info.h"
+#include <vector>
 using namespace std;
 
 const string startType = "A";
