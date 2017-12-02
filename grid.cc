@@ -12,6 +12,7 @@
 #include "tblock.h"
 #include "hintblock.h"
 #include "starblock.h"
+#include <vector>
 using namespace std;
 
 Grid::Grid(currlevel): currlevel{currlevel} {}
@@ -72,6 +73,17 @@ void Grid::setLevel(int l) {
 }
 
 void Grid::clearRow(size_t r) {
+    int btemp = (int)liveBlocks.size();
+    for (int i = btemp-1; i >= 0; i--) {
+        int ptemp = (int)liveBlocks[i]->getPos().size();
+        for (int j = ptemp-1; j >= 0; j--) {
+            if (liveBlocks[i]->getPos()[i].x == r) {
+                changeColour(r, liveBlocks[i]->getPos()[j].y, Colour::White);
+                liveBlocks[i]->getPos().erase(liveBlocks[i]->getPos().begin()+j);
+            }
+        }
+        if (liveBlocks[i]->getPos().size() == 0) liveBlocks.erase(liveBlocks.begin()+btemp);
+    }
 }
 
 void Grid::moveDown() {
@@ -88,7 +100,7 @@ void Grid::moveDown() {
             for (size_t rBack = currRow; rBack >= firstCellRow; rBack--) {
                 for (size_t lBack = 0; lBack < 11; lBack++) {
                     Colour newcolour = getCell(rBack-1, lBack).getInfo().colour;
-                    getCell(rBack, lBack).setColour(newcolour, *this);
+                    getCell(rBack, lBack).changeColour(newcolour, *this);
                 }
             }
         }
@@ -110,37 +122,15 @@ bool Grid::isEmpty(size_t r) {
 }
 
 void Grid::setCurrtoGrid() {
-    switch(next) {
-        case NULL:
-            return;
-        case "I":
-            curr = IBlock(*this, nextlevel);
-            break;
-        case "J":
-            curr = JBlock(*this, nextlevel);
-            break;
-        case "L":
-            curr = LBlock(*this, nextlevel);
-            break;
-        case "S":
-            curr = SBlock(*this, nextlevel);
-            break;
-        case "Z":
-            curr = ZBlock(*this, nextlevel);
-            break;
-        case "T":
-            curr = TBlock(*this, nextlevel);
-            break;
-        case "O":
-            curr = OBlock(*this, nextlevel);
-            break;
-        case "Hint":
-            curr = HintBlock(*this, nextlevel);
-            break;
-        case "Star":
-            curr = StarBlock(*this, nextlevel);
-            break;
-    }
+    if (next == "I") curr = IBlock(*this, nextlevel);
+    else if (next == "J") curr = JBlock(*this, nextlevel);
+    else if (next == "L") curr = LBlock(*this, nextlevel);
+    else if (next == "S") curr = SBlock(*this, nextlevel);
+    else if (next == "Z") curr = ZBlock(*this, nextlevel);
+    else if (next == "T") curr = TBlock(*this, nextlevel);
+    else if (next == "O") curr = OBlock(*this, nextlevel);
+    else if (next == "Hint") curr = HintBlock(*this, nextlevel);
+    else if (next == "Star") curr = StarBlock(*this, nextlevel);
 }
 
 void Grid::updateNext() {
@@ -169,9 +159,9 @@ void Grid::setColour(size_t row, size_t col, Colour colour) {
     getCell(row, col).setColour(colour, *this);
 }
 
-//void setPiece(size_t row, size_t col, Colour colour) {
-//    getCell(row,col).setPiece(colour, *this);
-//}
+void Grid::changeColour(size_t row, size_t col, Colour colour) {
+    getCell(row, col).changeColour(colour, *this);
+}
 
 bool Grid::checkWhite(size_t row, size_t col) {
     return getCell(row, col).getInfo().colour == Colour::White;
