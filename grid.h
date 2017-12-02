@@ -19,8 +19,8 @@ class InvalidMove{};
 class Grid {
     std::vector<std::vector<Cell>> theGrid; //the actual grid
     std::vector<std::shared_ptr<Block>> liveBlocks;
-    int hi_score = 100; //the highest score in game
-    int curr_score = 0; // the current score in game
+    int hi_score; //the highest score in game
+    int curr_score; // the current score in game
     int currlevel; //the current level
     std::unique_ptr<std::vector<Level>> levels = nullptr; //[level0,level1,level2,...]
     std::istringstream iss; // for block types reading if Level returns a seq file name
@@ -36,7 +36,7 @@ class Grid {
     
     
 public:
-    Grid(int currlevel);
+    Grid(int currlevel, int hi_score = 100, int curr_score = 0);
     ~Grid();
     void setObserver(std::unique_ptr<Observer<Info, State>> ob);
     bool endGame() const;  // end the game
