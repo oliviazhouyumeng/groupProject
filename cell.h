@@ -24,7 +24,9 @@ public:
     
     void setPiece(Colour colour, Grid &g);    // Place a piece of given colour here.
     
-    void setColour(Colour colour, Grid &g); // Modifies colour of the cell
+    void setColour(Colour colour, Grid &g); // Modifies colour of the cell, change state
+    
+    void changeColour(Colour colour, Grid &g); // Modifies colour of the cell, does not change state
     
     void addScore(Grid &g, int score); //modify the score field in Grid
     
