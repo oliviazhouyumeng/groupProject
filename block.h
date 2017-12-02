@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "posn.h"
+class Grid;
 class Block {
 protected:
     int level;
