@@ -30,7 +30,7 @@ string Level0::createBlock() const {
   ifstream f{filename};
   ostringstream oss;
   string blocks;
-  while (f >> block) {
+  while (f >> blocks) {
     oss << blocks << " ";
   }
   string blocks = oss.str();
