@@ -5,10 +5,10 @@ using namespace std;
 
 OBlock(Grid &g, int level): Block{level, "A", false} {
     if (level > 2) {heavy = true;}
-    Posn p1{3, 0};
-    Posn p2{4, 0};
-    Posn p3{4, 1};
-    Posn p4{3, 1};
+    Posn p0{3, 0};
+    Posn p1{4, 0};
+    Posn p2{4, 1};
+    Posn p3{3, 1};
     for (auto p : pos) {
         if (!g.checkWhite(p.x, p.y)) {g.endGame();}
     }
@@ -16,10 +16,10 @@ OBlock(Grid &g, int level): Block{level, "A", false} {
     g.setColour(4, 0, Colour::Yellow);
     g.setColour(4, 1, Colour::Yellow);
     g.setColour(3, 1, Colour::Yellow);
+    pos.emplace_back(p0);
     pos.emplace_back(p1);
     pos.emplace_back(p2);
     pos.emplace_back(p3);
-    pos.emplace_back(p4);
 }
 
 void OBlock::left(Grid &g) {
@@ -63,7 +63,7 @@ void OBlock::counterclockwise(Grid &g) {
 }
 
 void OBlock::drop(Grid &g) {
-    size_t start = pos[3].x+1;
+    size_t start = pos[2].x+1;
     for (size_t i = start; i < 18; i++) {
         down(g);
     }
