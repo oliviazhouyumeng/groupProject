@@ -29,7 +29,7 @@ void Level4::setSeq(std::string sfile) {
   seqFile = sfile;
 }
 
-string Level4::createBlock() {
+string Level4::createBlock() const {
   if (isRandom) {
     srand(seed);
     int gen = rand() % 9;
@@ -47,7 +47,7 @@ string Level4::createBlock() {
     while (f >> blocks) {
       oss << blocks << " ";
     }
-    string blocks = oss.str();
+    blocks = oss.str();
     return blocks;
   }
 }
