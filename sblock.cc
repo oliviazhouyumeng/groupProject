@@ -65,8 +65,7 @@ void SBlock::clockwise(Grid &g) {
             if (heavy) down(g);
         }
     } else if (type == "B" || type == "D") {
-        if (g.checkWhite(pos[1].x+1, pos[1].y) && g.checkWhite(pos[2].x, pos[2].y+1) &&
-            pos[2].y != 10) {
+        if (pos[2].y != 10 && g.checkWhite(pos[1].x+1, pos[1].y) && g.checkWhite(pos[2].x, pos[2].y+1)) {
             cwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x+=2;
@@ -94,8 +93,7 @@ void SBlock::counterclockwise(Grid &g) {
             if (heavy) down(g);
         }
     } else if (type == "B" || type == "D") {
-        if (g.checkWhite(pos[1].x+1, pos[1].y) && g.checkWhite(pos[2].x, pos[2].y+1) &&
-            pos[2].y != 10) {
+        if (pos[2].y != 10 && g.checkWhite(pos[1].x+1, pos[1].y) && g.checkWhite(pos[2].x, pos[2].y+1)) {
             ccwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x+=2;
