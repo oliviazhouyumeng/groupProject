@@ -9,17 +9,17 @@ OBlock(Grid &g, int level): Block{level, "A", false} {
     Posn p1{4, 0};
     Posn p2{4, 1};
     Posn p3{3, 1};
-    for (auto p : pos) {
-        if (!g.checkWhite(p.x, p.y)) {g.endGame();}
-    }
-    g.setColour(3, 0, Colour::Yellow);
-    g.setColour(4, 0, Colour::Yellow);
-    g.setColour(4, 1, Colour::Yellow);
-    g.setColour(3, 1, Colour::Yellow);
     pos.emplace_back(p0);
     pos.emplace_back(p1);
     pos.emplace_back(p2);
     pos.emplace_back(p3);
+    for (auto p : pos) {
+        if (!g.checkWhite(p.x, p.y)) {g.endGame();}
+    }
+    for (auto p : pos) {
+        g.getColour(p.x, p.y, Colour::Yellow);
+        g.setCellLevel(p.x, p.y, level);
+    }
 }
 
 void OBlock::left(Grid &g) {
@@ -27,9 +27,15 @@ void OBlock::left(Grid &g) {
         if (p.y == 0) return;
         if ((!g.checkWhite(p.x, p.y-1))&&g.getCell(p.x, p.y-1).getState().stype==StateType::NA) return;
     }
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
+    for (auto p : pos) {
+        g.setColour(p.x, p.y, Colour::White);
+        g.setCellLevel(p.x, p.y, -1);
+    }
     for (auto p : pos) p.y--;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
+    for (auto p : pos) {
+        g.setColour(p.x, p.y, Colour::Cyan);
+        g.setCellLevel(p.x, p.y, level);
+    }
     if (heavy) down(g);
 }
 
@@ -38,9 +44,15 @@ void OBlock::right(Grid &g) {
         if (p.y == 10) return;
         if (!g.checkWhite(p.x, p.y+1)&&g.getCell(p.x, p.y+1).getState().stype==StateType::NA) return;
     }
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
+    for (auto p : pos) {
+        g.setColour(p.x, p.y, Colour::White);
+        g.setCellLevel(p.x, p.y, -1);
+    }
     for (auto p : pos) p.y++;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
+    for (auto p : pos) {
+        g.setColour(p.x, p.y, Colour::Cyan);
+        g.setCellLevel(p.x, p.y, level);
+    }
     if (heavy) down(g);
 }
 
@@ -49,9 +61,15 @@ void OBlock::down(Grid &g) {
         if (p.x == 17) return;
         if (g.getCell(p.x+1, p.y).getInfo().colour != Colour::White) return;
     }
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
+    for (auto p : pos) {
+        g.setColour(p.x, p.y, Colour::White);
+        g.setCellLevel(p.x, p.y, -1);
+    }
     for (auto p : pos) p.x++;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
+    for (auto p : pos) {
+        g.setColour(p.x, p.y, Colour::Cyan);
+        g.setCellLevel(p.x, p.y, level);
+    }
 }
 
 void OBlock::clockwise(Grid &g) {
