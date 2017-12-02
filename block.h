@@ -18,6 +18,8 @@ public:
     virtual void clockwise(Grid &g) = 0;
     virtual void counterclockwise(Grid &g) = 0;
     virtual void drop(Grid &g) = 0;
+    virtual void giveHint(Grid &g) = 0;
+    virtual void cancelHint(Grid &g) = 0;
     std::vector<Posn>& getPos();
     bool isHeavy() const;
     void cwtype(); // change type clockwise
