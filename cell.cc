@@ -6,14 +6,14 @@
 #include <cstddef>
 #include "grid.h"
 
+using namespace std;
+
 Cell::~Cell() {}
 
 Cell::Cell(size_t r, size_t c):r{r}, c{c}, colour{Colour::White} {
     State s{StateType::NA};
     setState(s);
 }
-
-
 
 void Cell::setColour(Colour colour, Grid &g){ // Modifies colour of the cell, change state
     State old_S = State{StateType::NA};
@@ -32,8 +32,6 @@ void Cell::changeColour(Colour colour, Grid &g){ // Modifies colour of the cell,
     this->colour = colour;
     notifyObservers();
 }
-
-
 
 Info Cell::getInfo() const {
     Info rt{r, c, colour};
