@@ -65,8 +65,8 @@ void ZBlock::clockwise(Grid &g) {
             if (heavy) down(g);
         }
     } else if (type == "B" || type == "D") {
-        if (g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y+2)
-            && pos[1].y!=10) {
+        if (pos[1].y!=10 && g.checkWhite(pos[3].x, pos[3].y+1) &&
+            g.checkWhite(pos[3].x, pos[3].y+2)) {
             cwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x++;
@@ -94,8 +94,8 @@ void ZBlock::counterclockwise(Grid &g) {
             if (heavy) down(g);
         }
     } else if (type == "B" || type == "D") {
-        if (g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y+2)
-            && pos[1].y!=10) {
+        if (pos[1].y!=10 && g.checkWhite(pos[3].x, pos[3].y+1) &&
+            g.checkWhite(pos[3].x, pos[3].y+2)) {
             ccwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x++;
