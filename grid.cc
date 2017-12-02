@@ -101,7 +101,7 @@ void Grid::moveDown() {
                 for (size_t lBack = 0; lBack < 11; lBack++) {
                     Colour newcolour = getCell(rBack-1, lBack).getInfo().colour;
                     getCell(rBack, lBack).changeColour(newcolour, *this);
-                    getCell(rBack, lBack).setLevel(getLevel(rBack-1, lBack), *this);
+                    getCell(rBack, lBack).setCellLevel(getLevel(rBack-1, lBack), *this);
                 }
             }
         }
@@ -193,7 +193,7 @@ int Grid::getHiScore() const {
     return hi_score;
 }
 
-void setLevel(size_t row, size_t col, int lev) {
+void setCellLevel(size_t row, size_t col, int lev) {
     getCell(row, col).setLevel(lev);
 }
 
