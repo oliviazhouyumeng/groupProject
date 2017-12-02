@@ -217,14 +217,6 @@ int Grid::getHiScore() const {
     return hi_score;
 }
 
-void setCellLevel(size_t row, size_t col, int lev) {
-    getCell(row, col).setLevel(lev);
-}
-
-int getLevel(size_t row, size_t col) {
-    return getCell(row, col).getInfo().level;
-}
-
 Cell &Grid::getCell(size_t x, size_t y) {
     return theGrid[x][y];
 }
