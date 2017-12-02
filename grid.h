@@ -34,7 +34,7 @@ class Grid {
     // Add private members, if necessary.
     
 public:
-    Grid(int currlevel, int hi_score = 0, int curr_score = 0, bool graphicsOn = true);
+    Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true);
     ~Grid();
     void setObserver(std::unique_ptr<Observer<Info, State>> ob);
     void endGame() const;  // end the game
@@ -42,7 +42,7 @@ public:
     void setGraphics(bool b);
     void levelUp();
     void levelDown();
-    std::vector<std::unique_ptr<Level>> &getLevels();
+    std::vector<std::shared_ptr<Level>> &getLevels();
     int getLevel() const;
     void setLevel(int l);
     void clearRow(size_t r);
