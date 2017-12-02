@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-LBlock(Grid &g, int level): Block{level, "A", false} {
+LBlock::LBlock(Grid &g, int level): Block{level, "A", false} {
     if (level > 2) {heavy = true;}
     Posn p0{3, 2};
     Posn p1{4, 2};
