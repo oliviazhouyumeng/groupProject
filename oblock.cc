@@ -57,9 +57,11 @@ void OBlock::down(Grid &g) {
 void OBlock::clockwise(Grid &g) {
     if (heavy) down(g);
 }
+
 void OBlock::counterclockwise(Grid &g) {
     if (heavy) down(g);
 }
+
 void OBlock::drop(Grid &g) {
     size_t start = pos[3].x+1;
     for (size_t i = start; i < 18; i++) {
