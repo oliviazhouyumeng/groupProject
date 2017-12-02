@@ -1,6 +1,9 @@
 #include "block.h"
 #include "sblock.h"
 #include "grid.h"
+#include "state.h"
+#include "info.h"
+#include <vector>
 using namespace std;
 
 SBlock(Grid &g, int level): Block{level, "A", false} {
