@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include "window.h"
@@ -9,6 +10,43 @@
 #include <sstream>
 #include "endexception.h"
 using namespace std;
+
+void Game(Grid &g, string cmd) {
+    if (cmd == "left") g.currBlock().left(g);
+    else if (cmd == "right") g.currBlock().right(g);
+    else if (cmd == "down") g.currBlock().down(g);
+    else if (cmd == "clockwise") g.currBlock().clockwise(g);
+    else if (cmd == "counterclockwise") g.currBlock().counterclockwise(g);
+    else if (cmd == "skip") g.updateNext();
+    else if (cmd == "drop") {
+        g.currBlock().drop(g);
+        try {
+            g.setCurrtoGrid();
+        }
+        catch(EndException &e) {
+            cout << "Game over!" << endl;
+        }
+        g.updateNext();
+    }
+    else if (cmd == "levelop") g.levelUp();
+    else if (cmd == "leveldown") g.levelDown();
+    else if (cmd == "norandom") {
+        string seq;
+        cin >> seq;
+        int curlev = g.getLevel();
+        if (curlev >= 3) {
+            g.getLevels()[curlev]->setSeq(seq);
+            g.getLevels()[curlev]->setRandom(false);
+        }
+    }
+    else if (cmd == "random") {
+        int curlev = g.getLevel();
+        if (curlev >= 3) g.getLevels()[curlev]->setRandom(true);
+    }
+    else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") g.setNext(cmd);
+    else if (cmd == "restart") g.init();
+    //else if (cmd == "hint")
+}
 
 int main(int argc, char *argv[]) {
     cin.exceptions(ios::eofbit|ios::failbit);
@@ -51,42 +89,19 @@ int main(int argc, char *argv[]) {
         while (true) {
             cout << "> "; // wait for input
             cin >> cmd;
-            if (cmd == "left") g.currBlock().left(g);
-            else if (cmd == "right") g.currBlock().right(g);
-            else if (cmd == "down") g.currBlock().down(g);
-            else if (cmd == "clockwise") g.currBlock().clockwise(g);
-            else if (cmd == "counterclockwise") g.currBlock().counterclockwise(g);
-            else if (cmd == "skip") g.updateNext();
-            else if (cmd == "drop") {
-                g.currBlock().drop(g);
-                try {
-                    g.setCurrtoGrid();
-                }
-                catch(EndException &e) {
-                    break;
-                    cout << "Game over!" << endl;
-                }
-                g.updateNext();
-            }
-            else if (cmd == "levelop") g.levelUp();
-            else if (cmd == "leveldown") g.levelDown();
-            else if (cmd == "norandom") {
-                string seq;
-                cin >> seq;
-                int curlev = g.getLevel();
-                if (curlev >= 3) {
-                    g.getLevels()[curlev]->setSeq(seq);
-                    g.getLevels()[curlev]->setRandom(false);
+            if (cmd != "sequence") try {Game(g, cmd);}
+            else if (cmd == "sequence") {
+                string cmdSeq;
+                cin >> cmdSeq;
+                ifstream f{cmdSeq};
+                while (f >> cmd) {
+                    try {Game(g, cmd);}
                 }
             }
-            else if (cmd == "random") {
-                int curlev = g.getLevel();
-                if (curlev >= 3) g.getLevels()[curlev]->setRandom(true);
+            else {
+                cin.clear();
+                cin.ignore();
             }
-            // else if (cmd == "sequence")
-            else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") g.setNext(cmd);
-            else if (cmd == "restart") g.init();
-            //else if (cmd == "hint")
         }
     }
     catch (ios::failure &) {}  // Any I/O failure quits
