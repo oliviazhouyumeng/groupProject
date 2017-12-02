@@ -34,3 +34,7 @@ string Level0::createBlock() const {
   string blocks = oss.str();
   return blocks;
 }
+
+void setSeq(std::string sfile) {
+	filename = sfile;
+}

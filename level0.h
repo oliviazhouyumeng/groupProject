@@ -9,6 +9,7 @@ class Level0: public Level {
  public:
   Level0(std::string filename = "sequence.txt");
   std::string createBlock() const override;
+  void setSeq(std::string sfile) override;
 };
 
 #endif
