@@ -1,15 +1,16 @@
 #ifndef STARBLOCK_H
 #define STARBLOCK_H
 #include "block.h"
-
+#include "grid.h"
 class StarBlock : public Block {
 public:
-    void left() override;
-    void right() override;
-    void down() override;
-    void clockwise() override;
-    void counterclockwise() override;
-    void drop() override;
+    StarBlock(Grid &g, int level);
+    void left(Grid &g) override;
+    void right(Grid &g) override;
+    void down(Grid &g) override;
+    void clockwise(Grid &g) override;
+    void counterclockwise(Grid &g) override;
+    void drop(Grid &g) override;
 };
 
 #endif
