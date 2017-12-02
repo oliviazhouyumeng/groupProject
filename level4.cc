@@ -31,7 +31,8 @@ void Level4::setSeq(std::string sfile) {
 
 string Level4::createBlock() {
   if (isRandom) {
-    int gen = srand(seed) % 9;
+    srand(seed);
+    int gen = rand() % 9;
     if (gen == 0) return "I";  // need to know how IBlock is constructed
     else if (gen == 1) return "J";
     else if (gen == 2) return "L";

@@ -22,7 +22,8 @@ const int lNum = 1;
 Level1::Level1(): Level{seedNum, isRand, lNum} {}
 
 std::string Level1::createBlock() const {
-	int gen = srand(seed) % 12;
+	srand(seed);
+	int gen = rand() % 12;
   if (gen == 0 || gen == 1) return "I";
   else if (gen == 2 || gen == 3) return "J";
   else if (gen == 4 || gen == 5) return "L";
