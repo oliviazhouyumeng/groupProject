@@ -66,7 +66,7 @@ void Grid::levelDown() {
     if (currlevel > 0) --currlevel;
 }
 
-vector<std::unique_ptr<Level>> &Grid::getLevels() {
+vector<unique_ptr<Level>> &Grid::getLevels() {
     return levels;
 }
 
