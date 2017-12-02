@@ -1,7 +1,6 @@
 #include "cell.h"
 #include "state.h"
 #include "subject.h"
-#include "observer.h"
 #include "info.h"
 #include <cstddef>
 #include "grid.h"
