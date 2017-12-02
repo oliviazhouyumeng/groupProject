@@ -30,5 +30,5 @@ string Level2::createBlock() const {
   else if (gen == 3) return "O";
   else if (gen == 4) return "S";
   else if (gen == 5) return "Z";
-  else if (gen == 6) return "T";
+  else return "T";
 }

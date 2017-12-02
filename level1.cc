@@ -30,5 +30,5 @@ std::string Level1::createBlock() const {
   else if (gen == 6 || gen == 7) return "O";
   else if (gen == 8) return "S";
   else if (gen == 9) return "Z";
-  else if (gen == 10 || gen == 11) return "T";
+  else return "T";
 }
