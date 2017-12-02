@@ -77,13 +77,13 @@ int main(int argc, char *argv[]) {
                 cin >> seq;
                 int curlev = g.getLevel();
                 if (curlev >= 3) {
-                    g.getLevels()[g.getLevel()]->setSeq(seq);
-                    g.getLevels()[g.getLevel()]->setRandom(false);
+                    g.getLevels()[curlev]->setSeq(seq);
+                    g.getLevels()[curlev]->setRandom(false);
                 }
             }
             else if (cmd == "random") {
                 int curlev = g.getLevel();
-                if (curlev >= 3) g.getLevels()[g.getLevel()]->setRandom(true);
+                if (curlev >= 3) g.getLevels()[curlev]->setRandom(true);
             }
             // else if (cmd == "sequence")
             else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "z"||cmd == "T"||cmd == "O") g.setNext(cmd);
