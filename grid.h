@@ -22,6 +22,7 @@ class Grid {
     int hi_score; //the highest score in game
     int curr_score; // the current score in game
     int currlevel; //the current level
+    std::vector<std::unique_ptr<Level>> levels = nullptr;
     std::istringstream iss; // for block types reading if Level returns a seq file name
     std::shared_ptr<Block> curr = nullptr; // the current block on the board
     std::string next; // the next block will appear on the board
@@ -33,9 +34,6 @@ class Grid {
     std::unique_ptr<Observer<Info, State>> ob = nullptr; //Another observer
     // Add private members, if necessary.
     
-protected:
-    std::unique_ptr<std::vector<Level>> levels = nullptr;
-    
 public:
     Grid(int currlevel, int hi_score = 100, int curr_score = 0);
     ~Grid();
@@ -45,6 +43,7 @@ public:
     void setGraphics(bool b);
     void levelUp();
     void levelDown();
+    std::vector<std::unique_ptr<Level>> &getLevels();
     int getLevel() const;
     void setLevel(int l);
     void clearRow(size_t r);
