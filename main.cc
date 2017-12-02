@@ -25,6 +25,7 @@ void Game(Grid &g, string cmd) {
         }
         catch(EndException &e) {
             cout << "Game over!" << endl;
+            break;
         }
         g.updateNext();
     }
