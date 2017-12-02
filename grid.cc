@@ -15,7 +15,8 @@
 #include <vector>
 using namespace std;
 
-Grid::Grid(currlevel): currlevel{currlevel} {}
+Grid::Grid(int currlevel, int hi_score = 100, int curr_score = 0): 
+currlevel{currlevel}, hi_score{hi_score}, curr_score{curr_score} {}
 
 Grid::~Grid() {}
 
