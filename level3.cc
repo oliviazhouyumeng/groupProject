@@ -29,7 +29,7 @@ void Level3::setSeq(string sfile) {
   seqFile = sfile;
 }
 
-string Level3::createBlock() {
+string Level3::createBlock() const {
   if (isRandom) {
     srand(seed);
     int gen = rand() % 9;
