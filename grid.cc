@@ -55,8 +55,8 @@ void Grid::init() {
     const size_t totr = 18; // total rows
     const size_t totc = 11; // total columns
     
-    auto td = make_unique<TextDisplay>(totc, totr);
-    if (graphicsOn) auto gd = make_unique<GraphicsDisplay>();
+    auto td = make_shared<TextDisplay>(totc, totr);
+    if (graphicsOn) auto gd = make_shared<GraphicsDisplay>();
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
