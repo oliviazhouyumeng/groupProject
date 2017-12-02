@@ -4,7 +4,7 @@
 
 class ZBlock : public Block {
 public:
-    OBlock(Grid &g, int level);
+    ZBlock(Grid &g, int level);
     void left(Grid &g) override;
     void right(Grid &g) override;
     void down(Grid &g) override;
