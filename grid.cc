@@ -13,6 +13,7 @@
 #include "hintblock.h"
 #include "starblock.h"
 #include <vector>
+#include <memory>
 using namespace std;
 
 Grid::Grid(int currlevel, int hi_score = 100, int curr_score = 0): 
@@ -63,6 +64,10 @@ void Grid::levelUp() {
 
 void Grid::levelDown() {
     if (currlevel > 0) --currlevel;
+}
+
+vector<std::unique_ptr<Level>> &getLevels() {
+    return levels;
 }
 
 int Grid::getLevel() const {
