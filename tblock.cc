@@ -101,68 +101,76 @@ void TBlock::down(Grid &g){
 
 void TBlock::clockwise(Grid &g){
     if (type == "A") {
-        for(auto p : pos){
-            g.setColour(p.x, p.y, Colour::White);
+        if(g.checkWhite(pos[1].x-1, pos[1].y)){
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::White);
+            }
+            pos[0].x--;
+            pos[0].y++;
+            pos[2].x++;
+            pos[2].y--;
+            pos[3].x--;
+            pos[3].y--;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Orange);
+            }
+            cwtype();
+            if(heavy) down(g);
         }
-        pos[0].x--;
-        pos[0].y++;
-        pos[2].x++;
-        pos[2].y--;
-        pos[3].x--;
-        pos[3].y--;
-        for(auto p : pos){
-            g.setColour(p.x, p.y, Colour::Orange);
-        }
-        cwtype();
-        if(heavy) down(g);
     }
     if(type == "B"){
         Posn edge = pos.at(0);
         if(edge.y == 10) return;
-        for (auto p : pos){
-            g.setColour(p.x, p.y, Colour::White);
+        if(g.checkWhite(pos[2].x, pos[2].y-1) && g.checkWhite(pos[2].x, pos[2].y+1)){
+            for (auto p : pos){
+                g.setColour(p.x, p.y, Colour::White);
+            }
+            pos[0].x+=2;
+            pos[0].y++;
+            pos[1].x++;
+            pos[2].y--;
+            pos[3].y++;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Orange);
+            }
+            cwtype();
+            if(heavy) down(g);
         }
-        pos[0].x+=2;
-        pos[0].y++;
-        pos[1].x++;
-        pos[2].y--;
-        pos[3].y++;
-        for(auto p : pos){
-            g.setColour(p.x, p.y, Colour::Orange);
-        }
-        cwtype();
-        if(heavy) down(g);
     }
     if(type == "C"){
-        for (auto p : pos){
-            g.setColour(p.x, p.y, Colour::White);
-        }
-        pos[0].y-=2;
-        pos[1].x--;
-        pos[1].y--;
-        pos[2].x-=2;
-        for(auto p : pos){
-            g.setColour(p.x, p.y, Colour::Orange);
-        }
-        cwtype();
-        if(heavy) down(g);
+        if(g.checkWhite(pos[2].x-1, pos[2].y) && g.checkWhite(pos[2].x-2, pos[2].y)){
+            for (auto p : pos){
+                g.setColour(p.x, p.y, Colour::White);
+            }
+            pos[0].y-=2;
+            pos[1].x--;
+            pos[1].y--;
+            pos[2].x-=2;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Orange);
+            }
+            cwtype();
+            if(heavy) down(g);
+            }
     }
     if (type == "D") {
         Posn edge = pos.at(3);
         if(edge.y == 10) return;
-        for (auto p : pos) {
-            g.setColour(p.x, p.y, Colour::White);
+        if(g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x+1, pos[3].y)){
+            for (auto p : pos) {
+                g.setColour(p.x, p.y, Colour::White);
+            }
+            pos[0].x--;
+            pos[1].y++;
+            pos[2].x++;
+            pos[2].y+=2;
+            pos[3].x++;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Orange);
+            }
+            cwtype();
+            if(heavy) down(g);
         }
-        pos[0].x--;
-        pos[1].y++;
-        pos[2].x++;
-        pos[2].y+=2;
-        pos[3].x++;
-        for(auto p : pos){
-            g.setColour(p.x, p.y, Colour::Orange);
-        }
-        cwtype();
-        if(heavy) down(g);
     }
 }
 
@@ -170,68 +178,76 @@ void TBlock::clockwise(Grid &g){
 
 void TBlock::counterclockwise(Grid &g){
     if(type == "A"){
-        for (auto p : pos){
-            g.setColour(p.x, p.y, Colour::White);
+        if (g.checkWhite(pos[0].x-1, pos[0].y) && g.checkWhite(pos[0].x+1, pos[0].y)) {
+            for (auto p : pos){
+                g.setColour(p.x, p.y, Colour::White);
+            }
+            pos[0].x++;
+            pos[1].y--;
+            pos[2].x--;
+            pos[2].y-=2;
+            pos[3].x--;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Orange);
+            }
+            ccwtype();
+            if(heavy) down(g);
         }
-        pos[0].x++;
-        pos[1].y--;
-        pos[2].x--;
-        pos[2].y-=2;
-        pos[3].x--;
-        for(auto p : pos){
-            g.setColour(p.x, p.y, Colour::Orange);
-        }
-        ccwtype();
-        if(heavy) down(g);
     }
     if(type == "B"){
         Posn edge = pos.at(0);
         if(edge.y == 10) return;
-        for (auto p : pos){
-            g.setColour(p.x, p.y, Colour::White);
+        if(g.checkWhite(pos[1].x, pos[1].y+1)){
+            for (auto p : pos){
+                g.setColour(p.x, p.y, Colour::White);
+            }
+            pos[0].x++;
+            pos[0].y--;
+            pos[2].x--;
+            pos[2].y++;
+            pos[3].x++;
+            pos[3].y++;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Orange);
+            }
+            ccwtype();
+            if(heavy) down(g);
         }
-        pos[0].x++;
-        pos[0].y--;
-        pos[2].x--;
-        pos[2].y++;
-        pos[3].x++;
-        pos[3].y++;
-        for(auto p : pos){
-            g.setColour(p.x, p.y, Colour::Orange);
-        }
-        ccwtype();
-        if(heavy) down(g);
     }
     if (type == "C") {
-        for (auto p : pos){
-            g.setColour(p.x, p.y, Colour::White);
+        if(g.checkWhite(pos[3].x, pos[3].y-1) && g.checkWhite(pos[3].x-1, pos[3].y)){
+            for (auto p : pos){
+                g.setColour(p.x, p.y, Colour::White);
+            }
+            pos[0].x-=2;
+            pos[0].y--;
+            pos[1].x--;
+            pos[2].y++;
+            pos[3].y--;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Orange);
+            }
+            ccwtype();
+            if(heavy) down(g);
         }
-        pos[0].x-=2;
-        pos[0].y--;
-        pos[1].x--;
-        pos[2].y++;
-        pos[3].y--;
-        for(auto p : pos){
-            g.setColour(p.x, p.y, Colour::Orange);
-        }
-        ccwtype();
-        if(heavy) down(g);
     }
     if (type == "D") {
         Posn edge = pos.at(3);
         if(edge.y == 10) return;
-        for (auto p : pos){
-            g.setColour(p.x, p.y, Colour::White);
-        }
-        pos[0].y+=2;
-        pos[1].x++;
-        pos[1].y++;
-        pos[2].x+=2;
-        for(auto p : pos){
-            g.setColour(p.x, p.y, Colour::Orange);
-        }
-        ccwtype();
-        if(heavy) down(g);
+        if(g.checkWhite(pos[0].x, pos[0].y-1) && g.checkWhite(pos[0].x, pos[0].y+1)){
+            for (auto p : pos){
+                g.setColour(p.x, p.y, Colour::White);
+            }
+            pos[0].y+=2;
+            pos[1].x++;
+            pos[1].y++;
+            pos[2].x+=2;
+            for(auto p : pos){
+                g.setColour(p.x, p.y, Colour::Orange);
+            }
+            ccwtype();
+            if(heavy) down(g);
+            }
     }
 }
 
@@ -258,25 +274,4 @@ void TBlock::drop(Grid &g){
 void TBlock::giveHint(Grid &g){
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
