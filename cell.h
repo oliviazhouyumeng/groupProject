@@ -3,7 +3,6 @@
 #include <cstddef>
 #include "state.h"
 #include "subject.h"
-#include "observer.h"
 #include "info.h"
 
 class Grid;
