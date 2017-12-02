@@ -6,7 +6,7 @@
 #include "info.h"
 
 class Grid;
-
+class Observer;
 class Cell : public Subject<Info, State> {
     const size_t r, c;
     Colour colour;

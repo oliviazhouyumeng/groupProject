@@ -1,5 +1,6 @@
 #include "textdisplay.h"
 #include "info.h"
+#include "cell.h"
 using namespace std;
 
 TextDisplay::~TextDisplay(){

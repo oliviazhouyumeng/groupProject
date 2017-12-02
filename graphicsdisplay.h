@@ -10,7 +10,7 @@
 class Cell;
 class Grid;
 
-class GraphicsDisplay: public Observer<Info, State> {
+class GraphicsDisplay: public Observer {
   const int gridWidth, gridHeight, winWidth, winHeight;
   Xwindow xw;
   void ScoreBoard(Grid &g);

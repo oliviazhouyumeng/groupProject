@@ -4,6 +4,7 @@
 #include "info.h"
 #include <cstddef>
 #include "grid.h"
+#include "observer.h"
 
 using namespace std;
 

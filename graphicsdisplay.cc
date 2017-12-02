@@ -5,6 +5,7 @@
 #include "subject.h"
 #include "grid.h"
 #include "window.h"
+#include "cell.h"
 using namespace std;
 
 GraphicsDisplay::GraphicsDisplay(int gridWidth, int gridHeight, int winWidth, int winHeight):

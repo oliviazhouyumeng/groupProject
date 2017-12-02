@@ -9,7 +9,7 @@
 #include "subject.h"
 class Cell;
 
-class TextDisplay: public Observer<Info, State> {
+class TextDisplay: public Observer {
   std::vector<std::vector<char>> theDisplay;
   const int width;
   const int length;

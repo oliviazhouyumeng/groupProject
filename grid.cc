@@ -11,6 +11,7 @@
 #include "oblock.h"
 #include "tblock.h"
 #include "starblock.h"
+#include <sstream>
 #include <vector>
 #include <memory>
 #include "level0.h"
@@ -38,7 +39,7 @@ Grid::Grid(int hi_score, int curr_score, bool graphicsOn):
 
 Grid::~Grid() {}
 
-void Grid::setObserver(shared_ptr<Observer<Info, State>> ob) {
+void Grid::setObserver(shared_ptr<Observer> ob) {
     this->ob = ob;
 }
 
@@ -55,7 +56,10 @@ void Grid::init() {
     const size_t totr = 18; // total rows
     const size_t totc = 11; // total columns
     
-    auto td = make_shared<TextDisplay>(totc, totr);
+    shared_ptr<Observer> td = dynamic_pointer_cast<TextDisplay>(td);
+    td = make_shared<TextDisplay>(totc, totr);
+    
+    
     if (graphicsOn) auto gd = make_shared<GraphicsDisplay>();
     
     for (size_t i = 0; i < totr; i++) {
@@ -65,6 +69,12 @@ void Grid::init() {
             rArr.emplace_back(c);
         }
         theGrid.emplace_back(rArr);
+    }
+    for (size_t i = 0; i < totr; i++) {
+        for (size_t j = 0; j < totc; j++) {
+            theGrid[i][j].attach(td);
+            if (graphicsOn) theGrid[i][j].attach(gd);
+        }
     }
     updateNext();
     setCurrtoGrid();
@@ -102,7 +112,6 @@ void Grid::clearRow(size_t r) {
         for (int j = ptemp-1; j >= 0; j--) {
             if (liveBlocks[i]->getPos()[i].x == r) {
                 changeColour(r, liveBlocks[i]->getPos()[j].y, Colour::White);
-                setCellLevel(r, liveBlocks[i]->getPos()[j].y, -1);
                 liveBlocks[i]->getPos().erase(liveBlocks[i]->getPos().begin()+j);
             }
         }
@@ -130,7 +139,6 @@ void Grid::moveDown() {
                 for (size_t lBack = 0; lBack < 11; lBack++) {
                     Colour newcolour = getCell(rBack-1, lBack).getInfo().colour;
                     changeColour(rBack, lBack, newcolour);
-                    setCellLevel(rBack, lBack, getLevel(rBack-1, lBack));
                 }
             }
             count++;
@@ -158,29 +166,26 @@ void Grid::setCurrtoGrid() {
         StarBlock(*this, currlevel);
         starCount = 5;
     }
-    if (next == "I") curr = IBlock(*this, nextlevel);
-    else if (next == "J") curr = JBlock(*this, nextlevel);
-    else if (next == "L") curr = LBlock(*this, nextlevel);
-    else if (next == "S") curr = SBlock(*this, nextlevel);
-    else if (next == "Z") curr = ZBlock(*this, nextlevel);
-    else if (next == "T") curr = TBlock(*this, nextlevel);
-    else if (next == "O") curr = OBlock(*this, nextlevel);
-    else if (next == "Hint") curr = HintBlock(*this, nextlevel);
-    else if (next == "Star") curr = StarBlock(*this, nextlevel);
+    if (next == "I") curr = make_shared<IBlock>(*this, nextlevel);
+    else if (next == "J") curr = make_shared<JBlock>(*this, nextlevel);
+    else if (next == "L") curr = make_shared<LBlock>(*this, nextlevel);
+    else if (next == "S") curr = make_shared<SBlock>(*this, nextlevel);
+    else if (next == "Z") curr = make_shared<ZBlock>(*this, nextlevel);
+    else if (next == "T") curr = make_shared<TBlock>(*this, nextlevel);
+    else if (next == "O") curr = make_shared<OBlock>(*this, nextlevel);
     liveBlocks.emplace_back(curr);
     starCount--;
 }
 
 void Grid::updateNext() {
     if (currlevel == 0) {
-        if (iss == NULL) {
-            string newLevel = levels[currlevel].createBlock();
+        string newLevel = levels[currlevel]->createBlock();
+        if (!(iss >> next)) {
             iss{newLevel};
-            iss >> next;
         }
-        else iss >> next;
+        else {iss >> next;}
     }
-    else next = levels[currlevel].createBlock();
+    else next = levels[currlevel]->createBlock();
     nextlevel = currlevel;
 }
 
