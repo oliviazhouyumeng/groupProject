@@ -126,7 +126,7 @@ void LBlock::counterclockwise(Grid &g) {
             if (heavy) down(g);
         }
     } else if (type == "B") {
-        if (pos[0] != 10 && g.checkWhite(pos[0].x, pos[0].y+1) &&
+        if (pos[0].y != 10 && g.checkWhite(pos[0].x, pos[0].y+1) &&
             g.checkWhite(pos[0].x-1, pos[0].y+1)) {
             ccwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
