@@ -9,9 +9,8 @@ SBlock(Grid &g, int level): Block{level, "A", false} {
     Posn p2{4, 1};
     Posn p3{3, 1};
     Posn p4{3, 2};
-    bool canSet = true;
     for (auto p : pos) {
-        if (!g.checkWhite(p.x, p.y)) canSet = false;
+        if (!g.checkWhite(p.x, p.y)) {g.endGame();}
     }
     g.setColour(4, 0, Colour::Yellow);
     g.setColour(4, 1, Colour::Yellow);
@@ -114,7 +113,7 @@ void SBlock::counterclockwise(Grid &g) {
 }
 
 void SBlock::drop(Grid &g) {
-    size_t start = pos[3].y+1;
+    size_t start = pos[3].x+1;
     for (size_t i = start; i < 18; i++) {
         down(g);
     }
