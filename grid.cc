@@ -162,17 +162,25 @@ bool Grid::checkWhite(size_t row, size_t col) {
     return getCell(row, col).getInfo().colour == Colour::White;
 }
 
-void Grid::gSetState(size_t row, size_t col, State s) {
+void Grid::gSetState(size_t row, size_t col, State s) const {
     getCell(row, col).setState(s);
 }
 
-State Grid::getState(size_t row, size_t col) {
+State Grid::getState(size_t row, size_t col) const {
     return getCell(row, col).getState();
 }
 
 void Grid::updateScore(int point) {
     curr_score += point;
     if (hi_score < curr_score) hi_score = curr_score;
+}
+
+int Grid::getScore() const {
+    return curr_score;
+}
+
+int Grid::getHiScore() const {
+    return hi_score;
 }
 
 Cell &Grid::getCell(size_t x, size_t y) {
