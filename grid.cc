@@ -66,7 +66,7 @@ void Grid::levelDown() {
     if (currlevel > 0) --currlevel;
 }
 
-vector<unique_ptr<Level>> &Grid::getLevels() {
+vector<std::unique_ptr<Level>> &Grid::getLevels() {
     return levels;
 }
 
@@ -85,10 +85,15 @@ void Grid::clearRow(size_t r) {
         for (int j = ptemp-1; j >= 0; j--) {
             if (liveBlocks[i]->getPos()[i].x == r) {
                 changeColour(r, liveBlocks[i]->getPos()[j].y, Colour::White);
+                setCellLevel(r, liveBlocks[i]->getPos()[j].y, -1);
                 liveBlocks[i]->getPos().erase(liveBlocks[i]->getPos().begin()+j);
             }
         }
-        if (liveBlocks[i]->getPos().size() == 0) liveBlocks.erase(liveBlocks.begin()+btemp);
+        // modify curr_score
+        if (liveBlocks[i]->getPos().size() == 0) {
+            liveBlocks.erase(liveBlocks.begin()+btemp);
+            // modify curr_score
+        }
     }
 }
 
@@ -106,8 +111,8 @@ void Grid::moveDown() {
             for (size_t rBack = currRow; rBack >= firstCellRow; rBack--) {
                 for (size_t lBack = 0; lBack < 11; lBack++) {
                     Colour newcolour = getCell(rBack-1, lBack).getInfo().colour;
-                    getCell(rBack, lBack).changeColour(newcolour, *this);
-                    getCell(rBack, lBack).setCellLevel(getLevel(rBack-1, lBack), *this);
+                    changeColour(rBack, lBack, newcolour);
+                    setCellLevel(rBack, lBack, getLevel(rBack-1, lBack));
                 }
             }
         }
