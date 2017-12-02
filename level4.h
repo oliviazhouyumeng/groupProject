@@ -7,7 +7,7 @@ class Level4: public Level {
 	std::string seqFile;
  public:
   Level4();
-  void setSeq(std::string sfile);
+  void setSeq(std::string sfile) override;
   std::string createBlock() override;
 };
 

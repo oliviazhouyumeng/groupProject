@@ -25,7 +25,7 @@ const int lNum = 3;
 Level3::Level3(): 
   seqFile{seq}, Level{seedNum, isRand, lNum} {}
 
-void Level3::setSeq(std::string sfile) {
+void Level3::setSeq(string sfile) {
   seqFile = sfile;
 }
 
