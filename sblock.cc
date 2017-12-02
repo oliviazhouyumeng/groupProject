@@ -117,4 +117,8 @@ void SBlock::drop(Grid &g) {
     for (size_t i = start; i < 18; i++) {
         down(g);
     }
+    State s{StateType::NA};
+    for (auto p : pos) {
+        g.gSetState(p.x, p.y, s);
+    }
 }
