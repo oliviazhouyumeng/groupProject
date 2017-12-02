@@ -21,16 +21,16 @@ class Grid {
     int hi_score; //the highest score in game
     int curr_score; // the current score in game
     int currlevel; //the current level
-    std::vector<std::shared_ptr<Level>> levels = nullptr;
+    std::vector<std::shared_ptr<Level>> levels;
     std::istringstream iss; // for block types reading if Level returns a seq file name
-    std::shared_ptr<Block> curr = nullptr; // the current block on the board
+    std::shared_ptr<Block> curr; // the current block on the board
     std::string next; // the next block will appear on the board
     int nextlevel; // the level of next block
     bool graphicsOn = true; // default = true, false = textonly
-    std::unique_ptr<TextDisplay> td = nullptr; // the text display
-    std::unique_ptr<GraphicsDisplay> gd = nullptr; // the graphics diaplay
+    std::unique_ptr<TextDisplay> td; // the text display
+    std::unique_ptr<GraphicsDisplay> gd; // the graphics diaplay
     
-    std::unique_ptr<Observer<Info, State>> ob = nullptr; //Another observer
+    std::unique_ptr<Observer<Info, State>> ob; //Another observer
     // Add private members, if necessary.
     
 public:
