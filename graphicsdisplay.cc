@@ -15,7 +15,7 @@ GraphicsDisplay::GraphicsDisplay(int gridWidth, int gridHeight, int winWidth, in
 }
 
 // haven't changed
-void GraphicsDisplay::notify(Subject<Info, State> &whoNotified) {
+void GraphicsDisplay::notify(Subject<Info, State> &whoNotified, Grid &g) {
   auto info = whoNotified.getInfo();
   int cellSize = winWidth / gridWidth;
   switch(info.colour) {
