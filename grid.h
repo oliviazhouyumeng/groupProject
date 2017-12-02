@@ -21,7 +21,7 @@ class Grid {
     std::vector<std::shared_ptr<Block>> liveBlocks;
     int hi_score = 100; //the highest score in game
     int curr_score = 0; // the current score in game
-    int currlevel;//the current level
+    int currlevel; //the current level
     std::unique_ptr<std::vector<Level>> levels = nullptr; //[level0,level1,level2,...]
     std::istringstream iss; // for block types reading if Level returns a seq file name
     std::shared_ptr<Block> curr = nullptr; // the current block on the board
@@ -44,6 +44,7 @@ public:
     void setGraphics(bool b);
     void levelUp();
     void levelDown();
+    int getLevel() const;
     void setLevel(int l);
     void clearRow(size_t r);
     void moveDown(size_t r); // clear empty lines
