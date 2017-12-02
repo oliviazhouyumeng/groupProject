@@ -21,10 +21,10 @@ class Grid;
 template <typename InfoType, typename StateType> class Observer;
 
 template <typename InfoType, typename StateType> class Subject {
-    std::vector<std::unique_ptr<Observer<InfoType, StateType>>> observers;
+    std::vector<std::shared_ptr<Observer<InfoType, StateType>>> observers;
     StateType state;
 public:
-    void attach(std::unique_ptr<Observer<InfoType, StateType>> o);
+    void attach(std::shared_ptr<Observer<InfoType, StateType>> o);
     void notifyObservers(Grid &g);
     virtual InfoType getInfo() const = 0;
     StateType getState() const;
@@ -32,7 +32,7 @@ public:
 };
 
 template <typename InfoType, typename StateType>
-void Subject<InfoType, StateType>::attach(std::unique_ptr<Observer<InfoType, StateType>> o) {
+void Subject<InfoType, StateType>::attach(std::shared_ptr<Observer<InfoType, StateType>> o) {
     observers.emplace_back(o);
 }
 
