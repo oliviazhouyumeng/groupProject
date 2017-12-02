@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-ZBlock(Grid &g, int level): Block{level, "A", false} {
+ZBlock::ZBlock(Grid &g, int level): Block{level, "A", false} {
     if (level > 2) {heavy = true;}
     Posn p0{3, 0};
     Posn p1{3, 1};
