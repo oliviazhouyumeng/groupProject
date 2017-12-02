@@ -55,7 +55,7 @@ public:
     std::string getNextType() const;
     void setNext(std::string nextcmd); // set next, modify next level
     void setColour(size_t row, size_t col, Colour colour);
-    //void setPiece(size_t row, size_t col, Colour colour);
+    void changeColour(size_t row, size_t col, Colour colour);
     bool checkWhite(size_t row, size_t col); // return true if cell is white
     void gSetState(size_t row, size_t col, State s) const;
     State getState(size_t row, size_t col) const;
