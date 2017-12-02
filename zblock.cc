@@ -123,3 +123,13 @@ void ZBlock::drop(Grid &g) {
     }
     g.moveDown();
 }
+
+
+void ZBlock::giveHint(Grid &g){
+}
+
+void ZBlock::cancelHint(Grid &g){
+}
+
+
+
