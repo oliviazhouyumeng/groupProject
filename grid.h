@@ -37,7 +37,7 @@ public:
     Grid(int currlevel, int hi_score = 100, int curr_score = 0, bool graphicsOn = true);
     ~Grid();
     void setObserver(std::unique_ptr<Observer<Info, State>> ob);
-    bool endGame() const;  // end the game
+    void endGame() const;  // end the game
     void init(); // Sets up an n x n grid.  Clears old grid, if necessary.
     void setGraphics(bool b);
     void levelUp();
