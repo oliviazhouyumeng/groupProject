@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
                 if (curlev >= 3) g.getLevels()[curlev]->setRandom(true);
             }
             // else if (cmd == "sequence")
-            else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "z"||cmd == "T"||cmd == "O") g.setNext(cmd);
+            else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") g.setNext(cmd);
             else if (cmd == "restart") g.init();
             //else if (cmd == "hint")
         }
