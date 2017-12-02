@@ -7,12 +7,15 @@
 #include "level.h" // forward declare?
 #include <memory>
 #include <sstream>
+
 struct State;
 class TextDisplay;
 class GraphicsDisplay;
 class Block;
+class Level;
 template <typename InfoType, typename StateType> class Observer;
 class InvalidMove{};
+
 class Grid {
     std::vector<std::vector<Cell>> theGrid; //the actual grid
     std::vector<std::shared_ptr<Block>> liveBlocks;
@@ -52,9 +55,11 @@ public:
     void setColour(size_t row, size_t col, Colour colour);
     //void setPiece(size_t row, size_t col, Colour colour);
     bool checkWhite(size_t row, size_t col); // return true if cell is white
-    void gSetState(size_t row, size_t col, State s);
-    State getState(size_t row, size_t col);
+    void gSetState(size_t row, size_t col, State s) const;
+    State getState(size_t row, size_t col) const;
     void updateScore(int point); // update curr_score & hi_score
+    int getScore() const;
+    int getHiScore() const;
     Cell &getCell(size_t x, size_t y);
     Block &currBlock();
     
