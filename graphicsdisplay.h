@@ -14,6 +14,6 @@ class GraphicsDisplay: public Observer<Info, State> {
 
  public:
   GraphicsDisplay(int gridWidth, int gridHeight, int winWidth, int winHeight);
-  void notify(Subject<Info, State> &whoNotified) override;
+  void notify(Subject<Info, State> &whoNotified, Grid &g) override;
 };
 #endif
