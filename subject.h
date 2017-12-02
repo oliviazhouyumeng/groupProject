@@ -16,6 +16,7 @@
  and a colour.  For more details, see state.h.
  */
 
+class Grid;
 
 template <typename InfoType, typename StateType> class Observer;
 
@@ -24,7 +25,7 @@ template <typename InfoType, typename StateType> class Subject {
     StateType state;
 public:
     void attach(std::unique_ptr<Observer<InfoType, StateType>> o);
-    void notifyObservers();
+    void notifyObservers(Grid &g);
     virtual InfoType getInfo() const = 0;
     StateType getState() const;
     void setState(StateType newS);
@@ -38,8 +39,8 @@ void Subject<InfoType, StateType>::attach(std::unique_ptr<Observer<InfoType, Sta
 
 
 template <typename InfoType, typename StateType>
-void Subject<InfoType, StateType>::notifyObservers() {
-    for (auto &ob : observers) ob->notify(*this);
+void Subject<InfoType, StateType>::notifyObservers(Grid &g) {
+    for (auto &ob : observers) ob->notify(*this, g);
 }
 
 template <typename InfoType, typename StateType>

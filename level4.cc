@@ -12,7 +12,6 @@
 #include "sblock.h"
 #include "zblock.h"
 #include "tblock.h"
-
 #include "starblock.h"
 
 using namespace std;
@@ -30,7 +29,8 @@ void Level4::setSeq(std::string sfile) {
 }
 
 string Level4::createBlock() const {
-  if (isRandom) {
+  string blocks;
+    if (isRandom) {
     srand(seed);
     int gen = rand() % 9;
     if (gen == 0) return "I";  // need to know how IBlock is constructed
@@ -43,7 +43,6 @@ string Level4::createBlock() const {
   } else {
     ifstream f{seqFile};
     ostringstream oss;
-    string blocks;
     while (f >> blocks) {
       oss << blocks << " ";
     }

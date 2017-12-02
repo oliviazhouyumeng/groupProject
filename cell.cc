@@ -24,12 +24,12 @@ void Cell::setColour(Colour colour, Grid &g){ // Modifies colour of the cell, ch
         g.gSetState(r, c, new_S);
     }
     this->colour = colour;
-    notifyObservers();
+    notifyObservers(g);
 }
 
 void Cell::changeColour(Colour colour, Grid &g){ // Modifies colour of the cell, donot change state
     this->colour = colour;
-    notifyObservers();
+    notifyObservers(g);
 }
 
 Info Cell::getInfo() const {

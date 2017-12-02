@@ -25,7 +25,6 @@ void Game(Grid &g, string cmd) {
         }
         catch(EndException &e) {
             cout << "Game over!" << endl;
-            break;
         }
         g.updateNext();
     }
@@ -63,10 +62,13 @@ int main(int argc, char *argv[]) {
             ++i;
             seedNum = *argv[i];
         } else if (curArg == "-scriptfile") {
-            if (!(i+1 >= argc || argv[i+1] == "-seed" || argv[i+1] == "-text" ||
-                argv[i+1] == "-startlevel" || argv[i+1] == "-scriptfile")) {
-                ++i;
-                seqFile = argv[i];
+            if (i+1 < argc) {
+                string nextArg = argv[i+1];
+                if (!(nextArg == "-seed" || nextArg == "-text" ||
+                      nextArg == "-startlevel" || nextArg == "-scriptfile")) {
+                    ++i;
+                    seqFile = argv[i];
+                }
             }
         } else if (curArg == "-startlevel") {
             ++i;
@@ -79,7 +81,7 @@ int main(int argc, char *argv[]) {
     g.setLevel(startLevel);
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
     if (seedNum != 1) {
-        for (auto l : g.getLevels()) l->getSeed(seedNum);
+        for (auto l : g.getLevels()) l->setSeed(seedNum);
     }
     if (seqFile != "") {
         g.getLevels()[0]->setSeq(seqFile);

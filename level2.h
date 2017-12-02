@@ -3,6 +3,7 @@
 
 #include <string>
 #include "level.h"
+
 class Level2: public Level {
  public:
   Level2();
