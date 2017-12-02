@@ -270,7 +270,8 @@ void TBlock::drop(Grid &g){
     g.moveDown();
 }
 
-
+void TBlock::cancelHint(Grid &g){
+}
 void TBlock::giveHint(Grid &g){
     
 }
