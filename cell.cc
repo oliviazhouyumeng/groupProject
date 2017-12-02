@@ -15,7 +15,7 @@ Cell::Cell(size_t r, size_t c, int l):r{r}, c{c}, level{l}, colour{Colour::White
 
 
 
-void Cell::setColour(Colour colour, Grid &g){ // Modifies colour of the cell
+void Cell::setColour(Colour colour, Grid &g){ // Modifies colour of the cell, change state
     State old_S = State{StateType::NA};
     State new_S = State{StateType::AC};
     if(colour == Colour::White){
@@ -24,6 +24,11 @@ void Cell::setColour(Colour colour, Grid &g){ // Modifies colour of the cell
     else{
         g.gSetState(r, c, new_S);
     }
+    this->colour = colour;
+    notifyObservers();
+}
+
+void Cell::changeColour(Colour colour, Grid &g){ // Modifies colour of the cell, donot change state
     this->colour = colour;
     notifyObservers();
 }
