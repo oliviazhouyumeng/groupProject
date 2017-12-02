@@ -35,6 +35,6 @@ string Level0::createBlock() const {
   return blocks;
 }
 
-void setSeq(std::string sfile) {
+void Level0::setSeq(std::string sfile) {
 	filename = sfile;
 }
