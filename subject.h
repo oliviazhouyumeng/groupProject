@@ -2,6 +2,7 @@
 #define SUBJECT_H
 #include <vector>
 #include <memory>
+#include "observer.h"
 /* A note on InfoType and StateType:
  
  We have separated the collection of fields into two parts:  its Info
@@ -18,7 +19,6 @@
 
 class Grid;
 
-class Observer;
 
 template <typename InfoType, typename StateType> class Subject {
     std::vector<std::shared_ptr<Observer>> observers;
