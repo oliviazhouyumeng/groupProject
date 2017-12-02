@@ -1,12 +1,10 @@
 #ifndef CELL_H
 #define CELL_H
 #include <cstddef>
-#include <vector>
 #include "state.h"
 #include "subject.h"
 #include "observer.h"
 #include "info.h"
-#include <memory>
 
 class Grid;
 
@@ -27,9 +25,6 @@ public:
     
     void changeColour(Colour colour, Grid &g); // Modifies colour of the cell, does not change state
     
-    Info getInfo() const override;
-    
-    
-    
+    Info getInfo() const override; 
 };
 #endif
