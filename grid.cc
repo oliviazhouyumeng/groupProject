@@ -150,7 +150,7 @@ string Grid::getNextType() const {
     return next;
 }
 
-voig Grid::setNext(string nextcmd) {
+void Grid::setNext(string nextcmd) {
     next = nextcmd;
     nextlevel = currlevel;
 }
