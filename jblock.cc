@@ -176,3 +176,7 @@ void JBlock::drop(Grid &g) {
     }
     g.moveDown();
 }
+
+void JBlock::giveHint(Grid &g) {}
+
+void JBlock::cancelHint(Grid &g) {};
