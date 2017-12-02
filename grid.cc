@@ -239,12 +239,7 @@ Block &Grid::currBlock() {
     return curr;
 }
 
-Level:      1
-Score:      0
-Hi Score: 100
------------
-
-std::ostream &operator<<(std::ostream &out, const Grid &g) {
+ostream &operator<<(std::ostream &out, const Grid &g) {
     string s;
     int i;
     s = "Level:       ";
