@@ -121,3 +121,11 @@ void SBlock::drop(Grid &g) {
     }
     g.moveDown();
 }
+
+
+void SBlock::giveHint(Grid &g){
+}
+
+void SBlock::cancelHint(Grid &g){
+}
+
