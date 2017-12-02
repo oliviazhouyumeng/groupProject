@@ -25,3 +25,7 @@ void Block::ccwtype() {
 vector<Posn>& Block::getPos() {
     return pos;
 }
+
+int Block::getBlockLevel() const {
+    return level;
+}
