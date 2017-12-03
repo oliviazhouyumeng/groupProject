@@ -28,7 +28,7 @@ void Game(Grid &g, string cmd) {
         }
         g.updateNext();
     }
-    else if (cmd == "levelop") g.levelUp();
+    else if (cmd == "levelup") g.levelUp();
     else if (cmd == "leveldown") g.levelDown();
     else if (cmd == "norandom") {
         string seq;
