@@ -7,10 +7,10 @@
 using namespace std;
 TBlock::TBlock(Grid &g, int level): Block{level, "A"}{
     
-    Posn ul = Posn{2,0};
-    Posn um = Posn{2, 1};
-    Posn ur = Posn{2, 2};
-    Posn lm = Posn{3, 1};
+    Posn ul = Posn{3,0};
+    Posn um = Posn{3, 1};
+    Posn ur = Posn{3, 2};
+    Posn lm = Posn{4, 1};
     if(!g.checkWhite(ul.x, ul.y)) {
         g.endGame();
     }
