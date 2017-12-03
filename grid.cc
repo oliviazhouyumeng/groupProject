@@ -268,7 +268,7 @@ ostream &operator<<(std::ostream &out, const Grid &g) {
     i = g.getScore();
     out << s << i << endl;
     
-    s = "HiScore:       ";
+    s = "HiScore:     ";
     i = g.getHiScore();
     out << s << i << endl;
     
