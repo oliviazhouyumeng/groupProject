@@ -97,9 +97,9 @@ void GraphicsDisplay::redrawLeft(Grid &g) {
 }
 
 void GraphicsDisplay::notify(Subject<Info, State> &whoNotified, Grid &g) {
-  if (g.getRedraw) {
+  if (g.getRedraw()) {
     redrawLeft(g);
-    g.setRedraw = false;
+    g.setRedraw(false);
   }
   auto info = whoNotified.getInfo();
   int start = 216;
