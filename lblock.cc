@@ -46,7 +46,7 @@ void LBlock::right(Grid &g) {
     pos[1].y++;
     pos[2].y++;
     pos[3].y++;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Red);
+    for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
     if (heavy) down(g);
 }
 
