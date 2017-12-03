@@ -60,7 +60,7 @@ void LBlock::down(Grid &g) {
     pos[1].x++;
     pos[2].x++;
     pos[3].x++;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
+    for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
 }
 
 void LBlock::clockwise(Grid &g) {

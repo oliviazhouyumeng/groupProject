@@ -32,7 +32,7 @@ void OBlock::left(Grid &g) {
     pos[1].y--;
     pos[2].y--;
     pos[3].y--;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
+    for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
     if (heavy) down(g);
 }
 
@@ -46,7 +46,7 @@ void OBlock::right(Grid &g) {
     pos[1].y++;
     pos[2].y++;
     pos[3].y++;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Red);
+    for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
     if (heavy) down(g);
 }
 
@@ -60,7 +60,7 @@ void OBlock::down(Grid &g) {
     pos[1].x++;
     pos[2].x++;
     pos[3].x++;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
+    for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
 }
 
 void OBlock::clockwise(Grid &g) {
