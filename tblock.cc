@@ -308,7 +308,8 @@ void TBlock::giveHint(Grid &g){
             bot = pos[0].x;
         }
         for(size_t i = bot; i < 18; i++){
-            if(g.getCell(i, lc).getInfo().colour != Colour::White && g.getCell(i, mc).getInfo().colour == Colour::White
+            
+            if(rc!=11 && g.getCell(i, lc).getInfo().colour != Colour::White && g.getCell(i, mc).getInfo().colour == Colour::White
                && g.getCell(i, rc).getInfo().colour != Colour::White){
                 if(g.getCell(i-1, lc).getInfo().colour == Colour::White && g.getCell(i-1, mc).getInfo().colour == Colour::White
                    && g.getCell(i-1, rc).getInfo().colour == Colour::White){
@@ -326,7 +327,7 @@ void TBlock::giveHint(Grid &g){
                     return;
                 }
             }
-            else if(g.getCell(i, lc).getInfo().colour == Colour::White && g.getCell(i, mc).getInfo().colour == Colour::White
+            else if(rc!=11 && g.getCell(i, lc).getInfo().colour == Colour::White && g.getCell(i, mc).getInfo().colour == Colour::White
                && g.getCell(i, rc).getInfo().colour == Colour::White){
                 if(i == 17 && g.getCell(i-1, mc).getInfo().colour == Colour::White){
                     Posn first = Posn{i, rc};
@@ -374,7 +375,7 @@ void TBlock::giveHint(Grid &g){
                 }
                 return;
             }
-            else if(g.getCell(i, mc).getInfo().colour != Colour::White && g.getCell(i, rc).getInfo().colour == Colour::White
+            else if(rc!=11 && g.getCell(i, mc).getInfo().colour != Colour::White && g.getCell(i, rc).getInfo().colour == Colour::White
                     && g.getCell(i-1, mc).getInfo().colour == Colour::White && g.getCell(i-1, rc).getInfo().colour == Colour::White
                     && g.getCell(i-2, rc).getInfo().colour == Colour::White){
                 Posn first{i-2, rc};
@@ -390,7 +391,7 @@ void TBlock::giveHint(Grid &g){
                 }
                 return;
             }
-            else if(g.getCell(i, rc).getInfo().colour != Colour::White && g.getCell(i, mc).getInfo().colour == Colour::White
+            else if(rc!=11 && g.getCell(i, rc).getInfo().colour != Colour::White && g.getCell(i, mc).getInfo().colour == Colour::White
                     && g.getCell(i-1, rc).getInfo().colour == Colour::White && g.getCell(i-1, mc).getInfo().colour == Colour::White
                     && g.getCell(i-2, mc).getInfo().colour == Colour::White){
                 Posn first{i,mc};
@@ -424,6 +425,8 @@ void TBlock::giveHint(Grid &g){
             }
         }
 }
+
+
 
 void TBlock::cancelHint(Grid &g){
     for(auto hp : h_pos){
