@@ -6,10 +6,8 @@ using namespace std;
 const string startType = "A";
 const bool is_Heavy = false;
 
-IBlock::IBlock(Grid &g, int level):Block{level, startType, is_Heavy}{
-    if(level > 2) {
-        heavy = true;
-    }
+IBlock::IBlock(Grid &g, int level):Block{level, startType}{
+    
     Posn first = Posn{3,0};
     Posn second = Posn{3,1};
     Posn third = Posn{3, 2};
@@ -54,7 +52,7 @@ void IBlock::left(Grid &g){
     for (auto p : pos){
         g.setColour(p.x, p.y, Colour::Red);
     }
-    if (heavy) down(g);
+    if (g.getLevel() > 2) down(g);
 }
 
 
@@ -73,7 +71,7 @@ void IBlock::right(Grid &g){
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Red);
     }
-    if(heavy) down(g);
+    if (g.getLevel() > 2) down(g);
 }
 
 void IBlock::down(Grid &g){
@@ -111,7 +109,7 @@ void IBlock::clockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Red);
             }
             cwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
     else if(type == "B" || type == "D"){
@@ -131,7 +129,7 @@ void IBlock::clockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Red);
             }
             cwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
 }
@@ -154,7 +152,7 @@ void IBlock::counterclockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Red);
             }
             ccwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
     else if(type == "B" || type == "D"){
@@ -174,7 +172,7 @@ void IBlock::counterclockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Red);
             }
             ccwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
 }
@@ -204,20 +202,4 @@ void IBlock::giveHint(Grid &g){
 void IBlock::cancelHint(Grid &g){
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
