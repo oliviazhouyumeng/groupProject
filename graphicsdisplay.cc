@@ -19,7 +19,7 @@ GraphicsDisplay::GraphicsDisplay(int gridWidth, int gridHeight, int winWidth, in
   xw.drawString(30, 205, "Next:", Xwindow::Cyan);
   xw.drawString(140, 50, "0", Xwindow::Cyan);
   xw.drawString(140, 80, "0", Xwindow::Cyan);
-  xw.drawString(125, 110, "100", Xwindow::Cyan);
+  xw.drawString(140, 110, "0", Xwindow::Cyan);
 }
 
 void GraphicsDisplay::ScoreBoard(Grid &g) {
@@ -85,7 +85,7 @@ void GraphicsDisplay::NextBlock(Grid &g) {
   }
 }
 
-void GraphicsDisplay::notify(Subject<Info, State> &whoNotified, Grid &g) {
+void GraphicsDisplay::redrawLeft(Grid &g) {
   xw.fillRectangle(0, 0, winWidth - gridWidth, winHeight, Xwindow::Brown);
   xw.drawString(30, 50, "Level:", Xwindow::Cyan);
   xw.drawString(30, 80, "Score:", Xwindow::Cyan);
@@ -94,7 +94,13 @@ void GraphicsDisplay::notify(Subject<Info, State> &whoNotified, Grid &g) {
   xw.drawString(30, 205, "Next:", Xwindow::Cyan);
   ScoreBoard(g);
   NextBlock(g);
+}
 
+void GraphicsDisplay::notify(Subject<Info, State> &whoNotified, Grid &g) {
+  if (g.getRedraw) {
+    redrawLeft(g);
+    g.setRedraw = false;
+  }
   auto info = whoNotified.getInfo();
   int start = 216;
   int colNum = 11;

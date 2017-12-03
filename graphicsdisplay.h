@@ -15,9 +15,10 @@ class GraphicsDisplay: public Observer {
   Xwindow xw;
   void ScoreBoard(Grid &g);
   void NextBlock(Grid &g);
+  void redrawLeft(Grid &g);
 
  public:
-  GraphicsDisplay(int gridWidth = 396, int gridHeight = 648, int winWidth = 612, int winHeight = 648);
+  GraphicsDisplay(int gridWidth = 396, int gridHeight = 648, int winWidth = 612, int winHeight = 648, bool reDraw = false);
   void notify(Subject<Info, State> &whoNotified, Grid &g) override;
 };
 #endif
