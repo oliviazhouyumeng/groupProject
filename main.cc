@@ -77,7 +77,10 @@ void Game(Grid &g, string cmd) {
         g.changeCurr(cmd);
         cout << g << endl;
     }
-    //else if (cmd == "hint")
+    else if (cmd == "hint") {
+        g.currBlock().giveHint(g);
+        cout << g << endl;
+    }
 }
 
 void game(Grid &g, string cmd) {
