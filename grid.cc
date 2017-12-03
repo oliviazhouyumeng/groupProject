@@ -215,11 +215,11 @@ void Grid::setNext(string nextcmd) {
 }
 
 void Grid::setColour(size_t row, size_t col, Colour colour) {
-    setColour(row, col, colour);
+    getCell(row, col).setColour(colour, *this);
 }
 
 void Grid::changeColour(size_t row, size_t col, Colour colour) {
-    changeColour(row, col, colour);
+    getCell(row, col).changeColour(colour, *this);
 }
 
 bool Grid::checkWhite(size_t row, size_t col) {
