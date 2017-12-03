@@ -126,14 +126,14 @@ void Grid::clearRow(size_t r) {
     for (int i = btemp-1; i >= 0; i--) {
         int ptemp = liveBlocks[i]->getPos().size();
         for (int j = ptemp-1; j >= 0; j--) {
-            if (liveBlocks[i]->getPos()[i].x == r) {
+            if (liveBlocks[i]->getPos()[j].x == r) {
                 changeColour(r, liveBlocks[i]->getPos()[j].y, Colour::White);
                 liveBlocks[i]->getPos().erase(liveBlocks[i]->getPos().begin()+j);
             }
         }
         if (liveBlocks[i]->getPos().size() == 0) {
             updateScore((liveBlocks[i]->getBlockLevel()+1)*(liveBlocks[i]->getBlockLevel()+1));
-            liveBlocks.erase(liveBlocks.begin()+btemp);
+            liveBlocks.erase(liveBlocks.begin()+i);
         }
     }
     starCount = 5;
@@ -151,13 +151,13 @@ void Grid::moveDown() {
                     if (p.x < currRow) {p.x++;}
                 }
             }
-            firstCellRow++;
             for (size_t rBack = currRow; rBack >= firstCellRow; rBack--) {
                 for (size_t lBack = 0; lBack < 11; lBack++) {
                     Colour newcolour = getCell(rBack-1, lBack).getInfo().colour;
                     changeColour(rBack, lBack, newcolour);
                 }
             }
+            firstCellRow++;
             count++;
         }
     }
