@@ -122,7 +122,10 @@ int main(int argc, char *argv[]) {
     g.setStartLevel(startLevel);
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
     if (seedNum != 1) {
-        for (auto l : g.getLevels()) l->setSeed(seedNum);
+        for (auto l : g.getLevels()) {
+            l->setSeed(seedNum);
+            l->setIsSeed(true);
+        }
     }
     if (seqFile != "") {
         g.getLevels()[0]->setSeq(seqFile);
