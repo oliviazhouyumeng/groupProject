@@ -33,7 +33,7 @@ int Level1::genRand() {
 	return gen;
 }
 
-std::string Level1::createBlock() const {
+std::string Level1::createBlock() {
   int gen = genRand();
   if (gen == 0 || gen == 1) return "I";
   else if (gen == 2 || gen == 3) return "J";

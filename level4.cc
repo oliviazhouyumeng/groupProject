@@ -39,10 +39,10 @@ int Level4::genRand() {
   return gen;
 }
 
-string Level4::createBlock() const {
+string Level4::createBlock() {
   if (isRandom) {
     int gen = genRand();
-    if (gen == 0) return "I";  // need to know how IBlock is constructed
+    if (gen == 0) return "I"; 
     else if (gen == 1) return "J";
     else if (gen == 2) return "L";
     else if (gen == 3) return "O";

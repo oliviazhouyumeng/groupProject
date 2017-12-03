@@ -12,7 +12,7 @@
 
 using namespace std;
 
-Level::Level(int levelNum, bool isRandom, unsigned seed, bool isSeed;): 
+Level::Level(int levelNum, bool isRandom, unsigned seed, bool isSeed): 
   levelNum{levelNum}, isRandom{isRandom}, seed{seed}, isSeed{isSeed} {}
 
 int Level::getLevel() const {

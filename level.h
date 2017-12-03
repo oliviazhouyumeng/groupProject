@@ -18,7 +18,7 @@ class Level {
   void setSeed(unsigned seedNum);
   void setIsSeed(bool isseed);
   virtual void setSeq(std::string sfile) = 0;
-  virtual std::string createBlock() const = 0;
+  virtual std::string createBlock() = 0;
   virtual ~Level() = 0;
 };
 

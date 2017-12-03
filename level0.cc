@@ -24,7 +24,7 @@ const int lNum0 = 0;
 Level0::Level0(string filename):
   Level{lNum0, isRand0, seedNum0, false}, filename{filename} {}
 
-string Level0::createBlock() const {
+string Level0::createBlock() {
   ifstream f{filename};
   ostringstream oss;
   string blocks;

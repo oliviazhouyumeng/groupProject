@@ -8,7 +8,7 @@ class Level2: public Level {
 	int genRand();
  public:
   Level2();
-  std::string createBlock() const override;
+  std::string createBlock() override;
   void setSeq(std::string sfile);
 };
 
