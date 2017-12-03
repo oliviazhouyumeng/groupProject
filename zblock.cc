@@ -61,7 +61,7 @@ void ZBlock::clockwise(Grid &g) {
             for (auto p : pos)  g.setColour(p.x, p.y, Colour::White);
             pos[0].x--;
             pos[0].y++;
-            pos[2].x++;
+            pos[2].x--;
             pos[2].y--;
             pos[3].y-=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
@@ -74,7 +74,7 @@ void ZBlock::clockwise(Grid &g) {
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x++;
             pos[0].y--;
-            pos[2].x--;
+            pos[2].x++;
             pos[2].y++;
             pos[3].y+=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
@@ -90,7 +90,7 @@ void ZBlock::counterclockwise(Grid &g) {
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x--;
             pos[0].y++;
-            pos[2].x++;
+            pos[2].x--;
             pos[2].y--;
             pos[3].y-=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
@@ -103,7 +103,7 @@ void ZBlock::counterclockwise(Grid &g) {
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x++;
             pos[0].y--;
-            pos[2].x--;
+            pos[2].x++;
             pos[2].y++;
             pos[3].y+=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
