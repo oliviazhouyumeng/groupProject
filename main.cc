@@ -112,6 +112,7 @@ int main(int argc, char *argv[]) {
         g.getLevels()[0]->setSeq(seqFile);
     }
     g.init();
+    cout << g << endl;
     
     try {
         while (true) {
