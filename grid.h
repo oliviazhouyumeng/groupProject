@@ -21,6 +21,7 @@ class Grid {
     int hi_score; //the highest score in game
     int curr_score; // the current score in game
     int currlevel; //the current level
+    int startLevel; 
     std::vector<std::shared_ptr<Level>> levels;
     int seqCount;
     std::string blockSeq;// for block types reading if Level returns a seq file name
@@ -48,7 +49,7 @@ public:
     void levelDown();
     std::vector<std::shared_ptr<Level>> &getLevels();
     int getLevel() const;
-    void setLevel(int l);
+    void setStartLevel(int l);
     void clearRow(size_t r);
     void moveDown(); // clear empty lines
     bool isFull(size_t r);
@@ -58,7 +59,7 @@ public:
     void setHint();
     void clearHint();
     std::string getNextType() const;
-    void setNext(std::string nextcmd); // set next, modify next level
+    void changeCurr(std::string cmd);
     void setColour(size_t row, size_t col, Colour colour);
     void changeColour(size_t row, size_t col, Colour colour);
     bool checkWhite(size_t row, size_t col); // return true if cell is white
