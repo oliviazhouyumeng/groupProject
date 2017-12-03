@@ -1,11 +1,12 @@
-#include "block.h"
-#include "starblock.h"
+#include "block.hpp"
+#include "starblock.hpp"
 using namespace std;
 
 const string startType = "A";
 const bool is_Heavy = false;
 
 StarBlock::StarBlock(Grid &g, int level):Block{level, startType, is_Heavy}{
+    if(level <=2 ) return;
     if(level>2) {heavy = true;}
     Posn single = Posn{3, 5};
     if(!g.checkWhite(single.x, single.y)) {
@@ -26,7 +27,7 @@ void StarBlock::down(Grid &g){
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::White);
     }
-    for(auto p : pos) p.x++;
+    pos[0].x++;
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Brown);
     }
