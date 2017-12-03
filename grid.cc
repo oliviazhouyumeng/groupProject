@@ -85,6 +85,7 @@ void Grid::init() {
     }
     updateNext();
     setCurrtoGrid();
+    startcount = 5;
     updateNext();
 }
 
