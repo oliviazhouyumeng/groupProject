@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
     
     Grid g;
     string cmd;
-    g.setLevel(startLevel);
+    g.setStartLevel(startLevel);
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
     if (seedNum != 1) {
         for (auto l : g.getLevels()) l->setSeed(seedNum);

@@ -64,6 +64,7 @@ void Grid::init() {
     liveBlocks.clear();
     
     curr_score = 0;
+    currlevel = startLevel;
     
     const size_t totr = 18; // total rows
     const size_t totc = 11; // total columns
@@ -98,11 +99,13 @@ void Grid::setGraphics(bool b) {
 void Grid::levelUp() {
     redraw = true;
     if (currlevel < 4) ++currlevel;
+    getCell(0, 0).notifyObservers(*this);
 }
 
 void Grid::levelDown() {
     redraw = true;
     if (currlevel > 0) --currlevel;
+    getCell(0, 0).notifyObservers(*this);
 }
 
 vector<shared_ptr<Level>> &Grid::getLevels() {
@@ -113,8 +116,8 @@ int Grid::getLevel() const {
     return currlevel;
 }
 
-void Grid::setLevel(int l) {
-    currlevel = l;
+void Grid::setStartLevel(int l) {
+    startLevel = l;
 }
 
 void Grid::clearRow(size_t r) {
