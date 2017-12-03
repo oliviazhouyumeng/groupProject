@@ -180,8 +180,8 @@ bool Grid::isEmpty(size_t r) {
 
 void Grid::setCurrtoGrid() {
     if (starCount == 0) {
-        curr = nullptr;
-        StarBlock(*this, currlevel);
+        curr = make_shared<StarBlock>(*this, currlevel);
+        liveBlocks.emplace_back(curr);
         starCount = 5;
     }
     if (next == "I") curr = make_shared<IBlock>(*this, nextlevel);
