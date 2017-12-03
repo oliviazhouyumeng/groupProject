@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
         while (true) {
             cout << "> "; // wait for input
             cin >> cmd;
-            if (cmd != "sequence") Game(g, cmd);
+            if (cmd != "sequence" && cmd != "restart") Game(g, cmd);
             else if (cmd == "sequence") {
                 string cmdSeq;
                 cin >> cmdSeq;
