@@ -6,7 +6,7 @@ const string startType = "A";
 const bool is_Heavy = false;
 
 StarBlock::StarBlock(Grid &g, int level):Block{level, startType, is_Heavy}{
-    if(level <=2 ) return;
+    if(level <=3 ) return;
     if(level>2) {heavy = true;}
     Posn single = Posn{3, 5};
     if(!g.checkWhite(single.x, single.y)) {
