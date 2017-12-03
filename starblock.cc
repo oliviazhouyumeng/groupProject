@@ -5,9 +5,8 @@ using namespace std;
 const string startType = "A";
 const bool is_Heavy = false;
 
-StarBlock::StarBlock(Grid &g, int level):Block{level, startType, is_Heavy}{
-    if(level <=3 ) return;
-    if(level>2) {heavy = true;}
+StarBlock::StarBlock(Grid &g, int level):Block{level, startType}{
+    if(level <=2 ) return;
     Posn single = Posn{3, 5};
     if(!g.checkWhite(single.x, single.y)) {
         g.endGame();
@@ -16,6 +15,7 @@ StarBlock::StarBlock(Grid &g, int level):Block{level, startType, is_Heavy}{
     pos.push_back(single);
     drop(g);
 }
+
 
 void StarBlock::left(Grid &g) {} // cannot move to left
 void StarBlock::right(Grid &g) {} // cannot move to right
