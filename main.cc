@@ -17,7 +17,7 @@ void Game(Grid &g, string cmd) {
         g.currBlock().left(g);
         cout << g << endl;
     }
-    else if (cmd == "right" || cmd == "ri" || cmd == "rig" cmd == "righ") {
+    else if (cmd == "right" || cmd == "ri" || cmd == "rig" || cmd == "righ") {
         g.currBlock().right(g);
         cout << g << endl;
     }
