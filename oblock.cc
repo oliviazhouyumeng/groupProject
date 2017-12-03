@@ -79,8 +79,10 @@ void OBlock::drop(Grid &g) {
     for (auto p : pos) {
         g.gSetState(p.x, p.y, s);
     }
-    for (auto p : pos) {
-        if (g.isFull(p.x)) g.clearRow(p.x);
+    unsigned temp = 0;
+    while (temp < 4 && temp < pos.size()) {
+        while (g.isFull(pos[temp].x)) g.clearRow(pos[temp].x);
+        temp++;
     }
     g.moveDown();
 }
