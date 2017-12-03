@@ -1,12 +1,11 @@
-#include "block.h"
-#include "iblock.h"
-#include "grid.h"
-#include "state.h"
-#include "info.h"
-#include <vector>
+#include "block.hpp"
+#include "iblock.hpp"
 using namespace std;
 
-IBlock::IBlock(Grid &g, int level):Block{level, "A", false}{
+const string startType = "A";
+const bool is_Heavy = false;
+
+IBlock::IBlock(Grid &g, int level):Block{level, startType, is_Heavy}{
     if(level > 2) {
         heavy = true;
     }
@@ -33,8 +32,11 @@ IBlock::IBlock(Grid &g, int level):Block{level, "A", false}{
     pos.push_back(forth);
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Red);
-    } 
+    }
+    
 }
+
+
 
 void IBlock::left(Grid &g){
     for (auto p : pos) {
@@ -44,12 +46,16 @@ void IBlock::left(Grid &g){
     for (auto p : pos) {
         g.setColour(p.x, p.y, Colour::White);
     }
-    for (auto p : pos) p.y--;
+    pos[0].y--;
+    pos[1].y--;
+    pos[2].y--;
+    pos[3].y--;
     for (auto p : pos){
         g.setColour(p.x, p.y, Colour::Red);
     }
     if (heavy) down(g);
 }
+
 
 void IBlock::right(Grid &g){
     for(auto p : pos) {
@@ -59,7 +65,10 @@ void IBlock::right(Grid &g){
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::White);
     }
-    for(auto p : pos) p.y++;
+    pos[0].y++;
+    pos[1].y++;
+    pos[2].y++;
+    pos[3].y++;
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Red);
     }
@@ -74,18 +83,22 @@ void IBlock::down(Grid &g){
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::White);
     }
-    for(auto p : pos) p.x++;
+    pos[0].x++;
+    pos[1].x++;
+    pos[2].x++;
+    pos[3].x++;
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Red);
     }
 }
+
 
 void IBlock::clockwise(Grid &g){
     if(type == "A" || type == "C"){
         if(g.checkWhite(pos[0].x-1, pos[0].y) && g.checkWhite(pos[0].x-2, pos[0].y) &&
            g.checkWhite(pos[0].x-3, pos[0].y)){
             for(auto p : pos){
-                g.setColour(p.x, p.y, Colour::Red);
+                g.setColour(p.x, p.y, Colour::White);
             }
             pos[0].x-=3;
             pos[1].x-=2;
@@ -105,7 +118,7 @@ void IBlock::clockwise(Grid &g){
         if(g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y+2) &&
            g.checkWhite(pos[3].x, pos[3].y+3)){
             for(auto p : pos){
-                g.setColour(p.x, p.y, Colour::Red);
+                g.setColour(p.x, p.y, Colour::White);
             }
             pos[0].x+=3;
             pos[1].x+=2;
@@ -122,12 +135,13 @@ void IBlock::clockwise(Grid &g){
     }
 }
 
+
 void IBlock::counterclockwise(Grid &g){
     if(type == "A" || type == "C"){
         if(g.checkWhite(pos[0].x-1, pos[0].y) && g.checkWhite(pos[0].x-2, pos[0].y) &&
            g.checkWhite(pos[0].x-3, pos[0].y)){
             for(auto p : pos){
-                g.setColour(p.x, p.y, Colour::Red);
+                g.setColour(p.x, p.y, Colour::White);
             }
             pos[0].x-=3;
             pos[1].x-=2;
@@ -147,7 +161,7 @@ void IBlock::counterclockwise(Grid &g){
         if(g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y+2) &&
            g.checkWhite(pos[3].x, pos[3].y+3)){
             for(auto p : pos){
-                g.setColour(p.x, p.y, Colour::Red);
+                g.setColour(p.x, p.y, Colour::White);
             }
             pos[0].x+=3;
             pos[1].x+=2;
@@ -163,6 +177,7 @@ void IBlock::counterclockwise(Grid &g){
         }
     }
 }
+
 
 void IBlock::drop(Grid &g){
     size_t lowest = pos[3].x;
@@ -179,6 +194,29 @@ void IBlock::drop(Grid &g){
     g.moveDown();
 }
 
-void IBlock::giveHint(Grid &g) {}
 
-void IBlock::cancelHint(Grid &g) {};
+
+void IBlock::giveHint(Grid &g){
+    
+}
+
+void IBlock::cancelHint(Grid &g){
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
