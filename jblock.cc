@@ -182,4 +182,4 @@ void JBlock::drop(Grid &g) {
 
 void JBlock::giveHint(Grid &g) {}
 
-void JBlock::cancelHint(Grid &g) {};
+void JBlock::cancelHint(Grid &g) {}
