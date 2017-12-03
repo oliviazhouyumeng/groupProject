@@ -1,3 +1,6 @@
+#include <sstream>
+#include <vector>
+#include <memory>
 #include "grid.h"
 #include "info.h"
 #include "state.h"
@@ -11,9 +14,6 @@
 #include "oblock.h"
 #include "tblock.h"
 #include "starblock.h"
-#include <sstream>
-#include <vector>
-#include <memory>
 #include "level0.h"
 #include "level1.h"
 #include "level2.h"
