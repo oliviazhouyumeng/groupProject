@@ -226,12 +226,12 @@ bool Grid::checkWhite(size_t row, size_t col) {
     return getCell(row, col).getInfo().colour == Colour::White;
 }
 
-void Grid::gSetState(size_t row, size_t col, State s) const {
-    gSetState(row, col, s);
+void Grid::gSetState(size_t row, size_t col, State s) {
+    getCell(row, col).setState(s);
 }
 
-State Grid::getState(size_t row, size_t col) const {
-    return getState(row, col);
+State Grid::getState(size_t row, size_t col) {
+    return getCell(row, col).getState();
 }
 
 void Grid::updateScore(int point) {
