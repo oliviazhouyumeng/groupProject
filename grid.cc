@@ -180,13 +180,34 @@ void Grid::setCurrtoGrid() {
         StarBlock(*this, currlevel);
         starCount = 5;
     }
-    if (next == "I") curr = make_shared<IBlock>(*this, nextlevel);
-    else if (next == "J") curr = make_shared<JBlock>(*this, nextlevel);
-    else if (next == "L") curr = make_shared<LBlock>(*this, nextlevel);
-    else if (next == "S") curr = make_shared<SBlock>(*this, nextlevel);
-    else if (next == "Z") curr = make_shared<ZBlock>(*this, nextlevel);
-    else if (next == "T") curr = make_shared<TBlock>(*this, nextlevel);
-    else if (next == "O") curr = make_shared<OBlock>(*this, nextlevel);
+    if (next == "I") {
+        curr = dynamic_pointer_cast<IBlock>;
+        curr = make_shared<IBlock>(*this, nextlevel);
+    }
+    else if (next == "J") {
+        curr = dynamic_pointer_cast<JBlock>;
+        curr = make_shared<JBlock>(*this, nextlevel);
+    }
+    else if (next == "L") {
+        curr = dynamic_pointer_cast<LBlock>;
+        curr = make_shared<LBlock>(*this, nextlevel);
+    }
+   else if (next == "S") {
+        curr = dynamic_pointer_cast<SBlock>;
+        curr = make_shared<SBlock>(*this, nextlevel);
+    }
+    else if (next == "Z") {
+        curr = dynamic_pointer_cast<ZBlock>;
+        curr = make_shared<ZBlock>(*this, nextlevel);
+    }
+    else if (next == "T") {
+        curr = dynamic_pointer_cast<TBlock>;
+        curr = make_shared<JBlock>(*this, nextlevel);
+    }
+    else if (next == "O") {
+        curr = dynamic_pointer_cast<OBlock>;
+        curr = make_shared<OBlock>(*this, nextlevel);
+    }
     liveBlocks.emplace_back(curr);
     starCount--;
 }
