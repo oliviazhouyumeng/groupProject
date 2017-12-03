@@ -67,7 +67,7 @@ void Grid::init() {
     const size_t totc = 11; // total columns
     
     td = make_shared<TextDisplay>(totc, totr);
-    //if (graphicsOn) gd = make_shared<GraphicsDisplay>();
+    if (graphicsOn) gd = make_shared<GraphicsDisplay>();
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -80,7 +80,7 @@ void Grid::init() {
     for (size_t i = 0; i < totr; i++) {
         for (size_t j = 0; j < totc; j++) {
             theGrid[i][j].attach(td);
-            //if (graphicsOn) theGrid[i][j].attach(gd);
+            if (graphicsOn) theGrid[i][j].attach(gd);
         }
     }
     updateNext();
