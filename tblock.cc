@@ -36,7 +36,6 @@ TBlock::TBlock(Grid &g, int level): Block{level, "A", false}{
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Orange);
     }
-    
 }
 
 
@@ -54,7 +53,10 @@ void TBlock::left(Grid &g){
     for (auto p : pos) {
         g.setColour(p.x, p.y, Colour::White);
     }
-    for (auto p : pos) p.y--;
+    pos[0].y--;
+    pos[1].y--;
+    pos[2].y--;
+    pos[3].y--;
     for (auto p : pos){
         g.setColour(p.x, p.y, Colour::Orange);
     }
@@ -72,7 +74,10 @@ void TBlock::right(Grid &g){
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::White);
     }
-    for(auto p : pos) p.y++;
+    pos[0].y++;
+    pos[1].y++;
+    pos[2].y++;
+    pos[3].y++;
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Orange);
     }
@@ -90,7 +95,10 @@ void TBlock::down(Grid &g){
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::White);
     }
-    for(auto p : pos) p.x++;
+    pos[0].x++;
+    pos[1].x++;
+    pos[2].x++;
+    pos[3].x++;
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Orange);
     }
@@ -275,3 +283,4 @@ void TBlock::cancelHint(Grid &g){
 void TBlock::giveHint(Grid &g){
     
 }
+
