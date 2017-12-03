@@ -47,11 +47,11 @@ void OBlock::right(Grid &g) {
 void OBlock::down(Grid &g) {
     for (auto p : pos) {
         if (p.x == 17) return;
-        if (g.getCell(p.x+1, p.y).getInfo().colour != Colour::White) return;
+        if (!g.checkWhite(p.x+1, p.y) && g.getState(p.x, p.y).stype==StateType::NA) return;
     }
     for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
     for (auto p : pos) p.x++;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
+    for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
 }
 
 void OBlock::clockwise(Grid &g) {
