@@ -21,12 +21,10 @@
 #include "level4.h"
 #include "level.h"
 #include "textdisplay.h"
-#include "graphicsdisplay.h"
-
 using namespace std;
 
 Grid::Grid(int hi_score, int curr_score, bool graphicsOn):
-    hi_score{hi_score}, curr_score{curr_score} {
+hi_score{hi_score}, curr_score{curr_score} {
     shared_ptr<Level> l0;
     shared_ptr<Level> l1;
     shared_ptr<Level> l2;
@@ -69,7 +67,7 @@ void Grid::init() {
     const size_t totc = 11; // total columns
     
     td = make_shared<TextDisplay>(totc, totr);
-    if (graphicsOn) gd = make_shared<GraphicsDisplay>();
+    //if (graphicsOn) gd = make_shared<GraphicsDisplay>();
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -82,7 +80,7 @@ void Grid::init() {
     for (size_t i = 0; i < totr; i++) {
         for (size_t j = 0; j < totc; j++) {
             theGrid[i][j].attach(td);
-            if (graphicsOn) theGrid[i][j].attach(gd);
+            //if (graphicsOn) theGrid[i][j].attach(gd);
         }
     }
     updateNext();
@@ -183,7 +181,7 @@ void Grid::setCurrtoGrid() {
     else if (next == "T") curr = make_shared<TBlock>(*this, nextlevel);
     else if (next == "O") curr = make_shared<OBlock>(*this, nextlevel);
     liveBlocks.emplace_back(curr);
-    --starCount;
+    starCount--;
 }
 
 void Grid::updateNext() {
@@ -291,7 +289,7 @@ ostream &operator<<(std::ostream &out, const Grid &g) {
         s = "JJJ";
         out << s;
     } else if (next == "L") {
-        s = "   L";
+        s = "  L";
         out << s << endl;
         s = "LLL";
         out << s;
