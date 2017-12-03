@@ -14,30 +14,37 @@ using namespace std;
 
 void Game(Grid &g, string cmd) {
     if (cmd == "left" || cmd == "lef") {
+        g.currBlock().cancelHint(g);
         g.currBlock().left(g);
         cout << g << endl;
     }
     else if (cmd == "right" || cmd == "ri" || cmd == "rig" || cmd == "righ") {
+        g.currBlock().cancelHint(g);
         g.currBlock().right(g);
         cout << g << endl;
     }
     else if (cmd == "down" || cmd == "do" || cmd == "dow") {
+        g.currBlock().cancelHint(g);
         g.currBlock().down(g);
         cout << g << endl;
     }
     else if (cmd == "clockwise" || cmd == "cw") {
+        g.currBlock().cancelHint(g);
         g.currBlock().clockwise(g);
         cout << g << endl;
     }
     else if (cmd == "counterclockwise" || cmd == "ccw") {
+        g.currBlock().cancelHint(g);
         g.currBlock().counterclockwise(g);
         cout << g << endl;
     }
     else if (cmd == "skip" || cmd == "s") {
+        g.currBlock().cancelHint(g);
         g.updateNext();
         cout << g << endl;
     }
     else if (cmd == "drop" || cmd == "dr") {
+        g.currBlock().cancelHint(g);
         g.currBlock().drop(g);
         try {
             g.setCurrtoGrid();
@@ -49,14 +56,17 @@ void Game(Grid &g, string cmd) {
         }
     }
     else if (cmd == "levelup" || cmd == "lu") {
+        g.currBlock().cancelHint(g);
         g.levelUp();
         cout << g << endl;
     }
     else if (cmd == "leveldown" || cmd == "ld") {
+        g.currBlock().cancelHint(g);
         g.levelDown();
         cout << g << endl;
     }
     else if (cmd == "norandom") {
+        g.currBlock().cancelHint(g);//////not sure
         string seq;
         cin >> seq;
         int curlev = g.getLevel();
@@ -67,6 +77,7 @@ void Game(Grid &g, string cmd) {
         }
     }
     else if (cmd == "random") {
+        g.currBlock().cancelHint(g);///////not sure
         int curlev = g.getLevel();
         if (curlev >= 3) {
             g.setNoRand(false);
@@ -74,10 +85,12 @@ void Game(Grid &g, string cmd) {
         }
     }
     else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") {
+        g.currBlock().cancelHint(g);
         g.changeCurr(cmd);
         cout << g << endl;
     }
     else if (cmd == "hint") {
+        g.currBlock().cancelHint(g);
         g.currBlock().giveHint(g);
         cout << g << endl;
     }
