@@ -40,12 +40,12 @@ void Game(Grid &g, string cmd) {
         g.currBlock().drop(g);
         try {
             g.setCurrtoGrid();
+            g.updateNext();
+            cout << g << endl;
         }
         catch(EndException &e) {
             cout << "Game over!" << endl;
         }
-        g.updateNext();
-        cout << g << endl;
     }
     else if (cmd == "levelup") {
         g.levelUp();
