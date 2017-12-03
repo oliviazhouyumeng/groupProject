@@ -72,10 +72,6 @@ void Game(Grid &g, string cmd) {
         g.setNext(cmd);
         cout << g << endl;
     }
-    else if (cmd == "restart") {
-        g.init();
-        cout << g << endl;
-    }
     //else if (cmd == "hint")
 }
 
@@ -146,6 +142,10 @@ int main(int argc, char *argv[]) {
                 while (f >> cmd) {
                     Game(g, cmd);
                 }
+            }
+            else if (cmd == "restart") {
+                g.init();
+                cout << g << endl;
             }
             else {
                 cin.clear();
