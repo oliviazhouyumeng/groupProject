@@ -85,9 +85,9 @@ void Grid::init() {
             if (graphicsOn) theGrid[i][j].attach(gd);
         }
     }
+    starCount = 5;
     updateNext();
     setCurrtoGrid();
-    starCount = 5;
     updateNext();
 }
 
