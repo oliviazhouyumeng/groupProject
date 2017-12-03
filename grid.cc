@@ -118,6 +118,7 @@ void Grid::setLevel(int l) {
 }
 
 void Grid::clearRow(size_t r) {
+    redraw = true;
     int btemp = liveBlocks.size();
     for (int i = btemp-1; i >= 0; i--) {
         int ptemp = liveBlocks[i]->getPos().size();
