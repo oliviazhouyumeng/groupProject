@@ -12,31 +12,31 @@
 using namespace std;
 
 void Game(Grid &g, string cmd) {
-    if (cmd == "left") {
+    if (cmd == "left" || cmd == "l") {
         g.currBlock().left(g);
         cout << g << endl;
     }
-    else if (cmd == "right") {
+    else if (cmd == "right" || cmd == "r") {
         g.currBlock().right(g);
         cout << g << endl;
     }
-    else if (cmd == "down") {
+    else if (cmd == "down" || cmd == "dn") {
         g.currBlock().down(g);
         cout << g << endl;
     }
-    else if (cmd == "clockwise") {
+    else if (cmd == "clockwise" || cmd == "cw") {
         g.currBlock().clockwise(g);
         cout << g << endl;
     }
-    else if (cmd == "counterclockwise") {
+    else if (cmd == "counterclockwise" || cmd == "ccw") {
         g.currBlock().counterclockwise(g);
         cout << g << endl;
     }
-    else if (cmd == "skip") {
+    else if (cmd == "skip" || cmd == "s") {
         g.updateNext();
         cout << g << endl;
     }
-    else if (cmd == "drop") {
+    else if (cmd == "drop" || cmd == "dr") {
         g.currBlock().drop(g);
         try {
             g.setCurrtoGrid();
@@ -47,11 +47,11 @@ void Game(Grid &g, string cmd) {
             cout << "Game over!" << endl;
         }
     }
-    else if (cmd == "levelup") {
+    else if (cmd == "levelup" || cmd == "lu") {
         g.levelUp();
         cout << g << endl;
     }
-    else if (cmd == "leveldown") {
+    else if (cmd == "leveldown" || cmd == "ld") {
         g.levelDown();
         cout << g << endl;
     }
