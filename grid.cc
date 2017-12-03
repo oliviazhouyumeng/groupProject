@@ -137,6 +137,7 @@ void Grid::clearRow(size_t r) {
 }
 
 void Grid::moveDown() {
+    redraw = true;
     size_t firstCellRow = 18;
     int count = 0;
     for (size_t currRow= 3; currRow < 18; currRow++) {
