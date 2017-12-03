@@ -176,7 +176,7 @@ void JBlock::counterclockwise(Grid &g) {
 }
 
 void JBlock::drop(Grid &g) {
-    size_t start = pos[1].x+1;
+    size_t start = pos[1].x;
     for (size_t i = start; i < 18; i++) {
         down(g);
     }
