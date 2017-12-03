@@ -279,8 +279,11 @@ Posn TBlock::rightLandPos(Grid &g){
     for(size_t j = 10; j>=0; j--){
         for(size_t i = 3 ; i < 18; i++){
             if((g.getCell(i, j).getInfo().colour != Colour::White) &&
-               (i >= 5)&&(g.getCell(i-1, j-1).getInfo().colour == Colour::White)){
-                Posn p = Posn{i, j};
+               (i >= 6)&&(g.getCell(i-1, j).getInfo().colour == Colour::White) &&
+               (g.getCell(i-2, j).getInfo().colour == Colour::White)&&
+               (g.getCell(i-3, j).getInfo().colour == Colour::White)&&
+               (g.getCell(i-2, j-1).getInfo().colour == Colour::White)){
+                Posn p = Posn{i-1, j};
                 return p;
             }
         }
