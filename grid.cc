@@ -197,7 +197,7 @@ void Grid::updateNext() {
         stringstream ss{blockSeq};
         ss >> next;
         seqCount += 2;
-        blockSeq = blockSeq.substr(seqCount-1);
+        blockSeq = blockSeq.substr(2);
     }
     else next = levels[currlevel]->createBlock();
     nextlevel = currlevel;
