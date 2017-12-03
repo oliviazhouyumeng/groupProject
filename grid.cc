@@ -160,7 +160,7 @@ bool Grid::isFull(size_t r) {
     for (size_t c = 0; c < 11; ++c) {
         if (checkWhite(r, c)) return false;
     }
-    return false;
+    return true;
 }
 
 bool Grid::isEmpty(size_t r) {
