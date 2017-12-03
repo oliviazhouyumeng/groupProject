@@ -6,10 +6,7 @@
 #include <vector>
 using namespace std;
 
-const string startType = "A";
-const bool is_Heavy = false;
-
-StarBlock::StarBlock(Grid &g, int level):Block{level, startType, is_Heavy}{
+StarBlock::StarBlock(Grid &g, int level):Block{level, "A", false}{
     if(level>2) {heavy = true;}
     Posn single = Posn{3, 5};
     if(!g.checkWhite(single.x, single.y)) {

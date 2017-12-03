@@ -6,10 +6,7 @@
 #include <vector>
 using namespace std;
 
-const string startType = "A";
-const bool is_Heavy = false;
-
-TBlock::TBlock(Grid &g, int level): Block{level, startType, is_Heavy}{
+TBlock::TBlock(Grid &g, int level): Block{level, "A", false}{
     
     if(level>2) { heavy = true; }
     
