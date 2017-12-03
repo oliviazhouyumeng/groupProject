@@ -275,8 +275,36 @@ void TBlock::drop(Grid &g){
     g.moveDown();
 }
 
-void TBlock::cancelHint(Grid &g){
+Posn TBlock::rightLandPos(Grid &g){
+    for(size_t j = 10; j>=0; j--){
+        for(size_t i = 3 ; i < 18; i++){
+            if((g.getCell(i, j).getInfo().colour != Colour::White) &&
+               (i >= 5)&&(g.getCell(i-1, j-1).getInfo().colour == Colour::White)){
+                Posn p = Posn{i, j};
+                return p;
+            }
+        }
+    }
+    return Posn{4,1};
 }
+
 void TBlock::giveHint(Grid &g){
-    
+    Posn lr = rightLandPos(g);
+    Posn ur = Posn{lr.x-2,lr.y};
+    Posn mr = Posn{lr.x-1, lr.y};
+    Posn ml = Posn{lr.x-1, lr.y-1};
+    h_pos.push_back(ur);
+    h_pos.push_back(mr);
+    h_pos.push_back(lr);
+    h_pos.push_back(ml);
+    for(auto hp : h_pos){
+        g.changeColour(hp.x, hp.y, Colour::Black);
+    }
+}
+
+void TBlock::cancelHint(Grid &g){
+    for(auto hp : h_pos){
+        g.changeColour(hp.x, hp.y, Colour::White);
+    }
+    h_pos.clear();
 }
