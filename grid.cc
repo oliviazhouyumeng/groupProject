@@ -25,7 +25,7 @@
 #include "textdisplay.h"
 using namespace std;
 
-Grid::Grid(int hi_score, int curr_score, bool graphicsOn):
+Grid::Grid(int hi_score, int curr_score, bool graphicsOn, bool redraw):
 hi_score{hi_score}, curr_score{curr_score} {
     shared_ptr<Level> l0;
     shared_ptr<Level> l1;
@@ -188,6 +188,7 @@ void Grid::setCurrtoGrid() {
 }
 
 void Grid::updateNext() {
+    redraw = true;
     if (currlevel == 0) {
         if (blockSeq == "" || blockSeq == " ") {
             blockSeq = levels[currlevel]->createBlock();
@@ -248,6 +249,14 @@ int Grid::getScore() const {
 
 int Grid::getHiScore() const {
     return hi_score;
+}
+
+bool Grid::getRedraw() const {
+    return redraw;
+}
+
+void Grid::setRedraw(bool rd) {
+    redraw = rd;
 }
 
 Cell &Grid::getCell(size_t x, size_t y) {
