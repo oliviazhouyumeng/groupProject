@@ -176,16 +176,18 @@ void JBlock::counterclockwise(Grid &g) {
 }
 
 void JBlock::drop(Grid &g) {
-    for (auto p : pos) {
-        if (p.x == 17) return;
-        if (!g.checkWhite(p.x+1, p.y) && g.getState(p.x, p.y).stype==StateType::NA) return;
+    size_t start = pos[1].x+1;
+    for (size_t i = start; i < 18; i++) {
+        down(g);
     }
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
-    pos[0].x++;
-    pos[1].x++;
-    pos[2].x++;
-    pos[3].x++;
-    for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
+    State s{StateType::NA};
+    for (auto p : pos) {
+        g.gSetState(p.x, p.y, s);
+    }
+    for (auto p : pos) {
+        if (g.isFull(p.x)) g.clearRow(p.x);
+    }
+    g.moveDown();
 }
 
 void JBlock::giveHint(Grid &g) {}
