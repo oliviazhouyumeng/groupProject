@@ -37,6 +37,7 @@ int Level4::genRand() {
 }
 
 string Level4::createBlock() {
+  string blocks;
   if (isRandom) {
     int gen = genRand();
     if (gen == 0) return "I"; 
