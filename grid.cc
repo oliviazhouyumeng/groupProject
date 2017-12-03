@@ -177,34 +177,42 @@ bool Grid::isEmpty(size_t r) {
 
 void Grid::setCurrtoGrid() {
     if (starCount == 0) {
+        curr = nullptr;
         StarBlock(*this, currlevel);
         starCount = 5;
     }
     if (next == "I") {
+        curr = nullptr;
         curr = dynamic_pointer_cast<IBlock>;
         curr = make_shared<IBlock>(*this, nextlevel);
     }
     else if (next == "J") {
+        curr = nullptr;
         curr = dynamic_pointer_cast<JBlock>;
         curr = make_shared<JBlock>(*this, nextlevel);
     }
     else if (next == "L") {
+        curr = nullptr;
         curr = dynamic_pointer_cast<LBlock>;
         curr = make_shared<LBlock>(*this, nextlevel);
     }
    else if (next == "S") {
+        curr = nullptr;
         curr = dynamic_pointer_cast<SBlock>;
         curr = make_shared<SBlock>(*this, nextlevel);
     }
     else if (next == "Z") {
+        curr = nullptr;
         curr = dynamic_pointer_cast<ZBlock>;
         curr = make_shared<ZBlock>(*this, nextlevel);
     }
     else if (next == "T") {
+        curr = nullptr;
         curr = dynamic_pointer_cast<TBlock>;
         curr = make_shared<JBlock>(*this, nextlevel);
     }
     else if (next == "O") {
+        curr = nullptr;
         curr = dynamic_pointer_cast<OBlock>;
         curr = make_shared<OBlock>(*this, nextlevel);
     }
