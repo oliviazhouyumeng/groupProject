@@ -48,9 +48,7 @@ void StarBlock::drop(Grid &g){
     g.moveDown();
 }
 
-Posn StarBlock::rightLandPos(Grid &g) {
-    return Posn{3, 5};
-}
+
 
 void StarBlock::giveHint(Grid &g){
 }
