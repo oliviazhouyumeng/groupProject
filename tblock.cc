@@ -118,7 +118,7 @@ void TBlock::clockwise(Grid &g){
             if(heavy) down(g);
         }
     }
-    if(type == "B"){
+    else if(type == "B"){
         Posn edge = pos.at(0);
         if(edge.y == 10) return;
         if(g.checkWhite(pos[2].x, pos[2].y-1) && g.checkWhite(pos[2].x, pos[2].y+1)){
@@ -137,7 +137,7 @@ void TBlock::clockwise(Grid &g){
             if(heavy) down(g);
         }
     }
-    if(type == "C"){
+    else if(type == "C"){
         if(g.checkWhite(pos[2].x-1, pos[2].y) && g.checkWhite(pos[2].x-2, pos[2].y)){
             for (auto p : pos){
                 g.setColour(p.x, p.y, Colour::White);
@@ -153,7 +153,7 @@ void TBlock::clockwise(Grid &g){
             if(heavy) down(g);
             }
     }
-    if (type == "D") {
+    else { // type "D"
         Posn edge = pos.at(3);
         if(edge.y == 10) return;
         if(g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x+1, pos[3].y)){
@@ -194,7 +194,7 @@ void TBlock::counterclockwise(Grid &g){
             if(heavy) down(g);
         }
     }
-    if(type == "B"){
+    else if(type == "B"){
         Posn edge = pos.at(0);
         if(edge.y == 10) return;
         if(g.checkWhite(pos[1].x, pos[1].y+1)){
@@ -214,7 +214,7 @@ void TBlock::counterclockwise(Grid &g){
             if(heavy) down(g);
         }
     }
-    if (type == "C") {
+    else if (type == "C") {
         if(g.checkWhite(pos[3].x, pos[3].y-1) && g.checkWhite(pos[3].x-1, pos[3].y)){
             for (auto p : pos){
                 g.setColour(p.x, p.y, Colour::White);
@@ -231,7 +231,7 @@ void TBlock::counterclockwise(Grid &g){
             if(heavy) down(g);
         }
     }
-    if (type == "D") {
+    else {
         Posn edge = pos.at(3);
         if(edge.y == 10) return;
         if(g.checkWhite(pos[0].x, pos[0].y-1) && g.checkWhite(pos[0].x, pos[0].y+1)){
