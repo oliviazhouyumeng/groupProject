@@ -6,7 +6,6 @@ enum class Colour {White=0, Black, Red, Green, Blue, Cyan, Yellow, Magenta, Oran
 struct Info{
     size_t row, col;
     Colour colour;
-    int level;
 };
 
 
