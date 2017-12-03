@@ -183,7 +183,7 @@ void Grid::setCurrtoGrid() {
     else if (next == "T") curr = make_shared<TBlock>(*this, nextlevel);
     else if (next == "O") curr = make_shared<OBlock>(*this, nextlevel);
     liveBlocks.emplace_back(curr);
-    starCount--;
+    --starCount;
 }
 
 void Grid::updateNext() {
