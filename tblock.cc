@@ -234,7 +234,7 @@ void TBlock::counterclockwise(Grid &g){
     else {
         Posn edge = pos.at(3);
         if(edge.y == 10) return;
-        if(g.checkWhite(pos[0].x, pos[0].y-1) && g.checkWhite(pos[0].x, pos[0].y+1)){
+        if(g.checkWhite(pos[0].x, pos[0].y+2) && g.checkWhite(pos[0].x, pos[0].y+1)){
             for (auto p : pos){
                 g.setColour(p.x, p.y, Colour::White);
             }
