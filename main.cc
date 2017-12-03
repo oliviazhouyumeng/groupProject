@@ -12,7 +12,7 @@
 using namespace std;
 
 void Game(Grid &g, string cmd) {
-    if (cmd == "left" || cmd == "l") {
+    if (cmd == "left" || cmd == "lef") {
         g.currBlock().left(g);
         cout << g << endl;
     }
