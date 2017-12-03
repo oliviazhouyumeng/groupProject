@@ -11,7 +11,6 @@ public:
     void clockwise(Grid &g) override;
     void counterclockwise(Grid &g) override;
     void drop(Grid &g) override;
-    Posn rightLandPos(Grid &g) override;
     void giveHint(Grid &g) override;
     void cancelHint(Grid &g) override;
 };
