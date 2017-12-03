@@ -85,7 +85,7 @@ void Grid::init() {
     }
     updateNext();
     setCurrtoGrid();
-    startcount = 5;
+    starCount = 5;
     updateNext();
 }
 
