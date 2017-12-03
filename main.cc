@@ -12,6 +12,19 @@
 #include "endexception.h"
 using namespace std;
 
+void game(Grid &g, string cmd) {
+    istringstream iss{cmd};
+    int num;
+    if (iss >> num) {
+        iss >> cmd;
+        for (int i = 0; i < num; ++i) {
+            Game(Grid &g, string cmd);
+        }
+    } else {
+        Game(Grid &g, string cmd);
+    }
+}
+
 void Game(Grid &g, string cmd) {
     if (cmd == "left" || cmd == "lef") {
         g.currBlock().left(g);
@@ -80,19 +93,6 @@ void Game(Grid &g, string cmd) {
     //else if (cmd == "hint")
 }
 
-void game(Grid &g, string cmd) {
-    istringstream iss{cmd};
-    int num;
-    if (iss >> num) {
-        iss >> cmd;
-        for (int i = 0; i < num; ++i) {
-            Game(g, cmd);
-        }
-    } else {
-        Game(g, cmd);
-    }
-}
-
 int main(int argc, char *argv[]) {
     cin.exceptions(ios::eofbit|ios::failbit);
     bool textMode = false;
@@ -136,7 +136,7 @@ int main(int argc, char *argv[]) {
             }
         }
     }
-
+    
     Grid g;
     string cmd;
     g.setStartLevel(startLevel);
@@ -152,7 +152,7 @@ int main(int argc, char *argv[]) {
     }
     g.init();
     cout << g << endl;
-
+    
     try {
         while (true) {
             cout << "> "; // wait for input
