@@ -68,7 +68,10 @@ void Game(Grid &g, string cmd) {
     }
     else if (cmd == "random") {
         int curlev = g.getLevel();
-        if (curlev >= 3) g.getLevels()[curlev]->setRandom(true);
+        if (curlev >= 3) {
+            g.setNoRand(false);
+            g.getLevels()[curlev]->setRandom(true);
+        }
     }
     else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") {
         g.changeCurr(cmd);
