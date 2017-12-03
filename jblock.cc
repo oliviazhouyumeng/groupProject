@@ -2,6 +2,7 @@
 #include "jblock.h"
 #include "grid.h"
 #include "info.h"
+#include "state.h"
 #include <vector>
 using namespace std;
 
