@@ -190,6 +190,37 @@ void LBlock::drop(Grid &g) {
     g.moveDown();
 }
 
-void LBlock::giveHint(Grid &g) {}
+Posn LBlock::rightLandPos(Grid &g){
+    for(size_t j = 10; j>=0; j--){
+        for(size_t i = 3 ; i < 18; i++){
+            if((g.getCell(i, j).getInfo().colour != Colour::White) &&
+               (i >= 5)&&(g.getCell(i-2, j-1).getInfo().colour == Colour::White)){
+                Posn p = Posn{i, j};
+                return p;
+            }
+        }
+    }
+    return Posn{4,1};
+}
 
-void LBlock::cancelHint(Grid &g) {};
+
+void LBlock::giveHint(Grid &g) {
+    Posn lr = rightLandPos(g);
+    Posn ur = Posn{lr.x-2, lr.y};
+    Posn mr = Posn{lr.x-1, lr.y};
+    Posn ul = Posn{lr.x-2, lr.y-1};
+    h_pos.push_back(ul);
+    h_pos.push_back(ur);
+    h_pos.push_back(mr);
+    h_pos.push_back(lr);
+    for(auto hp : h_pos) {
+        g.changeColour(hp.x, hp.y, Colour::Black);
+    }
+}
+
+void LBlock::cancelHint(Grid &g) {
+    for(auto hp : h_pos){
+        g.changeColour(hp.x, hp.y, Colour::White);
+    }
+    h_pos.clear();
+}
