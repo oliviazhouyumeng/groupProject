@@ -1,5 +1,5 @@
-#include "block.hpp"
-#include "iblock.hpp"
+#include "block.h"
+#include "iblock.h"
 using namespace std;
 
 const string startType = "A";
