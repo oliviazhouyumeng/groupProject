@@ -13,6 +13,7 @@ public:
     void drop(Grid &g) override;
     void giveHint(Grid &g) override;
     void cancelHint(Grid &g) override;
+    Posn rightLandPos(Grid &g) override;
 };
 
 #endif
