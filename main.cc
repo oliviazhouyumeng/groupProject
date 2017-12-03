@@ -80,6 +80,19 @@ void Game(Grid &g, string cmd) {
     //else if (cmd == "hint")
 }
 
+void game(Grid &g, string cmd) {
+    istringstream iss{cmd};
+    int num;
+    if (iss >> num) {
+        iss >> cmd;
+        for (int i = 0; i < num; ++i) {
+            Game(g, cmd);
+        }
+    } else {
+        Game(g, cmd);
+    }
+}
+
 int main(int argc, char *argv[]) {
     cin.exceptions(ios::eofbit|ios::failbit);
     bool textMode = false;
@@ -123,7 +136,7 @@ int main(int argc, char *argv[]) {
             }
         }
     }
-    
+
     Grid g;
     string cmd;
     g.setStartLevel(startLevel);
@@ -139,27 +152,23 @@ int main(int argc, char *argv[]) {
     }
     g.init();
     cout << g << endl;
-    
+
     try {
         while (true) {
             cout << "> "; // wait for input
             cin >> cmd;
-            if (cmd != "sequence" && cmd != "restart") Game(g, cmd);
+            if (cmd != "sequence" && cmd != "restart") game(g, cmd);
             else if (cmd == "sequence") {
                 string cmdSeq;
                 cin >> cmdSeq;
                 ifstream f{cmdSeq};
                 while (f >> cmd) {
-                    Game(g, cmd);
+                    game(g, cmd);
                 }
             }
             else if (cmd == "restart") {
                 g.init();
                 cout << g << endl;
-            }
-            else {
-                cin.clear();
-                cin.ignore();
             }
         }
     }
