@@ -7,7 +7,6 @@
 using namespace std;
 
 SBlock::SBlock(Grid &g, int level): Block{level, "A", false} {
-    if (level > 2) {heavy = true;}
     Posn p0{4, 0};
     Posn p1{4, 1};
     Posn p2{3, 1};
@@ -33,7 +32,7 @@ void SBlock::left(Grid &g) {
     pos[2].y--;
     pos[3].y--;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void SBlock::right(Grid &g) {
@@ -47,7 +46,7 @@ void SBlock::right(Grid &g) {
     pos[2].y++;
     pos[3].y++;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void SBlock::down(Grid &g) {
@@ -74,7 +73,7 @@ void SBlock::clockwise(Grid &g) {
             pos[3].x++;
             pos[3].y--;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "B" || type == "D") {
         if (pos[2].y != 10 && g.checkWhite(pos[1].x+1, pos[1].y) && g.checkWhite(pos[2].x, pos[2].y+1)) {
@@ -86,7 +85,7 @@ void SBlock::clockwise(Grid &g) {
             pos[3].x--;
             pos[3].y++;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     }
 }
@@ -102,7 +101,7 @@ void SBlock::counterclockwise(Grid &g) {
             pos[3].x++;
             pos[3].y--;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "B" || type == "D") {
         if (pos[2].y != 10 && g.checkWhite(pos[1].x+1, pos[1].y) && g.checkWhite(pos[2].x, pos[2].y+1)) {
@@ -114,7 +113,7 @@ void SBlock::counterclockwise(Grid &g) {
             pos[3].x--;
             pos[3].y++;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Yellow);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     }
 }

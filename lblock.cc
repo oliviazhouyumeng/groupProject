@@ -7,7 +7,6 @@
 using namespace std;
 
 LBlock::LBlock(Grid &g, int level): Block{level, "A", false} {
-    if (level > 2) {heavy = true;}
     Posn p0{3, 2};
     Posn p1{4, 2};
     Posn p2{4, 1};
@@ -33,7 +32,7 @@ void LBlock::left(Grid &g) {
     pos[2].y--;
     pos[3].y--;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void LBlock::right(Grid &g) {
@@ -47,7 +46,7 @@ void LBlock::right(Grid &g) {
     pos[2].y++;
     pos[3].y++;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void LBlock::down(Grid &g) {
@@ -75,7 +74,7 @@ void LBlock::clockwise(Grid &g) {
             pos[2].y--;
             pos[3].x-=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "B") {
         if (pos[0].y != 10 && g.checkWhite(pos[2].x, pos[2].y+1) &&
@@ -88,7 +87,7 @@ void LBlock::clockwise(Grid &g) {
             pos[3].x++;
             pos[3].y+=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "C") {
         if (g.checkWhite(pos[1].x-1, pos[1].y) && g.checkWhite(pos[2].x-1, pos[2].y) && g.checkWhite(pos[2].x+1, pos[2].y)) {
@@ -100,7 +99,7 @@ void LBlock::clockwise(Grid &g) {
             pos[3].x++;
             pos[3].y--;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "D") {
         if (pos[1].y != 10 && g.checkWhite(pos[2].x, pos[2].y+1) &&
@@ -114,7 +113,7 @@ void LBlock::clockwise(Grid &g) {
             pos[2].x++;
             pos[3].y--;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     }
 }
@@ -132,7 +131,7 @@ void LBlock::counterclockwise(Grid &g) {
             pos[2].x--;
             pos[3].y++;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "B") {
         if (pos[0].y != 10 && g.checkWhite(pos[0].x, pos[0].y+1) &&
@@ -146,7 +145,7 @@ void LBlock::counterclockwise(Grid &g) {
             pos[2].y++;
             pos[3].x+=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "C") {
         if (g.checkWhite(pos[1].x-1, pos[1].y) && g.checkWhite(pos[2].x+1, pos[2].y)) {
@@ -158,7 +157,7 @@ void LBlock::counterclockwise(Grid &g) {
             pos[3].x--;
             pos[3].y-=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "D") {
         if (pos[1].y != 10 && g.checkWhite(pos[0].x+1, pos[0].y) &&
@@ -171,7 +170,7 @@ void LBlock::counterclockwise(Grid &g) {
             pos[3].x--;
             pos[3].y++;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     }
 }

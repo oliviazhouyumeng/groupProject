@@ -7,7 +7,6 @@
 using namespace std;
 
 ZBlock::ZBlock(Grid &g, int level): Block{level, "A", false} {
-    if (level > 2) {heavy = true;}
     Posn p0{3, 0};
     Posn p1{3, 1};
     Posn p2{4, 1};
@@ -33,7 +32,7 @@ void ZBlock::left(Grid &g) {
     pos[2].y--;
     pos[3].y--;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void ZBlock::right(Grid &g) {
@@ -47,7 +46,7 @@ void ZBlock::right(Grid &g) {
     pos[2].y++;
     pos[3].y++;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void ZBlock::down(Grid &g) {
@@ -74,7 +73,7 @@ void ZBlock::clockwise(Grid &g) {
             pos[2].y--;
             pos[3].y-=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "B" || type == "D") {
         if (pos[1].y!=10 && g.checkWhite(pos[3].x, pos[3].y+1) &&
@@ -87,7 +86,7 @@ void ZBlock::clockwise(Grid &g) {
             pos[2].y++;
             pos[3].y+=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     }
 }
@@ -103,7 +102,7 @@ void ZBlock::counterclockwise(Grid &g) {
             pos[2].y--;
             pos[3].y-=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "B" || type == "D") {
         if (pos[1].y!=10 && g.checkWhite(pos[3].x, pos[3].y+1) &&
@@ -116,7 +115,7 @@ void ZBlock::counterclockwise(Grid &g) {
             pos[2].y++;
             pos[3].y+=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Magenta);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     }
 }

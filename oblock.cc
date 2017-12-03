@@ -7,7 +7,6 @@
 using namespace std;
 
 OBlock::OBlock(Grid &g, int level): Block{level, "A", false} {
-    if (level > 2) {heavy = true;}
     Posn p0{3, 0};
     Posn p1{4, 0};
     Posn p2{4, 1};
@@ -33,7 +32,7 @@ void OBlock::left(Grid &g) {
     pos[2].y--;
     pos[3].y--;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void OBlock::right(Grid &g) {
@@ -47,7 +46,7 @@ void OBlock::right(Grid &g) {
     pos[2].y++;
     pos[3].y++;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Cyan);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void OBlock::down(Grid &g) {
@@ -64,11 +63,11 @@ void OBlock::down(Grid &g) {
 }
 
 void OBlock::clockwise(Grid &g) {
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void OBlock::counterclockwise(Grid &g) {
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void OBlock::drop(Grid &g) {

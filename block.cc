@@ -1,12 +1,8 @@
 #include "block.h"
 using namespace std;
 
-Block::Block(int level, string type, bool heavy): level{level}, type{type}, heavy{heavy}, pos{}, h_pos{}{}
+Block::Block(int level, string type): level{level}, type{type}, pos{}, h_pos{}{}
 
-
-bool Block::isHeavy() const{
-    return heavy;
-}
 
 void Block::cwtype() {
     if (type == "A") type = "B";

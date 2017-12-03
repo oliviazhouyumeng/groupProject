@@ -2,12 +2,10 @@
 #include "jblock.h"
 #include "grid.h"
 #include "info.h"
-#include "state.h"
 #include <vector>
 using namespace std;
 
 JBlock::JBlock(Grid &g, int level): Block{level, "A", false} {
-    if (level > 2) {heavy = true;}
     Posn p0{3, 0};
     Posn p1{4, 0};
     Posn p2{4, 1};
@@ -33,7 +31,7 @@ void JBlock::left(Grid &g) {
     pos[2].y--;
     pos[3].y--;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void JBlock::right(Grid &g) {
@@ -47,7 +45,7 @@ void JBlock::right(Grid &g) {
     pos[2].y++;
     pos[3].y++;
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-    if (heavy) down(g);
+    if (g.getLevel()>2) down(g);
 }
 
 void JBlock::down(Grid &g) {
@@ -76,7 +74,7 @@ void JBlock::clockwise(Grid &g) {
             pos[2].y--;
             pos[3].y-=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "B") {
         if (pos[0].y != 10 && g.checkWhite(pos[2].x, pos[2].y+1) &&
@@ -90,7 +88,7 @@ void JBlock::clockwise(Grid &g) {
             pos[2].y++;
             pos[3].x--;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "C") {
         if (g.checkWhite(pos[3].x+1, pos[3].y) && g.checkWhite(pos[2].x+1, pos[2].y) && g.checkWhite(pos[2].x-1, pos[2].y)) {
@@ -102,7 +100,7 @@ void JBlock::clockwise(Grid &g) {
             pos[3].x--;
             pos[3].y++;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "D") {
         if (pos[1].y != 10 && g.checkWhite(pos[0].x-1, pos[0].y) &&
@@ -115,7 +113,7 @@ void JBlock::clockwise(Grid &g) {
             pos[3].x+=2;
             pos[3].y++;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     }
 }
@@ -131,7 +129,7 @@ void JBlock::counterclockwise(Grid &g) {
             pos[3].x-=2;
             pos[3].y--;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "B") {
         if (pos[0].y != 10 && g.checkWhite(pos[3].x, pos[3].y+1) &&
@@ -145,7 +143,7 @@ void JBlock::counterclockwise(Grid &g) {
             pos[2].y++;
             pos[3].y+=2;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "C") {
         if (g.checkWhite(pos[3].x+1, pos[3].y) && g.checkWhite(pos[2].x-1, pos[2].y) && g.checkWhite(pos[3].x-1, pos[3].y)) {
@@ -158,7 +156,7 @@ void JBlock::counterclockwise(Grid &g) {
             pos[2].y--;
             pos[3].x++;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     } else if (type == "D") {
         if (pos[1].y != 10 && g.checkWhite(pos[0].x-1, pos[0].y) &&
@@ -171,7 +169,7 @@ void JBlock::counterclockwise(Grid &g) {
             pos[3].x++;
             pos[3].y--;
             for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
-            if (heavy) down(g);
+            if (g.getLevel()>2) down(g);
         }
     }
 }
