@@ -60,8 +60,8 @@ public:
     void setColour(size_t row, size_t col, Colour colour);
     void changeColour(size_t row, size_t col, Colour colour);
     bool checkWhite(size_t row, size_t col); // return true if cell is white
-    void gSetState(size_t row, size_t col, State s) const;
-    State getState(size_t row, size_t col) const;
+    void gSetState(size_t row, size_t col, State s);
+    State getState(size_t row, size_t col);
     void updateScore(int point); // update curr_score & hi_score
     int getScore() const;
     int getHiScore() const;
