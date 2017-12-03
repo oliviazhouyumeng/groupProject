@@ -12,12 +12,30 @@
 using namespace std;
 
 void Game(Grid &g, string cmd) {
-    if (cmd == "left") g.currBlock().left(g);
-    else if (cmd == "right") g.currBlock().right(g);
-    else if (cmd == "down") g.currBlock().down(g);
-    else if (cmd == "clockwise") g.currBlock().clockwise(g);
-    else if (cmd == "counterclockwise") g.currBlock().counterclockwise(g);
-    else if (cmd == "skip") g.updateNext();
+    if (cmd == "left") {
+        g.currBlock().left(g);
+        cout << g << endl;
+    }
+    else if (cmd == "right") {
+        g.currBlock().right(g);
+        cout << g << endl;
+    }
+    else if (cmd == "down") {
+        g.currBlock().down(g);
+        cout << g << endl;
+    }
+    else if (cmd == "clockwise") {
+        g.currBlock().clockwise(g);
+        cout << g << endl;
+    }
+    else if (cmd == "counterclockwise") {
+        g.currBlock().counterclockwise(g);
+        cout << g << endl;
+    }
+    else if (cmd == "skip") {
+        g.updateNext();
+        cout << g << endl;
+    }
     else if (cmd == "drop") {
         g.currBlock().drop(g);
         try {
@@ -27,6 +45,7 @@ void Game(Grid &g, string cmd) {
             cout << "Game over!" << endl;
         }
         g.updateNext();
+        cout << g << endl;
     }
     else if (cmd == "levelup") g.levelUp();
     else if (cmd == "leveldown") g.levelDown();
@@ -43,8 +62,14 @@ void Game(Grid &g, string cmd) {
         int curlev = g.getLevel();
         if (curlev >= 3) g.getLevels()[curlev]->setRandom(true);
     }
-    else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") g.setNext(cmd);
-    else if (cmd == "restart") g.init();
+    else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") {
+        g.setNext(cmd);
+        cout << g << endl;
+    }
+    else if (cmd == "restart") {
+        g.init();
+        cout << g << endl;
+    }
     //else if (cmd == "hint")
 }
 
