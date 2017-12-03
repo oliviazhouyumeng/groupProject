@@ -32,7 +32,7 @@ void GraphicsDisplay::ScoreBoard(Grid &g) {
 
   xw.drawString(140, 50, cl, Xwindow::Cyan);
   xw.drawString(140, 80, cs, Xwindow::Cyan);
-  xw.drawString(125, 110, hs, Xwindow::Cyan);
+  xw.drawString(140, 110, hs, Xwindow::Cyan);
 }
 
 void GraphicsDisplay::NextBlock(Grid &g) {
@@ -85,7 +85,7 @@ void GraphicsDisplay::NextBlock(Grid &g) {
   }
 }
 
-void GraphicsDisplay::redrawLeft(Grid &g) {
+void GraphicsDisplay::RedrawLeft(Grid &g) {
   xw.fillRectangle(0, 0, winWidth - gridWidth, winHeight, Xwindow::Brown);
   xw.drawString(30, 50, "Level:", Xwindow::Cyan);
   xw.drawString(30, 80, "Score:", Xwindow::Cyan);
@@ -98,7 +98,7 @@ void GraphicsDisplay::redrawLeft(Grid &g) {
 
 void GraphicsDisplay::notify(Subject<Info, State> &whoNotified, Grid &g) {
   if (g.getRedraw()) {
-    redrawLeft(g);
+    RedrawLeft(g);
     g.setRedraw(false);
   }
   auto info = whoNotified.getInfo();
