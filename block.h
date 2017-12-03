@@ -20,6 +20,7 @@ public:
     virtual void drop(Grid &g) = 0;
     virtual void giveHint(Grid &g) = 0;
     virtual void cancelHint(Grid &g) = 0;
+    virtual Posn rightLandPos(Grid &g) = 0;
     std::vector<Posn>& getPos();
     void cwtype(); // change type clockwise
     void ccwtype(); // change type counterclockwise
