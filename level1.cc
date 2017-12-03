@@ -23,13 +23,10 @@ const int lNum1 = 1;
 Level1::Level1(): Level{lNum1, isRand1, seedNum1, false} {}
 
 int Level1::genRand() {
-	if (isSeed) {
-	  srand(seed);
-	  int gen = rand() % 12;
-	  seed = gen;
-	} else {
-		srand(seed);
-	}
+	int gen;
+	srand(seed);
+	gen = rand() % 12;
+	if (isSeed) seed = gen;
 	return gen;
 }
 

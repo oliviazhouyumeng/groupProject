@@ -9,7 +9,7 @@ class Level2: public Level {
  public:
   Level2();
   std::string createBlock() override;
-  void setSeq(std::string sfile);
+  void setSeq(std::string sfile) override;
 };
 
 #endif

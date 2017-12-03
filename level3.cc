@@ -29,13 +29,10 @@ void Level3::setSeq(string sfile) {
 }
 
 int Level3::genRand() {
-  if (isSeed) {
-    srand(seed);
-    int gen = rand() % 12;
-    seed = gen;
-  } else {
-    srand(seed);
-  }
+  int gen;
+  srand(seed);
+  gen = rand() % 9;
+  if (isSeed) seed = gen;
   return gen;
 }
 
