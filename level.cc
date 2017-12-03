@@ -34,4 +34,4 @@ void Level::setSeed(unsigned seedNum) {
 	seed = seedNum;
 }
 
-Level::~Level() {};
+Level::~Level() {}
