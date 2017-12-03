@@ -275,7 +275,7 @@ ostream &operator<<(std::ostream &out, const Grid &g) {
     
     out << *(g.td);
     
-    out << endl << s << endl;
+    out << s << endl;
     s = "Next:";
     out << s << endl;
     
