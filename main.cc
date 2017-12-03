@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <ctime>
 #include "window.h"
 #include "grid.h"
 #include "state.h"
@@ -79,7 +80,8 @@ int main(int argc, char *argv[]) {
     cin.exceptions(ios::eofbit|ios::failbit);
     bool textMode = false;
     int startLevel = 0;
-    unsigned seedNum = 1;
+    unsigned seedNum = time(0);
+    bool setseed = false;
     string seqFile = "";
     for (int i = 1; i < argc; ++i){
         string curArg = argv[i];
@@ -93,6 +95,7 @@ int main(int argc, char *argv[]) {
                     ++i;
                     istringstream iss{nextArg};
                     iss >> seedNum;
+                    setseed = true;
                 }
             }
         } else if (curArg == "-scriptfile") {
@@ -121,7 +124,7 @@ int main(int argc, char *argv[]) {
     string cmd;
     g.setStartLevel(startLevel);
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
-    if (seedNum != 1) {
+    if (setseed) {
         for (auto l : g.getLevels()) {
             l->setSeed(seedNum);
             l->setIsSeed(true);
