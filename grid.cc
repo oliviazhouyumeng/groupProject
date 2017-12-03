@@ -25,7 +25,7 @@
 #include "textdisplay.h"
 using namespace std;
 
-Grid::Grid(int hi_score, int curr_score, bool graphicsOn, bool redraw):
+Grid::Grid(int hi_score, int curr_score, bool graphicsOn, bool redraw, bool isNoRand):
 hi_score{hi_score}, curr_score{curr_score} {
     shared_ptr<Level> l0;
     shared_ptr<Level> l1;
@@ -197,7 +197,7 @@ void Grid::setCurrtoGrid() {
 
 void Grid::updateNext() {
     redraw = true;
-    if (currlevel == 0) {
+    if (currlevel == 0 || (currlevel >= 3 && isNoRand)) {
         if (blockSeq == "" || blockSeq == " ") {
             blockSeq = levels[currlevel]->createBlock();
             seqCount = 0;
@@ -274,6 +274,10 @@ bool Grid::getRedraw() const {
 
 void Grid::setRedraw(bool rd) {
     redraw = rd;
+}
+
+void Grid::setNoRand(bool nr) {
+    isNoRand = nr;
 }
 
 Cell &Grid::getCell(size_t x, size_t y) {

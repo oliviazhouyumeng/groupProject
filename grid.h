@@ -21,7 +21,6 @@ class Grid {
     int hi_score; //the highest score in game
     int curr_score; // the current score in game
     int currlevel; //the current level
-    int startLevel; 
     std::vector<std::shared_ptr<Level>> levels;
     int seqCount;
     std::string blockSeq;// for block types reading if Level returns a seq file name
@@ -31,6 +30,7 @@ class Grid {
     bool graphicsOn; // default = true, false = textonly
     int starCount;
     bool redraw;
+    bool isNoRand;
     std::shared_ptr<TextDisplay> td; // the text display
     std::shared_ptr<GraphicsDisplay> gd; // the graphics diaplay
     
@@ -38,7 +38,7 @@ class Grid {
     // Add private members, if necessary.
     
 public:
-    Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true, bool redraw = false);
+    Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true, bool redraw = false, bool isNoRand = false);
     ~Grid();
     void setObserver(std::shared_ptr<Observer> ob);
     void endGame() const;  // end the game
@@ -48,7 +48,7 @@ public:
     void levelDown();
     std::vector<std::shared_ptr<Level>> &getLevels();
     int getLevel() const;
-    void setStartLevel(int l);
+    void setLevel(int l);
     void clearRow(size_t r);
     void moveDown(); // clear empty lines
     bool isFull(size_t r);
@@ -58,7 +58,7 @@ public:
     void setHint();
     void clearHint();
     std::string getNextType() const;
-    void changeCurr(std::string cmd);
+    void setNext(std::string nextcmd); // set next, modify next level
     void setColour(size_t row, size_t col, Colour colour);
     void changeColour(size_t row, size_t col, Colour colour);
     bool checkWhite(size_t row, size_t col); // return true if cell is white
@@ -69,6 +69,7 @@ public:
     int getHiScore() const;
     bool getRedraw() const;
     void setRedraw(bool rd);
+    void setNoRand(bool nr);
     Cell &getCell(size_t x, size_t y);
     Block &currBlock();
     

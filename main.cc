@@ -17,11 +17,11 @@ void Game(Grid &g, string cmd) {
         g.currBlock().left(g);
         cout << g << endl;
     }
-    else if (cmd == "right" || cmd == "r") {
+    else if (cmd == "right" || cmd == "ri" || cmd == "rig" cmd == "righ") {
         g.currBlock().right(g);
         cout << g << endl;
     }
-    else if (cmd == "down" || cmd == "dn") {
+    else if (cmd == "down" || cmd == "do" || cmd == "dow") {
         g.currBlock().down(g);
         cout << g << endl;
     }
@@ -61,8 +61,9 @@ void Game(Grid &g, string cmd) {
         cin >> seq;
         int curlev = g.getLevel();
         if (curlev >= 3) {
-            g.getLevels()[curlev]->setSeq(seq);
             g.getLevels()[curlev]->setRandom(false);
+            g.getLevels()[curlev]->setSeq(seq);
+            g.setNoRand(true);
         }
     }
     else if (cmd == "random") {
