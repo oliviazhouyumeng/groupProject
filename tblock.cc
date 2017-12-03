@@ -5,10 +5,7 @@
 #include "grid.h"
 #include <vector>
 using namespace std;
-
-TBlock::TBlock(Grid &g, int level): Block{level, "A", false}{
-    
-    if(level>2) { heavy = true; }
+TBlock::TBlock(Grid &g, int level): Block{level, "A"}{
     
     Posn ul = Posn{2,0};
     Posn um = Posn{2, 1};
@@ -60,7 +57,7 @@ void TBlock::left(Grid &g){
     for (auto p : pos){
         g.setColour(p.x, p.y, Colour::Orange);
     }
-    if (heavy) down(g);
+    if (g.getLevel() > 2) down(g);
 }
 
 
@@ -81,7 +78,7 @@ void TBlock::right(Grid &g){
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Orange);
     }
-    if(heavy) down(g);
+    if (g.getLevel() > 2) down(g);
 }
 
 
@@ -123,7 +120,7 @@ void TBlock::clockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Orange);
             }
             cwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
     else if(type == "B"){
@@ -142,7 +139,7 @@ void TBlock::clockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Orange);
             }
             cwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
     else if(type == "C"){
@@ -158,7 +155,7 @@ void TBlock::clockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Orange);
             }
             cwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
     else { // type "D"
@@ -177,7 +174,7 @@ void TBlock::clockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Orange);
             }
             cwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
 }
@@ -199,7 +196,7 @@ void TBlock::counterclockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Orange);
             }
             ccwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
     else if(type == "B"){
@@ -219,7 +216,7 @@ void TBlock::counterclockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Orange);
             }
             ccwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
     else if (type == "C") {
@@ -236,7 +233,7 @@ void TBlock::counterclockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Orange);
             }
             ccwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
     else {
@@ -254,7 +251,7 @@ void TBlock::counterclockwise(Grid &g){
                 g.setColour(p.x, p.y, Colour::Orange);
             }
             ccwtype();
-            if(heavy) down(g);
+            if (g.getLevel() > 2) down(g);
         }
     }
 }
@@ -283,4 +280,3 @@ void TBlock::cancelHint(Grid &g){
 void TBlock::giveHint(Grid &g){
     
 }
-
