@@ -47,8 +47,14 @@ void Game(Grid &g, string cmd) {
         g.updateNext();
         cout << g << endl;
     }
-    else if (cmd == "levelup") g.levelUp();
-    else if (cmd == "leveldown") g.levelDown();
+    else if (cmd == "levelup") {
+        g.levelUp();
+        cout << g << endl;
+    }
+    else if (cmd == "leveldown") {
+        g.levelDown();
+        cout << g << endl;
+    }
     else if (cmd == "norandom") {
         string seq;
         cin >> seq;
