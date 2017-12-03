@@ -15,15 +15,25 @@
 
 using namespace std;
 
-const unsigned seedNum = 1;
-const bool isRand = true;
-const int lNum = 2;
+const unsigned seedNum2 = time(0);
+const bool isRand2 = true;
+const int lNum2 = 2;
 
-Level2::Level2(): Level{lNum, isRand, seedNum} {}
+Level2::Level2(): Level{lNum2, isRand2, seedNum2, false} {}
+
+int Level2::genRand() {
+	if (isSeed) {
+	  srand(seed);
+	  int gen = rand() % 12;
+	  seed = gen;
+	} else {
+		srand(seed);
+	}
+	return gen;
+}
 
 string Level2::createBlock() const {
-  srand(seed);
-  int gen = rand() % 7;
+  int gen = genRand();
   if (gen == 0) return "I";
   else if (gen == 1) return "J";
   else if (gen == 2) return "L";

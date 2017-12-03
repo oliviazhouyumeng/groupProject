@@ -17,21 +17,31 @@
 using namespace std;
 
 string seq3 = "";
-unsigned seedNum3 = 1;
+const unsigned seedNum3 = time(0);
 bool isRand3 = true;
 const int lNum3 = 3;
 
 Level3::Level3(): 
-  Level{lNum3, isRand3, seedNum3}, seqFile{seq3} {}
+  Level{lNum3, isRand3, seedNum3, false}, seqFile{seq3} {}
 
 void Level3::setSeq(string sfile) {
   seqFile = sfile;
 }
 
+int Level3::genRand() {
+  if (isSeed) {
+    srand(seed);
+    int gen = rand() % 12;
+    seed = gen;
+  } else {
+    srand(seed);
+  }
+  return gen;
+}
+
 string Level3::createBlock() const {
   if (isRandom) {
-    srand(seed);
-    int gen = rand() % 9;
+    int gen = genRand();
     if (gen == 0) return "I";  // need to know how IBlock is constructed
     else if (gen == 1) return "J";
     else if (gen == 2) return "L";

@@ -6,6 +6,7 @@
 
 class Level3: public Level {
 	std::string seqFile;
+	int genRand();
  public:
   Level3();
   void setSeq(std::string sfile) override;

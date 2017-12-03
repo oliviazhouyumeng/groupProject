@@ -5,6 +5,7 @@
 #include "level.h"
 
 class Level2: public Level {
+	int genRand();
  public:
   Level2();
   std::string createBlock() const override;

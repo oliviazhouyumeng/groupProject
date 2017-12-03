@@ -8,8 +8,9 @@ class Level {
   int levelNum;
   bool isRandom;
   unsigned seed;
+  bool isSeed;
  public:
-  Level(int levelNum, bool isRandom, unsigned seed);
+  Level(int levelNum, bool isRandom, unsigned seed, bool isSeed);
   int getLevel() const;
   bool getRandom() const;
   void setRandom(bool isR);

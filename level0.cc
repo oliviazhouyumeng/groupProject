@@ -17,12 +17,12 @@
 
 using namespace std;
 
-const unsigned seedNum = 1;
-const bool isRand = false;
-const int lNum = 0;
+const unsigned seedNum0 = 1;
+const bool isRand0 = false;
+const int lNum0 = 0;
 
 Level0::Level0(string filename):
-  Level{lNum, isRand, seedNum}, filename{filename} {}
+  Level{lNum0, isRand0, seedNum0, false}, filename{filename} {}
 
 string Level0::createBlock() const {
   ifstream f{filename};
