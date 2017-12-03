@@ -217,10 +217,19 @@ string Grid::getNextType() const {
     return next;
 }
 
-void Grid::setNext(string nextcmd) {
-    next = nextcmd;
-    nextlevel = currlevel;
-    getCell(0, 0).notifyObservers(*this);
+void Grid::changeCurr(string cmd) {
+    for (auto p : liveBlocks.back()->getPos()) {
+        setColour(p.x, p.y, Colour::White);
+    }
+    liveBlocks.erase(liveBlocks.end()-1);
+    if (cmd == "I") curr = make_shared<IBlock>(*this, currlevel);
+    else if (cmd == "J") curr = make_shared<JBlock>(*this, currlevel);
+    else if (cmd == "L") curr = make_shared<LBlock>(*this, currlevel);
+    else if (cmd == "S") curr = make_shared<SBlock>(*this, currlevel);
+    else if (cmd == "Z") curr = make_shared<ZBlock>(*this, currlevel);
+    else if (cmd == "T") curr = make_shared<TBlock>(*this, currlevel);
+    else if (cmd == "O") curr = make_shared<OBlock>(*this, currlevel);
+    liveBlocks.emplace_back(curr);
 }
 
 void Grid::setColour(size_t row, size_t col, Colour colour) {

@@ -57,7 +57,7 @@ public:
     void setHint();
     void clearHint();
     std::string getNextType() const;
-    void setNext(std::string nextcmd); // set next, modify next level
+    void changeCurr(std::string cmd);
     void setColour(size_t row, size_t col, Colour colour);
     void changeColour(size_t row, size_t col, Colour colour);
     bool checkWhite(size_t row, size_t col); // return true if cell is white

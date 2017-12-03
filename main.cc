@@ -69,7 +69,7 @@ void Game(Grid &g, string cmd) {
         if (curlev >= 3) g.getLevels()[curlev]->setRandom(true);
     }
     else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") {
-        g.setNext(cmd);
+        g.changeCurr(cmd);
         cout << g << endl;
     }
     //else if (cmd == "hint")
