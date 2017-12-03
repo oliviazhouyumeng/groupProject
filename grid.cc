@@ -199,6 +199,7 @@ void Grid::updateNext() {
     }
     else next = levels[currlevel]->createBlock();
     nextlevel = currlevel;
+    getCell(0, 0).notifyObservers(*this);
 }
 
 void Grid::setHint() {}
@@ -212,6 +213,7 @@ string Grid::getNextType() const {
 void Grid::setNext(string nextcmd) {
     next = nextcmd;
     nextlevel = currlevel;
+    getCell(0, 0).notifyObservers(*this);
 }
 
 void Grid::setColour(size_t row, size_t col, Colour colour) {
