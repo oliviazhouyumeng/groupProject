@@ -1,5 +1,6 @@
 #include "block.h"
 #include "iblock.h"
+#include "grid.h"
 using namespace std;
 
 const string startType = "A";
