@@ -34,4 +34,8 @@ void Level::setSeed(unsigned seedNum) {
 	seed = seedNum;
 }
 
+void Level::setIsSeed(bool isseed) {
+	isSeed = isseed;
+}
+
 Level::~Level() {}

@@ -16,6 +16,7 @@ class Level {
   void setRandom(bool isR);
   unsigned getSeed() const;
   void setSeed(unsigned seedNum);
+  void setIsSeed(bool isseed);
   virtual void setSeq(std::string sfile) = 0;
   virtual std::string createBlock() const = 0;
   virtual ~Level() = 0;
