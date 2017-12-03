@@ -53,7 +53,7 @@ void SBlock::right(Grid &g) {
 void SBlock::down(Grid &g) {
     for (auto p : pos) {
         if (p.x == 17) return;
-        if (!g.checkWhite(p.x+1, p.y) && g.getState(p.x, p.y).stype==StateType::NA) return;
+        if (!g.checkWhite(p.x+1, p.y) && g.getState(p.x+1, p.y).stype==StateType::NA) return;
     }
     for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
     pos[0].x++;
