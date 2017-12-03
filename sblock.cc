@@ -25,7 +25,7 @@ SBlock::SBlock(Grid &g, int level): Block{level, "A", false} {
 void SBlock::left(Grid &g) {
     for (auto p : pos) {
         if (p.y == 0) return;
-        if ((!g.checkWhite(p.x, p.y-1))&&g.getCell(p.x, p.y-1).getState().stype==StateType::NA) return;
+        if ((!g.checkWhite(p.x, p.y-1))&&g.getState(p.x, p.y-1).stype==StateType::NA) return;
     }
     for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
     for (auto p : pos) p.y--;
@@ -36,7 +36,7 @@ void SBlock::left(Grid &g) {
 void SBlock::right(Grid &g) {
     for (auto p : pos) {
         if (p.y == 10) return;
-        if (!g.checkWhite(p.x, p.y+1)&&g.getCell(p.x, p.y+1).getState().stype==StateType::NA) return;
+        if (!g.checkWhite(p.x, p.y+1)&&g.getState(p.x, p.y+1).stype==StateType::NA) return;
     }
     for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
     for (auto p : pos) p.y++;
@@ -47,7 +47,7 @@ void SBlock::right(Grid &g) {
 void SBlock::down(Grid &g) {
     for (auto p : pos) {
         if (p.x == 17) return;
-        if (g.getCell(p.x+1, p.y).getInfo().colour != Colour::White) return;
+        if (!g.checkWhite(p.x+1, p.y) && g.getState(p.x, p.y).stype==StateType::NA) return;
     }
     for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
     for (auto p : pos) p.x++;
@@ -72,7 +72,7 @@ void SBlock::clockwise(Grid &g) {
             cwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x+=2;
-            pos[0].x++;
+            pos[1].x++;
             pos[1].y++;
             pos[3].x--;
             pos[3].y++;
