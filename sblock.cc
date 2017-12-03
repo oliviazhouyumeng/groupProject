@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-SBlock::SBlock(Grid &g, int level): Block{level, "A", false} {
+SBlock::SBlock(Grid &g, int level): Block{level, "A"} {
     Posn p0{4, 0};
     Posn p1{4, 1};
     Posn p2{3, 1};

@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-JBlock::JBlock(Grid &g, int level): Block{level, "A", false} {
+JBlock::JBlock(Grid &g, int level): Block{level, "A"} {
     Posn p0{3, 0};
     Posn p1{4, 0};
     Posn p2{4, 1};

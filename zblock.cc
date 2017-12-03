@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-ZBlock::ZBlock(Grid &g, int level): Block{level, "A", false} {
+ZBlock::ZBlock(Grid &g, int level): Block{level, "A"} {
     Posn p0{3, 0};
     Posn p1{3, 1};
     Posn p2{4, 1};

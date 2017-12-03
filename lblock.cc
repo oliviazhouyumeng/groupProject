@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-LBlock::LBlock(Grid &g, int level): Block{level, "A", false} {
+LBlock::LBlock(Grid &g, int level): Block{level, "A"} {
     Posn p0{3, 2};
     Posn p1{4, 2};
     Posn p2{4, 1};
