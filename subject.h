@@ -19,7 +19,6 @@
 
 class Grid;
 
-
 template <typename InfoType, typename StateType> class Subject {
     std::vector<std::shared_ptr<Observer>> observers;
     StateType state;

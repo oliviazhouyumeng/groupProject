@@ -16,13 +16,13 @@
 
 using namespace std;
 
-string seq = "";
-unsigned seedNum = 1;
-bool isRand = true;
-const int lNum = 3;
+string seq3 = "";
+unsigned seedNum3 = 1;
+bool isRand3 = true;
+const int lNum3 = 3;
 
 Level3::Level3(): 
-  Level{lNum, isRand, seedNum}, seqFile{seq} {}
+  Level{lNum3, isRand3, seedNum3}, seqFile{seq3} {}
 
 void Level3::setSeq(string sfile) {
   seqFile = sfile;

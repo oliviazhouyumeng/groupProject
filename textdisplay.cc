@@ -6,7 +6,7 @@ using namespace std;
 TextDisplay::~TextDisplay(){
 }
 
-TextDisplay::TextDisplay(int width, int length): theDisplay(length, vector<char>(width, ' ')), width{width}, length{length}{}
+TextDisplay::TextDisplay(int width, int length): theDisplay(length, vector<char>(width, '-')), width{width}, length{length}{}
 
 void TextDisplay::notify(Subject<Info, State> &whoNotified, Grid &g){
   Colour cl = whoNotified.getInfo().colour;

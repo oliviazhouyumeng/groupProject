@@ -27,11 +27,21 @@ using namespace std;
 
 Grid::Grid(int hi_score, int curr_score, bool graphicsOn):
     hi_score{hi_score}, curr_score{curr_score} {
-    shared_ptr<Level> l0 = dynamic_pointer_cast<Level0>(l0);
-    shared_ptr<Level> l1 = dynamic_pointer_cast<Level1>(l1);
-    shared_ptr<Level> l2 = dynamic_pointer_cast<Level2>(l2);
-    shared_ptr<Level> l3 = dynamic_pointer_cast<Level3>(l3);
-    shared_ptr<Level> l4 = dynamic_pointer_cast<Level4>(l4);
+    shared_ptr<Level> l0;
+    shared_ptr<Level> l1;
+    shared_ptr<Level> l2;
+    shared_ptr<Level> l3;
+    shared_ptr<Level> l4;
+    l0 = dynamic_pointer_cast<Level0>(l0);
+    l1 = dynamic_pointer_cast<Level1>(l1);
+    l2 = dynamic_pointer_cast<Level2>(l2);
+    l3 = dynamic_pointer_cast<Level3>(l3);
+    l4 = dynamic_pointer_cast<Level4>(l4);
+    l0 = make_shared<Level0>();
+    l1 = make_shared<Level1>();
+    l2 = make_shared<Level2>();
+    l3 = make_shared<Level3>();
+    l4 = make_shared<Level4>();
     levels.emplace_back(l0);
     levels.emplace_back(l1);
     levels.emplace_back(l2);
@@ -58,7 +68,7 @@ void Grid::init() {
     const size_t totr = 18; // total rows
     const size_t totc = 11; // total columns
     
-    td = make_shared<TextDisplay>();
+    td = make_shared<TextDisplay>(totc, totr);
     if (graphicsOn) gd = make_shared<GraphicsDisplay>();
     
     for (size_t i = 0; i < totr; i++) {
@@ -176,7 +186,7 @@ void Grid::setCurrtoGrid() {
     starCount--;
 }
 
-void Grid::updateNext() { //seqCount
+void Grid::updateNext() {
     if (currlevel == 0) {
         if (blockSeq == "" || blockSeq == " ") {
             blockSeq = levels[currlevel]->createBlock();
@@ -184,8 +194,8 @@ void Grid::updateNext() { //seqCount
         }
         stringstream ss{blockSeq};
         ss >> next;
-        seqCount += (next.size()+1);
-        blockSeq = blockSeq.substr(seqCount);
+        seqCount += 2;
+        blockSeq = blockSeq.substr(seqCount-1);
     }
     else next = levels[currlevel]->createBlock();
     nextlevel = currlevel;
