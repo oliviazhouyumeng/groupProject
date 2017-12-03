@@ -84,8 +84,15 @@ int main(int argc, char *argv[]) {
         if (curArg == "-text") {
             textMode = true;
         } else if (curArg == "-seed") {
-            ++i;
-            seedNum = *argv[i];
+            if (i+1 < argc) {
+                string nextArg = argv[i+1];
+                if (!(nextArg == "-scriptfile" || nextArg == "-text" ||
+                      nextArg == "-startlevel" || nextArg == "-scriptfile")) {
+                    ++i;
+                    istringstream iss{nextArg};
+                    iss >> seedNum;
+                }
+            }
         } else if (curArg == "-scriptfile") {
             if (i+1 < argc) {
                 string nextArg = argv[i+1];
@@ -96,8 +103,15 @@ int main(int argc, char *argv[]) {
                 }
             }
         } else if (curArg == "-startlevel") {
-            ++i;
-            startLevel = *argv[i];
+            if (i+1 < argc) {
+                string nextArg = argv[i+1];
+                if (!(nextArg == "-scriptfile" || nextArg == "-text" ||
+                      nextArg == "-seed" || nextArg == "-scriptfile")) {
+                    ++i;
+                    istringstream iss{nextArg};
+                    iss >> startLevel;
+                }
+            }
         }
     }
     
