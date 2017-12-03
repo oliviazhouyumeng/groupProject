@@ -30,6 +30,8 @@ void TextDisplay::notify(Subject<Info, State> &whoNotified, Grid &g){
     theDisplay[r][c] = 'Z';
   } else if (cl == Colour::Orange){
     theDisplay[r][c] = 'T';
+  } else {
+    theDisplay[r][c] = ' ';
   }
 }
 
