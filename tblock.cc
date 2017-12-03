@@ -26,7 +26,7 @@ TBlock::TBlock(Grid &g, int level): Block{level, "A", false}{
     if(!g.checkWhite(lm.x, lm.y)) {
         g.endGame();
     }
-
+    
     
     pos.push_back(ul);
     pos.push_back(um);
@@ -151,7 +151,7 @@ void TBlock::clockwise(Grid &g){
             }
             cwtype();
             if(heavy) down(g);
-            }
+        }
     }
     else { // type "D"
         Posn edge = pos.at(3);
@@ -247,7 +247,7 @@ void TBlock::counterclockwise(Grid &g){
             }
             ccwtype();
             if(heavy) down(g);
-            }
+        }
     }
 }
 
@@ -275,4 +275,3 @@ void TBlock::cancelHint(Grid &g){
 void TBlock::giveHint(Grid &g){
     
 }
-
