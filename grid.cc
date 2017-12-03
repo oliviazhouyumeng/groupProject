@@ -96,10 +96,12 @@ void Grid::setGraphics(bool b) {
 }
 
 void Grid::levelUp() {
+    reDraw = true;
     if (currlevel < 4) ++currlevel;
 }
 
 void Grid::levelDown() {
+    reDraw = true;
     if (currlevel > 0) --currlevel;
 }
 
