@@ -29,6 +29,7 @@ class Grid {
     int nextlevel; // the level of next block
     bool graphicsOn; // default = true, false = textonly
     int starCount;
+    bool redraw;
     std::shared_ptr<TextDisplay> td; // the text display
     std::shared_ptr<GraphicsDisplay> gd; // the graphics diaplay
     
@@ -36,7 +37,7 @@ class Grid {
     // Add private members, if necessary.
     
 public:
-    Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true);
+    Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true, bool redraw = false);
     ~Grid();
     void setObserver(std::shared_ptr<Observer> ob);
     void endGame() const;  // end the game
@@ -65,6 +66,8 @@ public:
     void updateScore(int point); // update curr_score & hi_score
     int getScore() const;
     int getHiScore() const;
+    bool getRedraw() const;
+    void setRedraw(bool rd);
     Cell &getCell(size_t x, size_t y);
     Block &currBlock();
     
