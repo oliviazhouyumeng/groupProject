@@ -20,6 +20,8 @@
 #include "level3.h"
 #include "level4.h"
 #include "level.h"
+#include "graphicsdisplay.h"
+#include "window.h"
 #include "textdisplay.h"
 using namespace std;
 
