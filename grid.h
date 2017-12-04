@@ -62,6 +62,7 @@ public:
     void setColour(size_t row, size_t col, Colour colour);
     void changeColour(size_t row, size_t col, Colour colour);
     bool checkWhite(size_t row, size_t col); // return true if cell is white
+    bool checkActive(size_t row, size_t col); // return true if cell is StateType::AC
     void gSetState(size_t row, size_t col, State s);
     State getState(size_t row, size_t col);
     void updateScore(int point); // update curr_score & hi_score
