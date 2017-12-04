@@ -142,7 +142,7 @@ void Grid::clearRow(size_t r) {
     starCount = 5;
 }
 
-void Grid::moveDown() {
+void Grid::moveDown(int br) {
     redraw = true;
     size_t firstCellRow = 18;
     int count = 0;
@@ -165,6 +165,7 @@ void Grid::moveDown() {
         }
     }
     if (count!=0) updateScore((count+currlevel)*(count+currlevel));
+    else if (br != 0 && firstCellRow == 18) updateScore((br+currlevel)*(br+currlevel));
 }
 
 bool Grid::isFull(size_t r) {
