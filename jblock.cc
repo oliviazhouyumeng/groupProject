@@ -234,7 +234,7 @@ void JBlock::giveHint(Grid &g) {
         }
     }
     while (true) {
-        if (br != 18 && ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
+        if (br !=18 && ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
                          (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
                          (g.checkWhite(br, rc) || g.checkActive(br, rc)))) {
             br++;
@@ -243,7 +243,7 @@ void JBlock::giveHint(Grid &g) {
                                 (!g.checkWhite(br, rc) && !g.checkActive(br, rc)))) {
             // 1 xxx
             cout << "1" << endl;
-            if (lc != 9 && g.checkWhite(br, rc+1) && g.checkWhite(br, rc+2)) {
+            if (rc < 9 && g.checkWhite(br, rc+1) && g.checkWhite(br, rc+2)) {
                 lc++;
                 mc++;
                 rc++;
@@ -262,10 +262,11 @@ void JBlock::giveHint(Grid &g) {
                    (g.checkWhite(br, rc) || g.checkActive(br, rc))) {
             // 2 x--
             cout << "2" << endl;
-            while (br != 17 && g.checkWhite(br+1, mc) && g.checkWhite(br+1, rc)) {
+            while (br <= 16 && g.checkWhite(br+1, mc) && g.checkWhite(br+1, rc)) {
                 br++;
             }
-            if (rc > 1 && g.checkWhite(br, lc-1) && !g.checkWhite(br, lc-2)) {
+            cout << br << endl;
+            if (mc > 1 && g.checkWhite(br, mc-1) && !g.checkWhite(br, mc-2)) {
                 rc--;
                 mc--;
                 lc--;
