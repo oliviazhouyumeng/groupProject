@@ -457,7 +457,8 @@ void TBlock::giveHint(Grid &g){
 
 void TBlock::cancelHint(Grid &g){
     for(auto hp : h_pos){
-        g.changeColour(hp.x, hp.y, Colour::White);
+        if (g.checkActive(hp.x, hp.y)) g.changeColour(hp.x, hp.y, Colour::Orange);
+        else g.changeColour(hp.x, hp.y, Colour::White);
     }
     h_pos.clear();
 }
