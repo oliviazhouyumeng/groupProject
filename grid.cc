@@ -196,7 +196,7 @@ bool Grid::isEmpty(size_t r) {
 }
 
 void Grid::setCurrtoGrid() {
-    if (starCount == 0 && currlevel == 4) {
+    if (starCount == 0 && currlevel >= 4) {
         curr = make_shared<StarBlock>(*this, currlevel);
         liveBlocks.emplace_back(curr);
         starCount = 5;
