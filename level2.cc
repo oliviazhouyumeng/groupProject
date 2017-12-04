@@ -22,17 +22,8 @@ const int lNum2 = 2;
 
 Level2::Level2(): Level{lNum2, isRand2, seedNum2, false} {}
 
-int Level2::genRand() {
-  int gen;
-  srand(seed);
-  gen = rand() % 7;
-  if (!(gen == 0 || gen == 1)) seed = gen;
-  else seed = 3 * gen / 2 + 3;
-  return gen;
-}
-
 string Level2::createBlock() {
-  int gen = genRand();
+  int gen = rand() % 7;
   if (gen == 0) return "I";
   else if (gen == 1) return "J";
   else if (gen == 2) return "L";
