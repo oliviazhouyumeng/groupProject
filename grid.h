@@ -34,17 +34,16 @@ class Grid {
     bool isNoRand;
     std::shared_ptr<TextDisplay> td; // the text display
     std::shared_ptr<GraphicsDisplay> gd; // the graphics diaplay
-    
-    std::shared_ptr<Observer> ob; //Another observer
     // Add private members, if necessary.
     
 public:
     Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true, bool redraw = false, bool isNoRand = false);
     ~Grid();
-    void setObserver(std::shared_ptr<Observer> ob);
+    void setGraphics(std::shared_ptr<GraphicsDisplay> GD);
     void endGame() const;  // end the game
     void init(); // Sets up an n x n grid.  Clears old grid, if necessary.
-    void setGraphics(bool b);
+    void Graphics(bool b);
+    bool isGraphics() const;
     void levelUp();
     void levelDown();
     std::vector<std::shared_ptr<Level>> &getLevels();
