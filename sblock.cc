@@ -160,11 +160,6 @@ void SBlock::giveHint(Grid &g){
             br = pos[3].x;
         }
     }
-    cout << lc << endl;
-    cout << mc << endl;
-    cout << rc << endl;
-    cout << br << endl;
-    cout << endl;
     while (true) {
         if (br != 18 && ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
             (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
@@ -248,6 +243,7 @@ void SBlock::giveHint(Grid &g){
                 h_pos.emplace_back(hp1);
                 h_pos.emplace_back(hp2);
                 h_pos.emplace_back(hp3);
+                break;
             } else {
                 Posn hp0{br-3, mc};
                 Posn hp1{br-2, mc};
@@ -257,7 +253,7 @@ void SBlock::giveHint(Grid &g){
                 h_pos.emplace_back(hp1);
                 h_pos.emplace_back(hp2);
                 h_pos.emplace_back(hp3);
-            break;
+                break;
             }
         } else if ((!g.checkWhite(br, lc) && !g.checkActive(br, lc)) &&
                     (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
@@ -277,11 +273,6 @@ void SBlock::giveHint(Grid &g){
     for(auto hp : h_pos){
         g.changeColour(hp.x, hp.y, Colour::Black);
     }
-    cout << endl;
-    cout << lc << endl;
-    cout << mc << endl;
-    cout << rc << endl;
-    cout << br << endl;
 }
 
 void SBlock::cancelHint(Grid &g){
@@ -291,4 +282,3 @@ void SBlock::cancelHint(Grid &g){
     }
     h_pos.clear();
 }
-

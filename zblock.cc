@@ -139,7 +139,148 @@ void ZBlock::drop(Grid &g) {
 }
 
 void ZBlock::giveHint(Grid &g){
+    size_t lc = 19;
+    size_t mc = 19;
+    size_t rc = 19;
+    size_t br = 19;
+    
+    if (type == "A" || type == "C") {
+        lc = pos[0].y;
+        mc = pos[1].y;
+        rc = pos[3].y;
+        br = pos[3].x;
+    } else if (type == "B" || type == "D") {
+        if (pos[1].y == 10){
+            lc = pos[3].y-1;
+            mc = pos[3].y;
+            rc = pos[0].y;
+            br = pos[3].x;
+        } else {
+            lc = pos[3].y;
+            mc = pos[0].y;
+            rc = pos[0].y+1;
+            br = pos[3].x;
+        }
+    }
+    while (true) {
+        if (br != 18 && ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
+                         (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
+                         (g.checkWhite(br, rc) || g.checkActive(br, rc)))) {
+            br++;
+        } else if (br == 18 || ((!g.checkWhite(br, lc) && !g.checkActive(br, lc)) &&
+                                (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
+                                (!g.checkWhite(br, rc) && !g.checkActive(br, rc)))) {
+            // 1 xxx
+            Posn hp0{br-2, lc};
+            Posn hp1{br-2, mc};
+            Posn hp2{br-1, mc};
+            Posn hp3{br-1, rc};
+            h_pos.emplace_back(hp0);
+            h_pos.emplace_back(hp1);
+            h_pos.emplace_back(hp2);
+            h_pos.emplace_back(hp3);
+            break;
+        } else if ((!g.checkWhite(br, lc) && !g.checkActive(br, lc)) &&
+                   (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
+                   (g.checkWhite(br, rc) || g.checkActive(br, rc))) {
+            // 2 x--
+            Posn hp0{br-1, lc};
+            Posn hp1{br-1, mc};
+            Posn hp2{br, mc};
+            Posn hp3{br, rc};
+            h_pos.emplace_back(hp0);
+            h_pos.emplace_back(hp1);
+            h_pos.emplace_back(hp2);
+            h_pos.emplace_back(hp3);
+            break;
+        } else if ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
+                   (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
+                   (g.checkWhite(br, rc) || g.checkActive(br, rc))) {
+            // 3 -x-
+            Posn hp0{br-2, mc};
+            Posn hp1{br-1, mc};
+            Posn hp2{br-1, lc};
+            Posn hp3{br, lc};
+            h_pos.emplace_back(hp0);
+            h_pos.emplace_back(hp1);
+            h_pos.emplace_back(hp2);
+            h_pos.emplace_back(hp3);
+            break;
+        } else if ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
+                   (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
+                   (!g.checkWhite(br, rc) && !g.checkActive(br, rc))) {
+            // 4 --x
+            Posn hp0{br-2, rc};
+            Posn hp1{br-1, rc};
+            Posn hp2{br-1, mc};
+            Posn hp3{br, mc};
+            h_pos.emplace_back(hp0);
+            h_pos.emplace_back(hp1);
+            h_pos.emplace_back(hp2);
+            h_pos.emplace_back(hp3);
+            break;
+        } else if ((!g.checkWhite(br, lc) && !g.checkActive(br, lc)) &&
+                   (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
+                   (g.checkWhite(br, rc) || g.checkActive(br, rc))) {
+            // 5 xx-
+            if (lc != 0 && (g.checkWhite(br-2, lc-1) || g.checkActive(br-2, lc-1))) {
+                Posn hp0{br-2, lc-1};
+                Posn hp1{br-2, lc};
+                Posn hp2{br-1,lc};
+                Posn hp3{br-1, mc};
+                h_pos.emplace_back(hp0);
+                h_pos.emplace_back(hp1);
+                h_pos.emplace_back(hp2);
+                h_pos.emplace_back(hp3);
+                break;
+            } else {
+                Posn hp0{br-3, rc};
+                Posn hp1{br-2, rc};
+                Posn hp2{br-2, mc};
+                Posn hp3{br-1, mc};
+                h_pos.emplace_back(hp0);
+                h_pos.emplace_back(hp1);
+                h_pos.emplace_back(hp2);
+                h_pos.emplace_back(hp3);
+                break;
+            }
+        } else if ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
+                   (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
+                   (!g.checkWhite(br, rc) && !g.checkActive(br, rc))) {
+            // 6 -xx
+            Posn hp0{br-2, mc};
+            Posn hp1{br-1, mc};
+            Posn hp2{br-1, lc};
+            Posn hp3{br, lc};
+            h_pos.emplace_back(hp0);
+            h_pos.emplace_back(hp1);
+            h_pos.emplace_back(hp2);
+            h_pos.emplace_back(hp3);
+            break;
+        } else if ((!g.checkWhite(br, lc) && !g.checkActive(br, lc)) &&
+                   (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
+                   (!g.checkWhite(br, rc) && !g.checkActive(br, rc))) {
+            // 7 x-x
+            Posn hp0{br-2, rc};
+            Posn hp1{br-1, rc};
+            Posn hp2{br-1, mc};
+            Posn hp3{br, mc};
+            h_pos.emplace_back(hp0);
+            h_pos.emplace_back(hp1);
+            h_pos.emplace_back(hp2);
+            h_pos.emplace_back(hp3);
+            break;
+        }
+    }
+    for(auto hp : h_pos){
+        g.changeColour(hp.x, hp.y, Colour::Black);
+    }
 }
 
 void ZBlock::cancelHint(Grid &g){
+    for(auto hp : h_pos){
+        if (g.checkActive(hp.x, hp.y)) g.changeColour(hp.x, hp.y, Colour::Magenta);
+        else g.changeColour(hp.x, hp.y, Colour::White);
+    }
+    h_pos.clear();
 }
