@@ -192,7 +192,8 @@ void IBlock::drop(Grid &g){
         while (g.isFull(pos[temp].x)) g.clearRow(pos[temp].x);
         temp++;
     }
-    g.moveDown();
+    if (type == "A" || type == "C") g.moveDown(1);
+    else if (type == "B" || type == "D") g.moveDown(4);
 }
 
 
