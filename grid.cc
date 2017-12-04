@@ -217,7 +217,7 @@ void Grid::setCurrtoGrid() {
 
 void Grid::updateNext() {
     redraw = true;
-    if (currlevel == 0) {
+    if (currlevel == 0 || (currlevel >= 3 && isNoRand)) {
         if (blockSeq == "" || blockSeq == " ") {
             blockSeq = levels[currlevel]->createBlock();
             seqCount = 0;
