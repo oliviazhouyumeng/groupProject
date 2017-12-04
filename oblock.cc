@@ -84,7 +84,7 @@ void OBlock::drop(Grid &g) {
         while (g.isFull(pos[temp].x)) g.clearRow(pos[temp].x);
         temp++;
     }
-    g.moveDown();
+    g.moveDown(1);
 }
 
 void OBlock::giveHint(Grid &g) {}
