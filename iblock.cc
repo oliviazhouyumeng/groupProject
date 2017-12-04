@@ -234,9 +234,9 @@ void IBlock::giveHint(Grid &g){
             }
             return;
         }
-    
+        
         else if(c2 < 9 && g.getCell(i, c1).getInfo().colour == Colour::White && g.getCell(i, c2).getInfo().colour == Colour::White
-           && g.getCell(i, c3).getInfo().colour == Colour::White && g.getCell(i, c4).getInfo().colour == Colour::White){
+                && g.getCell(i, c3).getInfo().colour == Colour::White && g.getCell(i, c4).getInfo().colour == Colour::White){
             if(i==17){
                 Posn first{i, c1};
                 Posn second{i, c2};
@@ -251,8 +251,8 @@ void IBlock::giveHint(Grid &g){
                 }
                 return;
             }
-        
-    
+            
+            
             else if(g.getCell(i+1, c1).getInfo().colour != Colour::White && g.getCell(i+1, c2).getInfo().colour != Colour::White
                     && g.getCell(i+1, c3).getInfo().colour != Colour::White && g.getCell(i+1, c4).getInfo().colour != Colour::White){
                 Posn first{i, c1};
@@ -269,10 +269,10 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
-    
+        
         else if((type == "B" || type == "D") && c1 >=3 && g.getCell(i, c1).getInfo().colour == Colour::White &&
-           g.getCell(i, c1-1).getInfo().colour == Colour::White && g.getCell(i, c1-2).getInfo().colour == Colour::White
-           && g.getCell(i, c1-3).getInfo().colour == Colour::White){
+                g.getCell(i, c1-1).getInfo().colour == Colour::White && g.getCell(i, c1-2).getInfo().colour == Colour::White
+                && g.getCell(i, c1-3).getInfo().colour == Colour::White){
             if(i==17){
                 Posn first{i, c1-3};
                 Posn second{i, c1-2};
@@ -303,7 +303,7 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
-    
+        
         else if(bot != pos[3].x && g.getCell(i, c1).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c1).getInfo().colour == Colour::White && g.getCell(i-2, c1).getInfo().colour == Colour::White
                && g.getCell(i-3, c1).getInfo().colour == Colour::White && g.getCell(i-4, c1).getInfo().colour == Colour::White){
@@ -320,8 +320,23 @@ void IBlock::giveHint(Grid &g){
                 }
                 return;
             }
+            else if(g.getCell(i-1, c1).getInfo().colour == Colour::White && g.getCell(i-1, c2).getInfo().colour == Colour::White
+                    &&g.getCell(i-1, c3).getInfo().colour == Colour::White && g.getCell(i-1, c4).getInfo().colour == Colour::White){
+                Posn first{i-1, c1};
+                Posn second{i-1, c2};
+                Posn third{i-1, c3};
+                Posn forth{i-1, c4};
+                h_pos.push_back(first);
+                h_pos.push_back(second);
+                h_pos.push_back(third);
+                h_pos.push_back(forth);
+                for(auto hp : h_pos){
+                    g.changeColour(hp.x, hp.y, Colour::Black);
+                }
+                return;
+            }
         }
-    
+        
         else if(bot != pos[3].x && c2 < 9 && g.getCell(i, c2).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c2).getInfo().colour == Colour::White && g.getCell(i-2, c2).getInfo().colour == Colour::White
                && g.getCell(i-3, c2).getInfo().colour == Colour::White && g.getCell(i-4, c2).getInfo().colour == Colour::White){
@@ -329,6 +344,21 @@ void IBlock::giveHint(Grid &g){
                 Posn second{i-2, c2};
                 Posn third{i-3, c2};
                 Posn forth{i-4, c2};
+                h_pos.push_back(first);
+                h_pos.push_back(second);
+                h_pos.push_back(third);
+                h_pos.push_back(forth);
+                for(auto hp : h_pos){
+                    g.changeColour(hp.x, hp.y, Colour::Black);
+                }
+                return;
+            }
+            else if(g.getCell(i-1, c1).getInfo().colour == Colour::White && g.getCell(i-1, c2).getInfo().colour == Colour::White
+                    &&g.getCell(i-1, c3).getInfo().colour == Colour::White && g.getCell(i-1, c4).getInfo().colour == Colour::White){
+                Posn first{i-1, c1};
+                Posn second{i-1, c2};
+                Posn third{i-1, c3};
+                Posn forth{i-1, c4};
                 h_pos.push_back(first);
                 h_pos.push_back(second);
                 h_pos.push_back(third);
@@ -355,6 +385,21 @@ void IBlock::giveHint(Grid &g){
                 }
                 return;
             }
+            else if(g.getCell(i-1, c1).getInfo().colour == Colour::White && g.getCell(i-1, c2).getInfo().colour == Colour::White
+                    &&g.getCell(i-1, c3).getInfo().colour == Colour::White && g.getCell(i-1, c4).getInfo().colour == Colour::White){
+                Posn first{i-1, c1};
+                Posn second{i-1, c2};
+                Posn third{i-1, c3};
+                Posn forth{i-1, c4};
+                h_pos.push_back(first);
+                h_pos.push_back(second);
+                h_pos.push_back(third);
+                h_pos.push_back(forth);
+                for(auto hp : h_pos){
+                    g.changeColour(hp.x, hp.y, Colour::Black);
+                }
+                return;
+            }
         }
         else if(bot != pos[3].x && c2 < 9 && g.getCell(i, c4).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c4).getInfo().colour == Colour::White && g.getCell(i-2, c4).getInfo().colour == Colour::White
@@ -363,6 +408,21 @@ void IBlock::giveHint(Grid &g){
                 Posn second{i-2, c4};
                 Posn third{i-3, c4};
                 Posn forth{i-4, c4};
+                h_pos.push_back(first);
+                h_pos.push_back(second);
+                h_pos.push_back(third);
+                h_pos.push_back(forth);
+                for(auto hp : h_pos){
+                    g.changeColour(hp.x, hp.y, Colour::Black);
+                }
+                return;
+            }
+            else if(g.getCell(i-1, c1).getInfo().colour == Colour::White && g.getCell(i-1, c2).getInfo().colour == Colour::White
+                    &&g.getCell(i-1, c3).getInfo().colour == Colour::White && g.getCell(i-1, c4).getInfo().colour == Colour::White){
+                Posn first{i-1, c1};
+                Posn second{i-1, c2};
+                Posn third{i-1, c3};
+                Posn forth{i-1, c4};
                 h_pos.push_back(first);
                 h_pos.push_back(second);
                 h_pos.push_back(third);
