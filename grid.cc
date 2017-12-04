@@ -25,7 +25,7 @@
 #include "textdisplay.h"
 using namespace std;
 
-Grid::Grid(int hi_score, int curr_score, bool graphicsOn, bool redraw, bool isNoRand):
+Grid::Grid(int hi_score, int curr_score, bool graphicsOn, bool redraw, bool isNoRand, int currlevel):
 hi_score{hi_score}, curr_score{curr_score} {
     shared_ptr<Level> l0;
     shared_ptr<Level> l1;
@@ -61,13 +61,11 @@ void Grid::init() {
     
     curr_score = 0;
     currlevel = startLevel;
-    
     const size_t totr = 18; // total rows
     const size_t totc = 11; // total columns
     
     td = make_shared<TextDisplay>(totc, totr);
     if (graphicsOn) gd = make_shared<GraphicsDisplay>();
-    
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
         for(size_t j = 0; j < totc; j++) {
@@ -82,6 +80,7 @@ void Grid::init() {
             if (graphicsOn) theGrid[i][j].attach(gd);
         }
     }
+
     starCount = 5;
     updateNext();
     setCurrtoGrid();
@@ -114,6 +113,10 @@ vector<shared_ptr<Level>> &Grid::getLevels() {
 
 int Grid::getLevel() const {
     return currlevel;
+}
+
+void Grid::setCurrL(int l) {
+  currlevel = l;
 }
 
 void Grid::setStartLevel(int l) {
@@ -308,7 +311,7 @@ Block &Grid::currBlock() {
 ostream &operator<<(std::ostream &out, const Grid &g) {
     string s;
     int i;
-    s = "Level:       ";  // score board
+    s = "Level:       "; // score board
     i = g.getLevel();
     out << s << i << endl;
     
@@ -325,8 +328,8 @@ ostream &operator<<(std::ostream &out, const Grid &g) {
     
     out << *(g.td);  // game board
     
-    out << s << endl;  // next block
-    s = "Next:";
+    out << s << endl;
+    s = "Next:";  // next block
     out << s << endl;
     
     string next = g.getNextType();
