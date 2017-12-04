@@ -18,7 +18,7 @@
 using namespace std;
 
 string seq4 = "";
-const unsigned seedNum4 = time(0);
+const long seedNum4 = time(0);
 bool isRand4 = true;
 const int lNum4 = 4;
 
@@ -31,12 +31,10 @@ void Level4::setSeq(std::string sfile) {
 
 int Level4::genRand() {
   int gen;
-  if (isSeed) {
-    srand(seed);
-  }
+  srand(seed);
   gen = rand() % 9;
   if (!(gen == 0 || gen == 1)) seed = gen;
-  else seed = 3 * gen / 2 + 3;
+  else seed = 3 * gen / 2 + 7;
   return gen;
 }
 

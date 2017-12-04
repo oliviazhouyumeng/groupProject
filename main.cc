@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
     cin.exceptions(ios::eofbit|ios::failbit);
     bool textMode = false;
     int startLevel = 0;
-    unsigned seedNum = time(0);
+    long seedNum = time(0);
     bool setseed = false;
     string seqFile = "";
     for (int i = 1; i < argc; ++i){

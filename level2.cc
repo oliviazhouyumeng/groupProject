@@ -16,7 +16,7 @@
 
 using namespace std;
 
-const unsigned seedNum2 = time(0);
+const long seedNum2 = time(0);
 const bool isRand2 = true;
 const int lNum2 = 2;
 
@@ -24,9 +24,7 @@ Level2::Level2(): Level{lNum2, isRand2, seedNum2, false} {}
 
 int Level2::genRand() {
   int gen;
-  if (isSeed) {
-    srand(seed);
-  }
+  srand(seed);
   gen = rand() % 7;
   if (!(gen == 0 || gen == 1)) seed = gen;
   else seed = 3 * gen / 2 + 3;
