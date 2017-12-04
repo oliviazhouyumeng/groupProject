@@ -88,7 +88,7 @@ void Grid::init() {
     updateNext();
 }
 
-void Grid::Graphics(bool b) {
+void Grid::setGraphics(bool b) {
     graphicsOn = b;
 }
 
