@@ -33,7 +33,9 @@ void StarBlock::down(Grid &g){
     }
 }
 void StarBlock::clockwise(Grid &g) {} // remains the same
+
 void StarBlock::counterclockwise(Grid &g) {} // remains the same
+
 void StarBlock::drop(Grid &g){
     for (size_t i = pos.at(0).x; i<18; i++) {
         down(g);
@@ -48,18 +50,8 @@ void StarBlock::drop(Grid &g){
     g.moveDown(1);
 }
 
-
-
 void StarBlock::giveHint(Grid &g){
 }
 
 void StarBlock::cancelHint(Grid &g){
 }
-
-
-
-
-
-
-
-
