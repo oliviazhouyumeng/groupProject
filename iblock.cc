@@ -453,7 +453,8 @@ void IBlock::giveHint(Grid &g){
 
 void IBlock::cancelHint(Grid &g){
     for(auto hp : h_pos){
-        g.changeColour(hp.x, hp.y, Colour::White);
+        if (g.checkActive(hp.x, hp.y)) g.changeColour(hp.x, hp.y, Colour::Red);
+        else g.changeColour(hp.x, hp.y, Colour::White);
     }
     h_pos.clear();
 }
