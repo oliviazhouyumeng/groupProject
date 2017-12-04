@@ -4,14 +4,14 @@
 #include <vector>
 #include "observer.h"
 #include "state.h"
-#include "window.h"
 #include "info.h"
+#include "window.h"
 
 class Cell;
 class Grid;
 
 class GraphicsDisplay: public Observer {
-  const int gridWidth, gridHeight, winWidth, winHeight;
+  int gridWidth, gridHeight, winWidth, winHeight;
   Xwindow xw;
   void ScoreBoard(Grid &g);
   void NextBlock(Grid &g);
