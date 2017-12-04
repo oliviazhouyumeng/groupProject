@@ -188,6 +188,7 @@ void IBlock::drop(Grid &g){
     else if (type == "B" || type == "D") g.moveDown(4);
 }
 
+
 void IBlock::giveHint(Grid &g){
     size_t c1;
     size_t c2;
@@ -240,6 +241,7 @@ void IBlock::giveHint(Grid &g){
                 }
                 return;
             }
+            
             
             else if(g.getCell(i+1, c1).getInfo().colour != Colour::White && g.getCell(i+1, c2).getInfo().colour != Colour::White
                     && g.getCell(i+1, c3).getInfo().colour != Colour::White && g.getCell(i+1, c4).getInfo().colour != Colour::White){
@@ -308,7 +310,7 @@ void IBlock::giveHint(Grid &g){
                 }
                 return;
             }
-            else if(g.getCell(i-1, c1).getInfo().colour == Colour::White && g.getCell(i-1, c2).getInfo().colour == Colour::White
+            else if(c2 < 9 && g.getCell(i-1, c1).getInfo().colour == Colour::White && g.getCell(i-1, c2).getInfo().colour == Colour::White
                     &&g.getCell(i-1, c3).getInfo().colour == Colour::White && g.getCell(i-1, c4).getInfo().colour == Colour::White){
                 Posn first{i-1, c1};
                 Posn second{i-1, c2};
@@ -357,7 +359,6 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
-        
         else if(i != pos[3].x && c2 < 9 && g.getCell(i, c3).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c3).getInfo().colour == Colour::White && g.getCell(i-2, c3).getInfo().colour == Colour::White
                && g.getCell(i-3, c3).getInfo().colour == Colour::White && g.getCell(i-4, c3).getInfo().colour == Colour::White){
@@ -390,7 +391,6 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
-        
         else if(i != pos[3].x && c2 < 9 && g.getCell(i, c4).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c4).getInfo().colour == Colour::White && g.getCell(i-2, c4).getInfo().colour == Colour::White
                && g.getCell(i-3, c4).getInfo().colour == Colour::White && g.getCell(i-4, c4).getInfo().colour == Colour::White){
@@ -424,7 +424,6 @@ void IBlock::giveHint(Grid &g){
             }
         }
     }
-    
     if(c2 >= 9){
         Posn first{14, 10};
         Posn second{15, 10};
