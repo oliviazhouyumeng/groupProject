@@ -13,7 +13,6 @@ class GraphicsDisplay;
 class Block;
 class Level;
 class Observer;
-class InvalidMove{};
 
 class Grid {
     std::vector<std::vector<Cell>> theGrid; //the actual grid
