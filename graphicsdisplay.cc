@@ -15,7 +15,7 @@ GraphicsDisplay::GraphicsDisplay(int gridWidth, int gridHeight, int winWidth, in
   xw.drawString(30, 50, "Level:", Xwindow::Cyan);
   xw.drawString(30, 80, "Score:", Xwindow::Cyan);
   xw.drawString(30, 110, "Hi Score:", Xwindow::Cyan);
-  xw.drawBigString(20, 165, "------------", Xwindow::Black);
+  xw.drawString(20, 165, "------------", Xwindow::Black);
   xw.drawString(30, 205, "Next:", Xwindow::Cyan);
   xw.drawString(140, 50, "0", Xwindow::Cyan);
   xw.drawString(140, 80, "0", Xwindow::Cyan);
@@ -90,7 +90,7 @@ void GraphicsDisplay::RedrawLeft(Grid &g) {
   xw.drawString(30, 50, "Level:", Xwindow::Cyan);
   xw.drawString(30, 80, "Score:", Xwindow::Cyan);
   xw.drawString(30, 110, "Hi Score:", Xwindow::Cyan);
-  xw.drawBigString(20, 165, "------------", Xwindow::Black);
+  xw.drawString(20, 165, "------------", Xwindow::Black);
   xw.drawString(30, 205, "Next:", Xwindow::Cyan);
   ScoreBoard(g);
   NextBlock(g);
