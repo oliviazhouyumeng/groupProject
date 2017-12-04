@@ -368,7 +368,7 @@ void IBlock::giveHint(Grid &g){
             }
         }
     }
-    if(c2 > 9){
+    if(c2 >= 9){
         Posn first{14, 10};
         Posn second{15, 10};
         Posn third{16,10};
