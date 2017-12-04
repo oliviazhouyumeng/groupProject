@@ -7,6 +7,7 @@
 #include "state.h"
 #include "info.h"
 #include "subject.h"
+
 class Cell;
 
 class TextDisplay: public Observer {
