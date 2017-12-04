@@ -97,7 +97,7 @@ void GraphicsDisplay::RedrawLeft(Grid &g) {
 }
 
 void GraphicsDisplay::notify(Subject<Info, State> &whoNotified, Grid &g) {
-  if (g.getRedraw()) {
+  if (g.getRedraw()) { // redraw the left board when relevant info updated
     RedrawLeft(g);
     g.setRedraw(false);
   }
