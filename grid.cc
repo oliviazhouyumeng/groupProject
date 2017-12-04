@@ -126,18 +126,26 @@ void Grid::setStartLevel(int l) {
 void Grid::clearRow(size_t r) {
     redraw = true;
     unsigned btemp = liveBlocks.size();
-    for (int i = btemp-1; i >= 0; i--) {
+    int i = btemp-1;
+    while (i >= 0) {
         unsigned ptemp = liveBlocks[i]->getPos().size();
-        for (int j = ptemp-1; j >= 0; j--) {
+        int j = ptemp-1;
+        while (j >= 0) {
             if (liveBlocks[i]->getPos()[j].x == r) {
                 changeColour(r, liveBlocks[i]->getPos()[j].y, Colour::White);
                 liveBlocks[i]->getPos().erase(liveBlocks[i]->getPos().begin()+j);
             }
+            j--;
         }
+        i--;
+    }
+    i = btemp-1;
+    while (i >= 0) {
         if (liveBlocks[i]->getPos().size() == 0) {
             updateScore((liveBlocks[i]->getBlockLevel()+1)*(liveBlocks[i]->getBlockLevel()+1));
             liveBlocks.erase(liveBlocks.begin()+i);
         }
+        i--;
     }
     starCount = 5;
 }
@@ -191,7 +199,7 @@ bool Grid::isEmpty(size_t r) {
 }
 
 void Grid::setCurrtoGrid() {
-    if (starCount == 0) {
+    if (starCount == 0 && currlevel == 4) {
         curr = make_shared<StarBlock>(*this, currlevel);
         liveBlocks.emplace_back(curr);
         starCount = 5;
