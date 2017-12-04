@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 #include <ctime>
 #include "window.h"
 #include "grid.h"
@@ -79,6 +80,7 @@ void Game(Grid &g, string cmd) {
     }
     else if (cmd == "random" || cmd.substr(0, 2) == "ra") {
         g.currBlock().cancelHint(g);
+        srand(time(NULL));
         int curlev = g.getLevel();
         if (curlev >= 3) {
             g.setNoRand(false);
@@ -162,13 +164,17 @@ int main(int argc, char *argv[]) {
     g.setCurrL(startLevel);
     g.setNoRand(false);
 
+    srand(time(NULL));
+
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
 
     for (auto &l : g.getLevels()) {
         if (setseed) {
+            srand(seedNum);
             l->setSeed(seedNum);
             l->setIsSeed(true);
         } else {
+            srand(time(NULL));
             l->setSeed(time(NULL));
             l->setIsSeed(false);
         }
