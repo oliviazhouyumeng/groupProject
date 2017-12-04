@@ -10,6 +10,7 @@ class Level {
   bool isRandom;
   long seed;
   bool isSeed;
+ 
  public:
   Level(int levelNum, bool isRandom, long seed, bool isSeed);
   int getLevel() const;
