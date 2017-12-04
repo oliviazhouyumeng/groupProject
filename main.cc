@@ -158,16 +158,22 @@ int main(int argc, char *argv[]) {
     g.setGraphics(true);
     string cmd;
     g.setStartLevel(startLevel);
+    g.setCurrL(startLevel);
+    g.setNoRand(false);
+
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
+
     if (setseed) {
         for (auto l : g.getLevels()) {
             l->setSeed(seedNum);
             l->setIsSeed(true);
         }
     }
+
     if (seqFile != "") {
         g.getLevels()[0]->setSeq(seqFile);
     }
+
     g.init();
     cout << g << endl;
     
