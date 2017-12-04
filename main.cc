@@ -67,7 +67,7 @@ void Game(Grid &g, string cmd) {
         cout << g << endl;
     }
     else if (cmd == "norandom" || cmd.substr(0, 1) == "n") {
-        g.currBlock().cancelHint(g);//////not sure
+        g.currBlock().cancelHint(g);
         string seq;
         cin >> seq;
         int curlev = g.getLevel();
@@ -78,11 +78,12 @@ void Game(Grid &g, string cmd) {
         }
     }
     else if (cmd == "random" || cmd.substr(0, 2) == "ra") {
-        g.currBlock().cancelHint(g);///////not sure
+        g.currBlock().cancelHint(g);
         int curlev = g.getLevel();
         if (curlev >= 3) {
             g.setNoRand(false);
             g.getLevels()[curlev]->setRandom(true);
+            g.getLevels()[curlev]->setSeed(time(NULL));
         }
     }
     else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") {
@@ -163,10 +164,13 @@ int main(int argc, char *argv[]) {
 
     if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
 
-    if (setseed) {
-        for (auto l : g.getLevels()) {
+    for (auto &l : g.getLevels()) {
+        if (setseed) {
             l->setSeed(seedNum);
             l->setIsSeed(true);
+        } else {
+            l->setSeed(time(NULL));
+            l->setIsSeed(false);
         }
     }
 
