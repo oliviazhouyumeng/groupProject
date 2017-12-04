@@ -51,17 +51,13 @@ hi_score{hi_score}, curr_score{curr_score} {
 
 Grid::~Grid() {}
 
-void Grid::setGraphics(shared_ptr<GraphicsDisplay> GD) {
-    gd = GD;
-}
-
 void Grid::endGame() const {
     throw EndException{};
 }
 
 void Grid::init() {
-    theGrid.clear();
-    liveBlocks.clear();
+    if (theGrid.size() != 0) theGrid.clear();
+    if (liveBlocks.size() != 0) liveBlocks.clear();
     
     curr_score = 0;
     currlevel = startLevel;
@@ -70,6 +66,7 @@ void Grid::init() {
     const size_t totc = 11; // total columns
     
     td = make_shared<TextDisplay>(totc, totr);
+    if (graphicsOn) gd = make_shared<GraphicsDisplay>();
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -231,10 +228,6 @@ void Grid::updateNext() {
     nextlevel = currlevel;
     getCell(0, 0).notifyObservers(*this);
 }
-
-void Grid::setHint() {}
-
-void Grid::clearHint() {}
 
 string Grid::getNextType() const {
     return next;
