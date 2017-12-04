@@ -45,7 +45,7 @@ void StarBlock::drop(Grid &g){
     for(auto p : pos){
         if(g.isFull(p.x)) g.clearRow(p.x);
     }
-    g.moveDown();
+    g.moveDown(1);
 }
 
 
