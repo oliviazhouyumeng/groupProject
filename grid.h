@@ -8,6 +8,7 @@
 #include <sstream>
 
 struct State;
+class Xwindow;
 class TextDisplay;
 class GraphicsDisplay;
 class Block;
@@ -38,7 +39,6 @@ class Grid {
 public:
     Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true, bool redraw = false, bool isNoRand = false);
     ~Grid();
-    void setGraphics(std::shared_ptr<GraphicsDisplay> GD);
     void endGame() const;  // end the game
     void init(); // Sets up an n x n grid.  Clears old grid, if necessary.
     void Graphics(bool b);
