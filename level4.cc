@@ -19,29 +19,19 @@ using namespace std;
 
 string seq4 = "";
 const long seedNum4 = time(0);
-bool isRand4 = true;
-const int lNum4 = 4;
+bool isRand3 = true;
+const int lNum4 = 3;
 
 Level4::Level4(): 
   Level{lNum4, isRand4, seedNum4, false}, seqFile{seq4} {}
 
-void Level4::setSeq(std::string sfile) {
+void Level4::setSeq(string sfile) {
   seqFile = sfile;
 }
 
-int Level4::genRand() {
-  int gen;
-  srand(seed);
-  gen = rand() % 9;
-  if (!(gen == 0 || gen == 1)) seed = gen;
-  else seed = 3 * gen / 2 + 7;
-  return gen;
-}
-
 string Level4::createBlock() {
-  string blocks;
   if (isRandom) {
-    int gen = genRand();
+    int gen = rand() % 7;
     if (gen == 0) return "I"; 
     else if (gen == 1) return "J";
     else if (gen == 2) return "L";
@@ -52,6 +42,7 @@ string Level4::createBlock() {
   } else {
     ifstream f{seqFile};
     ostringstream oss;
+    string blocks;
     while (f >> blocks) {
       oss << blocks << " ";
     }
