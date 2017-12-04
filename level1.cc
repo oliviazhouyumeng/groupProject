@@ -16,17 +16,19 @@
 
 using namespace std;
 
-const unsigned seedNum1 = time(0);
 const bool isRand1 = true;
 const int lNum1 = 1;
 
-Level1::Level1(): Level{lNum1, isRand1, seedNum1, false} {}
+Level1::Level1(): Level{lNum1, isRand1, time(0), false} {}
 
 int Level1::genRand() {
 	int gen;
-	srand(seed);
+  if (isSeed) {
+    srand(seed);
+  }
 	gen = rand() % 12;
-	if (isSeed) seed = gen;
+  if (!(gen == 0 || gen == 1)) seed = gen;
+  else seed = 3 * gen / 2 + 3;
 	return gen;
 }
 

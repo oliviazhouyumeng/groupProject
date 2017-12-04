@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <ctime>
 #include <string>
 #include "level.h"
 #include "level2.h"
@@ -22,11 +23,14 @@ const int lNum2 = 2;
 Level2::Level2(): Level{lNum2, isRand2, seedNum2, false} {}
 
 int Level2::genRand() {
-	int gen;
-	srand(seed);
-	gen = rand() % 7;
-	if (isSeed) seed = gen;
-	return gen;
+  int gen;
+  if (isSeed) {
+    srand(seed);
+  }
+  gen = rand() % 7;
+  if (!(gen == 0 || gen == 1)) seed = gen;
+  else seed = 3 * gen / 2 + 3;
+  return gen;
 }
 
 string Level2::createBlock() {

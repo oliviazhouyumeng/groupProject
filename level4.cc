@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <ctime>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -30,9 +31,12 @@ void Level4::setSeq(std::string sfile) {
 
 int Level4::genRand() {
   int gen;
-  srand(seed);
+  if (isSeed) {
+    srand(seed);
+  }
   gen = rand() % 9;
-  if (isSeed) seed = gen;
+  if (!(gen == 0 || gen == 1)) seed = gen;
+  else seed = 3 * gen / 2 + 3;
   return gen;
 }
 
