@@ -87,6 +87,80 @@ void OBlock::drop(Grid &g) {
     g.moveDown(1);
 }
 
-void OBlock::giveHint(Grid &g) {}
+void OBlock::giveHint(Grid &g) {
+    size_t lc = pos[0].y;
+    size_t rc = pos[3].y;
+    size_t bot = pos[1].x;
+    for(size_t i = bot; i < 18; i++){
+        if(bot == 17){
+            Posn first = pos[0];
+            Posn second = pos[1];
+            Posn third = pos[2];
+            Posn forth = pos[3];
+            h_pos.push_back(first);
+            h_pos.push_back(second);
+            h_pos.push_back(third);
+            h_pos.push_back(forth);
+            for(auto hp : h_pos){
+                g.changeColour(hp.x, hp.y, Colour::Black);
+            }
+            return;
+        }
+        else if(g.getCell(i, lc).getInfo().colour != Colour::White || g.getCell(i, rc).getInfo().colour != Colour::White){
+            if(g.getCell(i-1, lc).getInfo().colour == Colour::White && g.getCell(i-1, rc).getInfo().colour == Colour::White
+               && g.getCell(i-2, lc).getInfo().colour == Colour::White && g.getCell(i-2, rc).getInfo().colour == Colour::White){
+                Posn first{i-1, lc};
+                Posn second{i-1, rc};
+                Posn third{i-2, lc};
+                Posn forth{i-2, rc};
+                h_pos.push_back(first);
+                h_pos.push_back(second);
+                h_pos.push_back(third);
+                h_pos.push_back(forth);
+                for(auto hp : h_pos){
+                    g.changeColour(hp.x, hp.y, Colour::Black);
+                }
+                return;
+            }
+        }
+        else if(g.getCell(i, lc).getInfo().colour == Colour::White && g.getCell(i, rc).getInfo().colour == Colour::White){
+            if(i == 17 && g.getCell(i-1, lc).getInfo().colour == Colour::White && g.getCell(i-1, rc).getInfo().colour == Colour::White){
+                Posn first{i, lc};
+                Posn second{i, rc};
+                Posn third{i-1, lc};
+                Posn forth{i-1, rc};
+                h_pos.push_back(first);
+                h_pos.push_back(second);
+                h_pos.push_back(third);
+                h_pos.push_back(forth);
+                for(auto hp : h_pos){
+                    g.changeColour(hp.x, hp.y, Colour::Black);
+                }
+                return;
+            }
+            else if(g.getCell(i+1, lc).getInfo().colour != Colour::White && g.getCell(i+1, rc).getInfo().colour != Colour::White
+                    && g.getCell(i-1, lc).getInfo().colour == Colour::White && g.getCell(i-1, rc).getInfo().colour == Colour::White){
+                Posn first{i, lc};
+                Posn second{i, rc};
+                Posn third{i-1, lc};
+                Posn forth{i-1, rc};
+                h_pos.push_back(first);
+                h_pos.push_back(second);
+                h_pos.push_back(third);
+                h_pos.push_back(forth);
+                for(auto hp : h_pos){
+                    g.changeColour(hp.x, hp.y, Colour::Black);
+                }
+                return;
+            }
+        }
+    }
+}
 
-void OBlock::cancelHint(Grid &g) {};
+void OBlock::cancelHint(Grid &g) {
+    for(auto hp : h_pos){
+        if (g.checkActive(hp.x, hp.y)) g.changeColour(hp.x, hp.y, Colour::Yellow);
+        else g.changeColour(hp.x, hp.y, Colour::White);
+    }
+    h_pos.clear();
+}
