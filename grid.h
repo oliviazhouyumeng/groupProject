@@ -34,7 +34,6 @@ class Grid {
     bool isNoRand;
     std::shared_ptr<TextDisplay> td; // the text display
     std::shared_ptr<GraphicsDisplay> gd; // the graphics diaplay
-    // Add private members, if necessary.
     
 public:
     Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true, bool redraw = false, bool isNoRand = false);
@@ -51,7 +50,7 @@ public:
     void clearRow(size_t r);
     void moveDown(int br); // clear empty lines
     bool isFull(size_t r);
-    bool isEmpty(size_t r); // return true if rth row is empty
+    bool isEmpty(size_t r); // return true if the rth row is empty
     void setCurrtoGrid();
     void updateNext();
     std::string getNextType() const;
