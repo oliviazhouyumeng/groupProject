@@ -2,6 +2,7 @@
 #define STARBLOCK_H
 #include "block.h"
 #include "grid.h"
+
 class StarBlock : public Block {
 public:
     StarBlock(Grid &g, int level);
