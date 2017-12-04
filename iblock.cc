@@ -234,7 +234,8 @@ void IBlock::giveHint(Grid &g){
             }
             return;
         }
-        if(c2 < 9 && g.getCell(i, c1).getInfo().colour == Colour::White && g.getCell(i, c2).getInfo().colour == Colour::White
+    
+        else if(c2 < 9 && g.getCell(i, c1).getInfo().colour == Colour::White && g.getCell(i, c2).getInfo().colour == Colour::White
            && g.getCell(i, c3).getInfo().colour == Colour::White && g.getCell(i, c4).getInfo().colour == Colour::White){
             if(i==17){
                 Posn first{i, c1};
@@ -250,6 +251,8 @@ void IBlock::giveHint(Grid &g){
                 }
                 return;
             }
+        
+    
             else if(g.getCell(i+1, c1).getInfo().colour != Colour::White && g.getCell(i+1, c2).getInfo().colour != Colour::White
                     && g.getCell(i+1, c3).getInfo().colour != Colour::White && g.getCell(i+1, c4).getInfo().colour != Colour::White){
                 Posn first{i, c1};
@@ -266,6 +269,7 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
+    
         else if((type == "B" || type == "D") && c1 >=3 && g.getCell(i, c1).getInfo().colour == Colour::White &&
            g.getCell(i, c1-1).getInfo().colour == Colour::White && g.getCell(i, c1-2).getInfo().colour == Colour::White
            && g.getCell(i, c1-3).getInfo().colour == Colour::White){
@@ -299,7 +303,8 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
-        else if(g.getCell(i, c1).getInfo().colour != Colour::White){
+    
+        else if(bot != pos[3].x && g.getCell(i, c1).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c1).getInfo().colour == Colour::White && g.getCell(i-2, c1).getInfo().colour == Colour::White
                && g.getCell(i-3, c1).getInfo().colour == Colour::White && g.getCell(i-4, c1).getInfo().colour == Colour::White){
                 Posn first{i-1, c1};
@@ -316,7 +321,8 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
-        else if(c2 < 9 && g.getCell(i, c2).getInfo().colour != Colour::White){
+    
+        else if(bot != pos[3].x && c2 < 9 && g.getCell(i, c2).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c2).getInfo().colour == Colour::White && g.getCell(i-2, c2).getInfo().colour == Colour::White
                && g.getCell(i-3, c2).getInfo().colour == Colour::White && g.getCell(i-4, c2).getInfo().colour == Colour::White){
                 Posn first{i-1, c2};
@@ -333,7 +339,7 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
-        else if(c2 < 9 && g.getCell(i, c3).getInfo().colour != Colour::White){
+        else if(bot != pos[3].x && c2 < 9 && g.getCell(i, c3).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c3).getInfo().colour == Colour::White && g.getCell(i-2, c3).getInfo().colour == Colour::White
                && g.getCell(i-3, c3).getInfo().colour == Colour::White && g.getCell(i-4, c3).getInfo().colour == Colour::White){
                 Posn first{i-1, c3};
@@ -350,7 +356,7 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
-        else if(c2 < 9 && g.getCell(i, c4).getInfo().colour != Colour::White){
+        else if(bot != pos[3].x && c2 < 9 && g.getCell(i, c4).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c4).getInfo().colour == Colour::White && g.getCell(i-2, c4).getInfo().colour == Colour::White
                && g.getCell(i-3, c4).getInfo().colour == Colour::White && g.getCell(i-4, c4).getInfo().colour == Colour::White){
                 Posn first{i-1, c4};
