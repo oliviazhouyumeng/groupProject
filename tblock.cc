@@ -424,6 +424,20 @@ void TBlock::giveHint(Grid &g){
                 return;
             }
         }
+    if(rc == 11){
+        Posn first{15, 10};
+        Posn second{16, 10};
+        Posn third{17,10};
+        Posn forth{16, 9};
+        h_pos.push_back(first);
+        h_pos.push_back(second);
+        h_pos.push_back(third);
+        h_pos.push_back(forth);
+        for(auto hp : h_pos){
+            g.changeColour(hp.x, hp.y, Colour::Black);
+        }
+        return;
+    }
 }
 
 
