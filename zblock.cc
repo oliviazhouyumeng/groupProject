@@ -138,13 +138,8 @@ void ZBlock::drop(Grid &g) {
     else if (type == "B" || type == "D") g.moveDown(3);
 }
 
-
-
 void ZBlock::giveHint(Grid &g){
 }
 
 void ZBlock::cancelHint(Grid &g){
 }
-
-
-
