@@ -278,7 +278,6 @@ void TBlock::drop(Grid &g){
     else if (type == "B" || type == "D") g.moveDown(3);
 }
 
-
 void TBlock::giveHint(Grid &g){
         size_t lc;
         size_t mc;
@@ -309,7 +308,20 @@ void TBlock::giveHint(Grid &g){
             bot = pos[0].x;
         }
         for(size_t i = bot; i < 18; i++){
-            
+            if(bot==17){
+                Posn first = pos[0];
+                Posn second = pos[1];
+                Posn third = pos[2];
+                Posn forth = pos[3];
+                h_pos.push_back(first);
+                h_pos.push_back(second);
+                h_pos.push_back(third);
+                h_pos.push_back(forth);
+                for(auto hp : h_pos){
+                    g.changeColour(hp.x, hp.y, Colour::Black);
+                }
+                return;
+            }
             if(rc!=11 && g.getCell(i, lc).getInfo().colour != Colour::White && g.getCell(i, mc).getInfo().colour == Colour::White
                && g.getCell(i, rc).getInfo().colour != Colour::White){
                 if(g.getCell(i-1, lc).getInfo().colour == Colour::White && g.getCell(i-1, mc).getInfo().colour == Colour::White
