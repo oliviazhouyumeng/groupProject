@@ -10,41 +10,35 @@
 #include "level.h"
 #include <sstream>
 #include "endexception.h"
+#include "graphicsdisplay.h"
 using namespace std;
 
 void Game(Grid &g, string cmd) {
     if (cmd == "left" || cmd == "lef") {
-        g.currBlock().cancelHint(g);
         g.currBlock().left(g);
         cout << g << endl;
     }
     else if (cmd == "right" || cmd == "ri" || cmd == "rig" || cmd == "righ") {
-        g.currBlock().cancelHint(g);
         g.currBlock().right(g);
         cout << g << endl;
     }
     else if (cmd == "down" || cmd == "do" || cmd == "dow") {
-        g.currBlock().cancelHint(g);
         g.currBlock().down(g);
         cout << g << endl;
     }
     else if (cmd == "clockwise" || cmd == "cw") {
-        g.currBlock().cancelHint(g);
         g.currBlock().clockwise(g);
         cout << g << endl;
     }
     else if (cmd == "counterclockwise" || cmd == "ccw") {
-        g.currBlock().cancelHint(g);
         g.currBlock().counterclockwise(g);
         cout << g << endl;
     }
     else if (cmd == "skip" || cmd == "s") {
-        g.currBlock().cancelHint(g);
         g.updateNext();
         cout << g << endl;
     }
     else if (cmd == "drop" || cmd == "dr") {
-        g.currBlock().cancelHint(g);
         g.currBlock().drop(g);
         try {
             g.setCurrtoGrid();
@@ -56,17 +50,14 @@ void Game(Grid &g, string cmd) {
         }
     }
     else if (cmd == "levelup" || cmd == "lu") {
-        g.currBlock().cancelHint(g);
         g.levelUp();
         cout << g << endl;
     }
     else if (cmd == "leveldown" || cmd == "ld") {
-        g.currBlock().cancelHint(g);
         g.levelDown();
         cout << g << endl;
     }
     else if (cmd == "norandom") {
-        g.currBlock().cancelHint(g);//////not sure
         string seq;
         cin >> seq;
         int curlev = g.getLevel();
@@ -77,7 +68,6 @@ void Game(Grid &g, string cmd) {
         }
     }
     else if (cmd == "random") {
-        g.currBlock().cancelHint(g);///////not sure
         int curlev = g.getLevel();
         if (curlev >= 3) {
             g.setNoRand(false);
@@ -85,15 +75,10 @@ void Game(Grid &g, string cmd) {
         }
     }
     else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") {
-        g.currBlock().cancelHint(g);
         g.changeCurr(cmd);
         cout << g << endl;
     }
-    else if (cmd == "hint") {
-        g.currBlock().cancelHint(g);
-        g.currBlock().giveHint(g);
-        cout << g << endl;
-    }
+    //else if (cmd == "hint")
 }
 
 void game(Grid &g, string cmd) {
@@ -113,7 +98,7 @@ int main(int argc, char *argv[]) {
     cin.exceptions(ios::eofbit|ios::failbit);
     bool textMode = false;
     int startLevel = 0;
-    unsigned seedNum = time(0);
+    unsigned seedNum = time(NULL);
     bool setseed = false;
     string seqFile = "";
     for (int i = 1; i < argc; ++i){
@@ -156,9 +141,13 @@ int main(int argc, char *argv[]) {
     Grid g;
     string cmd;
     g.setStartLevel(startLevel);
-    if (textMode) g.setGraphics(false); // init a grid w/ graphics disabled
+    if (textMode) g.Graphics(false); // init a grid w/ graphics disabled
+    if (g.isGraphics()) {
+        shared_ptr<GraphicsDisplay> GD = make_shared<GraphicsDisplay>();
+        g.setGraphics(GD);
+    }
     if (setseed) {
-        for (auto l : g.getLevels()) {
+        for (auto &l : g.getLevels()) {
             l->setSeed(seedNum);
             l->setIsSeed(true);
         }
@@ -182,10 +171,15 @@ int main(int argc, char *argv[]) {
                 }
             }
             else if (cmd == "restart") {
+                g.setGraphics(nullptr);
+                if (g.isGraphics()) {
+                    shared_ptr<GraphicsDisplay> GD = make_shared<GraphicsDisplay>();
+                    g.setGraphics(GD);
+                }
                 g.init();
                 cout << g << endl;
-            }
-        }
+	    }
+	}
     }
     catch (ios::failure &) {}  // Any I/O failure quits
 }
