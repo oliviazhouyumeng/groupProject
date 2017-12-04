@@ -107,7 +107,7 @@ void IBlock::clockwise(Grid &g){
         }
     }
     else if(type == "B" || type == "D"){
-        if(pos[0].y == 8) return;
+        if(pos[0].y >= 8) return;
         if(g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y+2) &&
            g.checkWhite(pos[3].x, pos[3].y+3)){
             for(auto p : pos){
@@ -149,7 +149,7 @@ void IBlock::counterclockwise(Grid &g){
         }
     }
     else if(type == "B" || type == "D"){
-        if(pos[0].y == 8) return;
+        if(pos[0].y >= 8) return;
         if(g.checkWhite(pos[3].x, pos[3].y+1) && g.checkWhite(pos[3].x, pos[3].y+2) &&
            g.checkWhite(pos[3].x, pos[3].y+3)){
             for(auto p : pos){
