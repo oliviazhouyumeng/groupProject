@@ -322,7 +322,7 @@ void TBlock::giveHint(Grid &g){
                 }
                 return;
             }
-            if(rc!=11 && g.getCell(i, lc).getInfo().colour != Colour::White && g.getCell(i, mc).getInfo().colour == Colour::White
+            else if(rc!=11 && g.getCell(i, lc).getInfo().colour != Colour::White && g.getCell(i, mc).getInfo().colour == Colour::White
                && g.getCell(i, rc).getInfo().colour != Colour::White){
                 if(g.getCell(i-1, lc).getInfo().colour == Colour::White && g.getCell(i-1, mc).getInfo().colour == Colour::White
                    && g.getCell(i-1, rc).getInfo().colour == Colour::White){
