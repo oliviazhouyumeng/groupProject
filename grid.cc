@@ -308,7 +308,7 @@ Block &Grid::currBlock() {
 ostream &operator<<(std::ostream &out, const Grid &g) {
     string s;
     int i;
-    s = "Level:       ";
+    s = "Level:       ";  // score board
     i = g.getLevel();
     out << s << i << endl;
     
@@ -323,9 +323,9 @@ ostream &operator<<(std::ostream &out, const Grid &g) {
     s = "------------";
     out << s << endl;
     
-    out << *(g.td);
+    out << *(g.td);  // game board
     
-    out << s << endl;
+    out << s << endl;  // next block
     s = "Next:";
     out << s << endl;
     
