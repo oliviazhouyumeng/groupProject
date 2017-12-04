@@ -263,6 +263,10 @@ void Grid::changeColour(size_t row, size_t col, Colour colour) {
     getCell(row, col).changeColour(colour, *this);
 }
 
+bool Grid::checkActive(size_t row, size_t col) {
+    return getCell(row, col).getState().stype == StateType::AC;
+}
+
 bool Grid::checkWhite(size_t row, size_t col) {
     return getCell(row, col).getInfo().colour == Colour::White;
 }
