@@ -7,7 +7,6 @@ const string startType = "A";
 const bool is_Heavy = false;
 
 IBlock::IBlock(Grid &g, int level):Block{level, startType}{
-    
     Posn first = Posn{3,0};
     Posn second = Posn{3,1};
     Posn third = Posn{3, 2};
@@ -32,10 +31,7 @@ IBlock::IBlock(Grid &g, int level):Block{level, startType}{
     for(auto p : pos){
         g.setColour(p.x, p.y, Colour::Red);
     }
-    
 }
-
-
 
 void IBlock::left(Grid &g){
     for (auto p : pos) {
@@ -54,7 +50,6 @@ void IBlock::left(Grid &g){
     }
     if (g.getLevel() > 2) down(g);
 }
-
 
 void IBlock::right(Grid &g){
     for(auto p : pos) {
@@ -90,7 +85,6 @@ void IBlock::down(Grid &g){
         g.setColour(p.x, p.y, Colour::Red);
     }
 }
-
 
 void IBlock::clockwise(Grid &g){
     if(type == "A" || type == "C"){
@@ -134,7 +128,6 @@ void IBlock::clockwise(Grid &g){
     }
 }
 
-
 void IBlock::counterclockwise(Grid &g){
     if(type == "A" || type == "C"){
         if(g.checkWhite(pos[0].x-1, pos[0].y) && g.checkWhite(pos[0].x-2, pos[0].y) &&
@@ -177,7 +170,6 @@ void IBlock::counterclockwise(Grid &g){
     }
 }
 
-
 void IBlock::drop(Grid &g){
     size_t lowest = pos[3].x;
     for(size_t i = lowest; i < 18; i++){
@@ -195,8 +187,6 @@ void IBlock::drop(Grid &g){
     if (type == "A" || type == "C") g.moveDown(1);
     else if (type == "B" || type == "D") g.moveDown(4);
 }
-
-
 
 void IBlock::giveHint(Grid &g){
     size_t c1;
@@ -250,7 +240,6 @@ void IBlock::giveHint(Grid &g){
                 }
                 return;
             }
-            
             
             else if(g.getCell(i+1, c1).getInfo().colour != Colour::White && g.getCell(i+1, c2).getInfo().colour != Colour::White
                     && g.getCell(i+1, c3).getInfo().colour != Colour::White && g.getCell(i+1, c4).getInfo().colour != Colour::White){
@@ -368,6 +357,7 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
+        
         else if(i != pos[3].x && c2 < 9 && g.getCell(i, c3).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c3).getInfo().colour == Colour::White && g.getCell(i-2, c3).getInfo().colour == Colour::White
                && g.getCell(i-3, c3).getInfo().colour == Colour::White && g.getCell(i-4, c3).getInfo().colour == Colour::White){
@@ -400,6 +390,7 @@ void IBlock::giveHint(Grid &g){
                 return;
             }
         }
+        
         else if(i != pos[3].x && c2 < 9 && g.getCell(i, c4).getInfo().colour != Colour::White){
             if(g.getCell(i-1, c4).getInfo().colour == Colour::White && g.getCell(i-2, c4).getInfo().colour == Colour::White
                && g.getCell(i-3, c4).getInfo().colour == Colour::White && g.getCell(i-4, c4).getInfo().colour == Colour::White){
@@ -433,6 +424,7 @@ void IBlock::giveHint(Grid &g){
             }
         }
     }
+    
     if(c2 >= 9){
         Posn first{14, 10};
         Posn second{15, 10};
@@ -450,7 +442,6 @@ void IBlock::giveHint(Grid &g){
     
 }
 
-
 void IBlock::cancelHint(Grid &g){
     for(auto hp : h_pos){
         if (g.checkActive(hp.x, hp.y)) g.changeColour(hp.x, hp.y, Colour::Red);
@@ -458,5 +449,3 @@ void IBlock::cancelHint(Grid &g){
     }
     h_pos.clear();
 }
-
-
