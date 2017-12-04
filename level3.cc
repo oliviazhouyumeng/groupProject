@@ -29,18 +29,9 @@ void Level3::setSeq(string sfile) {
   seqFile = sfile;
 }
 
-int Level3::genRand() {
-  int gen;
-  srand(seed);
-  gen = rand() % 9;
-  if (!(gen == 0 || gen == 1)) seed = gen;
-  else seed = 3 * gen / 2 + 3;
-  return gen;
-}
-
 string Level3::createBlock() {
   if (isRandom) {
-    int gen = genRand();
+    int gen = rand() % 7;
     if (gen == 0) return "I"; 
     else if (gen == 1) return "J";
     else if (gen == 2) return "L";
