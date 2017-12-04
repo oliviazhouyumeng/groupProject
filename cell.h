@@ -10,7 +10,6 @@ class Observer;
 class Cell : public Subject<Info, State> {
     const size_t r, c;
     Colour colour;
-    // Add other private members if necessary
     
 public:
     
