@@ -13,13 +13,14 @@
 using namespace std;
 
 Level::Level(int levelNum, bool isRandom, long seed, bool isSeed): 
-  levelNum{levelNum}, isRandom{isRandom}, seed{seed}, isSeed{isSeed} {}
+    levelNum{levelNum}, isRandom{isRandom}, seed{seed}, isSeed{isSeed} {}
 
 int Level::getLevel() const {
-	return levelNum;
+    return levelNum;
 }
+
 bool Level::getRandom() const{
-	return isRandom;
+    return isRandom;
 }
 
 void Level::setRandom(bool isR) {
