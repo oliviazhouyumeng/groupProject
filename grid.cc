@@ -149,10 +149,18 @@ void Grid::moveDown(int br) {
     for (size_t currRow= 3; currRow < 18; currRow++) {
         if (!isEmpty(currRow) && firstCellRow == 18) firstCellRow = currRow;
         if (isEmpty(currRow) && firstCellRow != 18) {
-            for (auto b : liveBlocks) {
-                for (auto p : b->getPos()) {
-                    if (p.x < currRow) {p.x++;}
+            unsigned btemp = liveBlocks.size();
+            int i = btemp-1;
+            while (i >= 0) {
+                unsigned ptemp = liveBlocks[i]->getPos().size();
+                int j = ptemp-1;
+                while (j >= 0) {
+                    if (liveBlocks[i]->getPos()[j].x < currRow) {
+                        liveBlocks[i]->getPos()[j].x++;
+                    }
+                    --j;
                 }
+                --i;
             }
             for (size_t rBack = currRow; rBack >= firstCellRow; rBack--) {
                 for (size_t lBack = 0; lBack < 11; lBack++) {
