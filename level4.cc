@@ -19,7 +19,7 @@ using namespace std;
 
 string seq4 = "";
 const long seedNum4 = time(0);
-bool isRand3 = true;
+bool isRand4 = true;
 const int lNum4 = 3;
 
 Level4::Level4(): 
