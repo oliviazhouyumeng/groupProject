@@ -243,6 +243,11 @@ void LBlock::giveHint(Grid &g) {
                                 (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
                                 (!g.checkWhite(br, rc) && !g.checkActive(br, rc)))) {
             // 1 xxx
+            if (lc != 0 && g.checkWhite(br, lc-1) && lc != 1 && g.checkWhite(br, lc-2)) {
+                lc--;
+                mc--;
+                rc--;
+            }
             Posn hp0{br-2, rc};
             Posn hp1{br-1, rc};
             Posn hp2{br-1, mc};
@@ -256,8 +261,11 @@ void LBlock::giveHint(Grid &g) {
                    (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
                    (g.checkWhite(br, rc) || g.checkActive(br, rc))) {
             // 2 x--
-            while (br != 17 && g.checkWhite(br+1, mc) && g.checkWhite(br+1, rc)) {
-                br++;
+            while (br != 17 && g.checkWhite(br+1, mc) && g.checkWhite(br+1, rc)) br++;
+            if (rc != 10 && g.checkWhite(br, rc+1) && rc != 9 && !g.checkWhite(br, rc+2)) {
+                rc++;
+                mc++;
+                lc++;
             }
             Posn hp0{br, rc};
             Posn hp1{br, mc};
@@ -288,6 +296,11 @@ void LBlock::giveHint(Grid &g) {
             // 4 --x
             while (br != 17 && g.checkWhite(br+1, lc) && g.checkWhite(br+1, mc)) {
                 br++;
+            }
+            if (rc < 9 && g.checkWhite(br, rc) && !g.checkWhite(br, rc+1)) {
+                rc++;
+                mc++;
+                lc++;
             }
             Posn hp0{br, mc};
             Posn hp1{br, lc};
