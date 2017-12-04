@@ -1,7 +1,9 @@
 #ifndef JBLOCK_H
 #define JBLOCK_H
 #include "block.h"
+
 class Grid;
+
 class JBlock : public Block {
 public:
     JBlock(Grid &g, int level);
