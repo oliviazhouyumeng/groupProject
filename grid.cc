@@ -51,8 +51,8 @@ hi_score{hi_score}, curr_score{curr_score} {
 
 Grid::~Grid() {}
 
-void Grid::setObserver(shared_ptr<Observer> ob) {
-    this->ob = ob;
+void Grid::setGraphics(shared_ptr<GraphicsDisplay> GD) {
+    gd = GD;
 }
 
 void Grid::endGame() const {
@@ -70,7 +70,6 @@ void Grid::init() {
     const size_t totc = 11; // total columns
     
     td = make_shared<TextDisplay>(totc, totr);
-    if (graphicsOn) gd = make_shared<GraphicsDisplay>();
     
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -92,8 +91,12 @@ void Grid::init() {
     updateNext();
 }
 
-void Grid::setGraphics(bool b) {
+void Grid::Graphics(bool b) {
     graphicsOn = b;
+}
+
+bool Grid::isGraphics() const {
+    return graphicsOn;
 }
 
 void Grid::levelUp() {
@@ -122,9 +125,9 @@ void Grid::setStartLevel(int l) {
 
 void Grid::clearRow(size_t r) {
     redraw = true;
-    int btemp = liveBlocks.size();
+    unsigned btemp = liveBlocks.size();
     for (int i = btemp-1; i >= 0; i--) {
-        int ptemp = liveBlocks[i]->getPos().size();
+        unsigned ptemp = liveBlocks[i]->getPos().size();
         for (int j = ptemp-1; j >= 0; j--) {
             if (liveBlocks[i]->getPos()[j].x == r) {
                 changeColour(r, liveBlocks[i]->getPos()[j].y, Colour::White);
@@ -197,7 +200,7 @@ void Grid::setCurrtoGrid() {
 
 void Grid::updateNext() {
     redraw = true;
-    if (currlevel == 0 || (currlevel >= 3 && isNoRand)) {
+    if (currlevel == 0) {
         if (blockSeq == "" || blockSeq == " ") {
             blockSeq = levels[currlevel]->createBlock();
             seqCount = 0;
