@@ -357,7 +357,7 @@ void TBlock::giveHint(Grid &g){
                     return;
                 }
                 else if(g.getCell(i+1, lc).getInfo().colour != Colour::White && g.getCell(i+1, mc).getInfo().colour != Colour::White
-                        && g.getCell(i+1, rc).getInfo().colour != Colour::White){
+                        && g.getCell(i+1, rc).getInfo().colour != Colour::White && g.getCell(i-1, mc).getInfo().colour == Colour::White){
                     Posn first = Posn{i, rc};
                     Posn second = Posn{i, mc};
                     Posn third = Posn{i, lc};
