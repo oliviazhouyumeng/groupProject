@@ -220,6 +220,20 @@ void IBlock::giveHint(Grid &g){
         bot = pos[3].x;
     }
     for(size_t i = bot; i < 18; i++){
+        if(bot == 17){
+            Posn first = pos[0];
+            Posn second = pos[1];
+            Posn third = pos[2];
+            Posn forth = pos[3];
+            h_pos.push_back(first);
+            h_pos.push_back(second);
+            h_pos.push_back(third);
+            h_pos.push_back(forth);
+            for(auto hp : h_pos){
+                g.changeColour(hp.x, hp.y, Colour::Black);
+            }
+            return;
+        }
         if(c2 < 9 && g.getCell(i, c1).getInfo().colour == Colour::White && g.getCell(i, c2).getInfo().colour == Colour::White
            && g.getCell(i, c3).getInfo().colour == Colour::White && g.getCell(i, c4).getInfo().colour == Colour::White){
             if(i==17){
