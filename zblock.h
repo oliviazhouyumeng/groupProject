@@ -1,7 +1,9 @@
 #ifndef ZBLOCK_H
 #define ZBLOCK_H
 #include "block.h"
+
 class Grid;
+
 class ZBlock : public Block {
 public:
     ZBlock(Grid &g, int level);
