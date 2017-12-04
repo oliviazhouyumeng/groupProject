@@ -22,17 +22,8 @@ bool isSeed1 = false;
 
 Level1::Level1(): Level{lNum1, isRand1, time(0), isSeed1} {}
 
-int Level1::genRand() {
-	int gen;
-  srand(seed);
-	gen = rand() % 12;
-  if (!(gen == 0 || gen == 1)) seed = gen;
-  else seed = 3 * gen / 2 + 5;
-	return gen;
-}
-
 std::string Level1::createBlock() {
-  int gen = genRand();
+  int gen = rand() % 12;;
   if (gen == 0 || gen == 1) return "I";
   else if (gen == 2 || gen == 3) return "J";
   else if (gen == 4 || gen == 5) return "L";
