@@ -24,7 +24,6 @@ TBlock::TBlock(Grid &g, int level): Block{level, "A"}{
         g.endGame();
     }
     
-    
     pos.push_back(ul);
     pos.push_back(um);
     pos.push_back(ur);
@@ -60,9 +59,6 @@ void TBlock::left(Grid &g){
     if (g.getLevel() > 2) down(g);
 }
 
-
-
-
 void TBlock::right(Grid &g){
     for(auto p : pos) {
         if(p.y == 10)  return;
@@ -81,9 +77,6 @@ void TBlock::right(Grid &g){
     if (g.getLevel() > 2) down(g);
 }
 
-
-
-
 void TBlock::down(Grid &g){
     for(auto p : pos) {
         if(p.x == 17) return;
@@ -100,9 +93,6 @@ void TBlock::down(Grid &g){
         g.setColour(p.x, p.y, Colour::Orange);
     }
 }
-
-
-
 
 void TBlock::clockwise(Grid &g){
     if (type == "A") {
@@ -179,8 +169,6 @@ void TBlock::clockwise(Grid &g){
     }
 }
 
-
-
 void TBlock::counterclockwise(Grid &g){
     if(type == "A"){
         if (g.checkWhite(pos[0].x-1, pos[0].y) && g.checkWhite(pos[0].x+1, pos[0].y)) {
@@ -255,7 +243,6 @@ void TBlock::counterclockwise(Grid &g){
         }
     }
 }
-
 
 void TBlock::drop(Grid &g){
     size_t lowest = 19;
@@ -452,8 +439,6 @@ void TBlock::giveHint(Grid &g){
         return;
     }
 }
-
-
 
 void TBlock::cancelHint(Grid &g){
     for(auto hp : h_pos){
