@@ -41,7 +41,7 @@ public:
     ~Grid();
     void endGame() const;  // end the game
     void init(); // Sets up an n x n grid.  Clears old grid, if necessary.
-    void Graphics(bool b);
+    void setGraphics(bool b);
     bool isGraphics() const;
     void levelUp();
     void levelDown();
