@@ -34,9 +34,10 @@ class Grid {
     bool isNoRand;
     std::shared_ptr<TextDisplay> td; // the text display
     std::shared_ptr<GraphicsDisplay> gd; // the graphics diaplay
+    // Add private members, if necessary.
     
 public:
-    Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true, bool redraw = false, bool isNoRand = false);
+    Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true, bool redraw = false, bool isNoRand = false, int currlevel = 0);
     ~Grid();
     void endGame() const;  // end the game
     void init(); // Sets up an n x n grid.  Clears old grid, if necessary.
@@ -46,6 +47,7 @@ public:
     void levelDown();
     std::vector<std::shared_ptr<Level>> &getLevels();
     int getLevel() const;
+    void setCurrL(int l);
     void setStartLevel(int l);
     void clearRow(size_t r);
     void moveDown(int br); // clear empty lines
