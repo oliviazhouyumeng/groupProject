@@ -132,7 +132,9 @@ void SBlock::drop(Grid &g) {
         while (g.isFull(pos[temp].x)) g.clearRow(pos[temp].x);
         temp++;
     }
-    g.moveDown();
+    if (type == "A" || type == "C") g.moveDown(2);
+    else if (type == "B" || type == "D") g.moveDown(3);
+}
 }
 
 void SBlock::giveHint(Grid &g){
