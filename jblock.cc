@@ -234,7 +234,7 @@ void JBlock::giveHint(Grid &g) {
         }
     }
     while (true) {
-        if (br !=18 && ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
+        if (br != 17 && ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
                          (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
                          (g.checkWhite(br, rc) || g.checkActive(br, rc)))) {
             br++;
