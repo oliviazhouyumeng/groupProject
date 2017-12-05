@@ -243,7 +243,7 @@ void LBlock::giveHint(Grid &g) {
                                 (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
                                 (!g.checkWhite(br, rc) && !g.checkActive(br, rc)))) {
             // 1 xxx
-            if (lc >= 2 && g.checkWhite(br-1, lc-1) && g.checkWhite(br-1, lc-2)) {
+            if (lc >= 2 && g.checkWhite(br-1, lc-1) && !g.checkWhite(br-1, lc-2)) {
                 lc--;
                 mc--;
                 rc--;
