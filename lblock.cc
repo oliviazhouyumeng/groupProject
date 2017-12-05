@@ -235,7 +235,7 @@ void LBlock::giveHint(Grid &g) {
         }
     }
     while (true) {
-        if (br != 18 && ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
+        if (br != 17 && ((g.checkWhite(br, lc) || g.checkActive(br, lc)) &&
                          (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
                          (g.checkWhite(br, rc) || g.checkActive(br, rc)))) {
             br++;
@@ -243,7 +243,7 @@ void LBlock::giveHint(Grid &g) {
                                 (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
                                 (!g.checkWhite(br, rc) && !g.checkActive(br, rc)))) {
             // 1 xxx
-            if (lc != 0 && g.checkWhite(br, lc-1) && lc != 1 && g.checkWhite(br, lc-2)) {
+            if (lc >= 2 && g.checkWhite(br, lc-1) && g.checkWhite(br, lc-2)) {
                 lc--;
                 mc--;
                 rc--;
