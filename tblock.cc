@@ -276,13 +276,13 @@ void TBlock::giveHint(Grid &g){
             rc = pos[2].y;
             bot = pos[3].x;
         }
-        if(type == "C"){
+        else if(type == "C"){
             lc = pos[2].y;
             mc = pos[1].y;
             rc = pos[0].y;
             bot = pos[2].x;
         }
-        if(type == "B"){
+        else if(type == "B"){
             lc = pos[3].y;
             mc = pos[0].y;
             rc = mc+1;
