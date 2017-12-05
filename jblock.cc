@@ -242,9 +242,7 @@ void JBlock::giveHint(Grid &g) {
                                 (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
                                 (!g.checkWhite(br, rc) && !g.checkActive(br, rc)))) {
             // 1 xxx
-            cout << "1" << endl;
             if (rc < 9 && g.checkWhite(br-1, rc+1) && !g.checkWhite(br-1, rc+2)) {
-                cout << lc << mc << rc << endl;
                 lc++;
                 mc++;
                 rc++;
@@ -262,11 +260,9 @@ void JBlock::giveHint(Grid &g) {
                    (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
                    (g.checkWhite(br, rc) || g.checkActive(br, rc))) {
             // 2 x--
-            cout << "2" << endl;
             while (br <= 16 && g.checkWhite(br+1, mc) && g.checkWhite(br+1, rc)) {
                 br++;
             }
-            cout << br << endl;
             if (mc > 1 && g.checkWhite(br, mc-1) && !g.checkWhite(br, mc-2)) {
                 rc--;
                 mc--;
@@ -285,7 +281,6 @@ void JBlock::giveHint(Grid &g) {
                    (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
                    (g.checkWhite(br, rc) || g.checkActive(br, rc))) {
             // 3 -x-
-            cout << "3" << endl;
             if (br != 17 && g.checkWhite(br+1, lc)) br++;
             Posn hp0{br-2, mc};
             Posn hp1{br-2, lc};
@@ -300,7 +295,6 @@ void JBlock::giveHint(Grid &g) {
                    (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
                    (!g.checkWhite(br, rc) && !g.checkActive(br, rc))) {
             // 4 --x
-            cout << "4" << endl;
             while (br != 17 && g.checkWhite(br+1, lc) && g.checkWhite(br+1, mc)) {
                 br++;
             }
@@ -322,7 +316,6 @@ void JBlock::giveHint(Grid &g) {
                    (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
                    (g.checkWhite(br, rc) || g.checkActive(br, rc))) {
             // 5 xx-
-            cout << "5" << endl;
             Posn hp0{br, rc};
             Posn hp1{br-1, rc};
             Posn hp2{br-1, mc};
@@ -336,7 +329,6 @@ void JBlock::giveHint(Grid &g) {
                    (!g.checkWhite(br, mc) && !g.checkActive(br, mc)) &&
                    (!g.checkWhite(br, rc) && !g.checkActive(br, rc))) {
             // 6 -xx
-            cout << "6" << endl;
             Posn hp0{br-1, mc};
             Posn hp1{br-1, rc};
             Posn hp2{br-2, rc};
@@ -350,7 +342,6 @@ void JBlock::giveHint(Grid &g) {
                    (g.checkWhite(br, mc) || g.checkActive(br, mc)) &&
                    (!g.checkWhite(br, rc) && !g.checkActive(br, rc))) {
             // 7 x-x
-            cout << "7" << endl;
             if (br != 17 && g.checkWhite(br+1, mc)) br++;
             Posn hp0{br-2, rc};
             Posn hp1{br-2, mc};
