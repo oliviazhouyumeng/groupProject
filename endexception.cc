@@ -3,8 +3,4 @@
 
 using namespace std;
 
-EndException::EndException(): s{"EndOfGame"} {}
-
-string EndException::getErrorMessage(){
-  return s;
-}
+EndException::EndException() {}

@@ -11,13 +11,14 @@
 class Cell;
 
 class TextDisplay: public Observer {
+	const int width = 11;
+  const int length = 18;
   std::vector<std::vector<char>> theDisplay;
-  const int width;
-  const int length;
+
  public:
   ~TextDisplay();
     
-  TextDisplay(int width = 11, int length = 18);
+  TextDisplay();
     
   void notify(Subject<Info, State> &whoNotified, Grid &g) override;
     

@@ -18,32 +18,26 @@ void Game(Grid &g, string cmd) {
     if (cmd == "left" || cmd.substr(0, 3) == "lef") {
         g.currBlock().cancelHint(g);
         g.currBlock().left(g);
-        cout << g << endl;
     }
     else if (cmd == "right" || cmd.substr(0, 2) == "ri") {
         g.currBlock().cancelHint(g);
         g.currBlock().right(g);
-        cout << g << endl;
     }
     else if (cmd == "down" || cmd.substr(0, 2) == "do") {
         g.currBlock().cancelHint(g);
         g.currBlock().down(g);
-        cout << g << endl;
     }
     else if (cmd == "clockwise" || cmd.substr(0, 2) == "cl" || cmd == "cw") {
         g.currBlock().cancelHint(g);
         g.currBlock().clockwise(g);
-        cout << g << endl;
     }
     else if (cmd == "counterclockwise" || cmd.substr(0, 2) == "co" || cmd == "ccw") {
         g.currBlock().cancelHint(g);
         g.currBlock().counterclockwise(g);
-        cout << g << endl;
     }
     else if (cmd == "skip" || cmd.substr(0, 2) == "sk") {
         g.currBlock().cancelHint(g);
         g.updateNext();
-        cout << g << endl;
     }
     else if (cmd == "drop" || cmd.substr(0, 2) == "dr") {
         g.currBlock().cancelHint(g);
@@ -51,7 +45,6 @@ void Game(Grid &g, string cmd) {
         try {
             g.setCurrtoGrid();
             g.updateNext();
-            cout << g << endl;
         }
         catch(EndException &e) {
             cout << "Game over!" << endl;
@@ -60,12 +53,10 @@ void Game(Grid &g, string cmd) {
     else if (cmd == "levelup" || cmd.substr(0, 6) == "levelu" || cmd == "lu") {
         g.currBlock().cancelHint(g);
         g.levelUp();
-        cout << g << endl;
     }
     else if (cmd == "leveldown" || cmd.substr(0, 6) == "leveld" || cmd == "ld") {
         g.currBlock().cancelHint(g);
         g.levelDown();
-        cout << g << endl;
     }
     else if (cmd == "norandom" || cmd.substr(0, 1) == "n") {
         g.currBlock().cancelHint(g);
@@ -91,12 +82,10 @@ void Game(Grid &g, string cmd) {
     else if (cmd == "I"||cmd == "J"||cmd == "L"||cmd == "S"||cmd == "Z"||cmd == "T"||cmd == "O") {
         g.currBlock().cancelHint(g);
         g.changeCurr(cmd);
-        cout << g << endl;
     }
     else if (cmd == "hint" || cmd.substr(0, 1) == "h") {
         g.currBlock().cancelHint(g);
         g.currBlock().giveHint(g);
-        cout << g << endl;
     }
 }
 
@@ -105,12 +94,15 @@ void game(Grid &g, string cmd) {
     int num;
     if (iss >> num) {
         iss >> cmd;
-        for (int i = 0; i < num; ++i) {
-            Game(g, cmd);
+        if (!(cmd == "hint" || cmd == "norandom" || cmd == "random")) {
+            for (int i = 0; i < num; ++i) {
+                Game(g, cmd);
+            }
         }
     } else {
         Game(g, cmd);
     }
+    cout << g << endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -158,11 +150,9 @@ int main(int argc, char *argv[]) {
     }
     
     Grid g;
-    g.setGraphics(true);
     string cmd;
     g.setStartLevel(startLevel);
     g.setCurrL(startLevel);
-    g.setNoRand(false);
 
     srand(time(NULL));
 

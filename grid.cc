@@ -25,8 +25,11 @@
 #include "textdisplay.h"
 using namespace std;
 
-Grid::Grid(int hi_score, int curr_score, bool graphicsOn, bool redraw, bool isNoRand, int currlevel):
-hi_score{hi_score}, curr_score{curr_score} {
+Grid::Grid() {
+    
+    /* shared_ptr<Level> l0 = make_shared<Level0>();
+       levels.emplace_back(l0); */
+
     shared_ptr<Level> l0;
     shared_ptr<Level> l1;
     shared_ptr<Level> l2;
@@ -64,7 +67,7 @@ void Grid::init() {
     const size_t totr = 18; // total rows
     const size_t totc = 11; // total columns
     
-    td = make_shared<TextDisplay>(totc, totr);
+    td = make_shared<TextDisplay>();
     if (graphicsOn) gd = make_shared<GraphicsDisplay>();
     for (size_t i = 0; i < totr; i++) {
         vector<Cell> rArr;
@@ -83,6 +86,7 @@ void Grid::init() {
 
     starCount = 5;
     updateNext();
+    empty = false;
     setCurrtoGrid();
     updateNext();
 }
@@ -216,7 +220,8 @@ void Grid::setCurrtoGrid() {
 }
 
 void Grid::updateNext() {
-    redraw = true;
+    if (!empty) 
+        redraw = true;
     if (currlevel == 0 || (currlevel >= 3 && isNoRand)) {
         if (blockSeq == "" || blockSeq == " ") {
             blockSeq = levels[currlevel]->createBlock();
@@ -308,64 +313,76 @@ Block &Grid::currBlock() {
     return *curr;
 }
 
-ostream &operator<<(std::ostream &out, const Grid &g) {
+string scoreBoard(const Grid &g) {
+    ostringstream oss;
     string s;
     int i;
-    s = "Level:       "; // score board
+    string newline = "\n";
+    s = "Level:       ";
     i = g.getLevel();
-    out << s << i << endl;
-    
+    oss << s << i << newline;
     s = "Score:       ";
     i = g.getScore();
-    out << s << i << endl;
-    
+    oss << s << i << newline;
     s = "HiScore:     ";
     i = g.getHiScore();
-    out << s << i << endl;
-    
+    oss << s << i << newline;
     s = "------------";
-    out << s << endl;
-    
-    out << *(g.td);  // game board
-    
-    out << s << endl;
+    oss << s << newline;
+    s = oss.str();
+    return s;
+}
+
+string nextBlock(const Grid &g) {
+    ostringstream oss;
+    string s;
+    string newline = "\n";    
+    s = "------------";
+    oss << s << newline;
     s = "Next:";  // next block
-    out << s << endl;
-    
+    oss << s << newline;
     string next = g.getNextType();
     if (next == "I") {
         s = "IIII";
-        out << s;
+        oss << s;
     } else if (next == "J") {
         s = "J";
-        out << s << endl;
+        oss << s << endl;
         s = "JJJ";
-        out << s;
+        oss << s;
     } else if (next == "L") {
         s = "  L";
-        out << s << endl;
+        oss << s << endl;
         s = "LLL";
-        out << s;
+        oss << s;
     } else if (next == "O") {
         s = "OO";
-        out << s << endl;
+        oss << s << endl;
         s = "OO";
-        out << s;
+        oss << s;
     } else if (next == "S") {
         s = " SS";
-        out << s << endl;
+        oss << s << endl;
         s = "SS";
-        out << s;
+        oss << s;
     } else if (next == "Z") {
         s = "ZZ";
-        out << s << endl;
+        oss << s << endl;
         s = " ZZ";
-        out << s;
+        oss << s;
     } else if (next == "T") {
         s = "TTT";
-        out << s << endl;
+        oss << s << endl;
         s = " T";
-        out << s;
+        oss << s;
     }
-    return out;
+    s = oss.str();
+    return s;
+}
+
+ostream &operator<<(ostream &out, const Grid &g) {
+  out << scoreBoard(g);
+  out << *(g.td);
+  out << nextBlock(g);
+  return out;
 }

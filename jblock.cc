@@ -61,7 +61,6 @@ void JBlock::down(Grid &g) {
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Green);
 }
 
-
 void JBlock::clockwise(Grid &g) {
     if (type == "A") {
         if (g.checkWhite(pos[0].x-1, pos[0].y) && g.checkWhite(pos[0].x-1, pos[0].y+1)) {

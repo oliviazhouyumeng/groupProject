@@ -16,11 +16,17 @@ class Level;
 class Observer;
 
 class Grid {
+    int hi_score = 0; //the highest score in game
+    int curr_score = 0; // the current score in game
+    int currlevel = 0; //the current level
+    bool redraw = false;
+    bool isNoRand = false;
+    bool graphicsOn = true; // default = true, false = textonly
+    bool empty = true;
+    std::shared_ptr<TextDisplay> td; // the text display
+    std::shared_ptr<GraphicsDisplay> gd; // the graphics diaplay
     std::vector<std::vector<Cell>> theGrid; //the actual grid
     std::vector<std::shared_ptr<Block>> liveBlocks;
-    int hi_score; //the highest score in game
-    int curr_score; // the current score in game
-    int currlevel; //the current level
     int startLevel; 
     std::vector<std::shared_ptr<Level>> levels;
     int seqCount;
@@ -28,16 +34,11 @@ class Grid {
     std::shared_ptr<Block> curr; // the current block on the board
     std::string next; // the next block will appear on the board
     int nextlevel; // the level of next block
-    bool graphicsOn; // default = true, false = textonly
     int starCount;
-    bool redraw;
-    bool isNoRand;
-    std::shared_ptr<TextDisplay> td; // the text display
-    std::shared_ptr<GraphicsDisplay> gd; // the graphics diaplay
     // Add private members, if necessary.
     
 public:
-    Grid(int hi_score = 0, int curr_score = 0, bool graphicsOn = true, bool redraw = false, bool isNoRand = false, int currlevel = 0);
+    Grid();
     ~Grid();
     void endGame() const;  // end the game
     void init(); // Sets up an n x n grid.  Clears old grid, if necessary.

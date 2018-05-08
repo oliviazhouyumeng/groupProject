@@ -11,14 +11,17 @@ class Cell;
 class Grid;
 
 class GraphicsDisplay: public Observer {
-  int gridWidth, gridHeight, winWidth, winHeight;
+  int gridWidth = 396;
+  int gridHeight = 648;
+  int winWidth = 612;
+  int winHeight = 648;
   Xwindow xw;
   void ScoreBoard(Grid &g);
   void NextBlock(Grid &g);
   void RedrawLeft(Grid &g);
 
  public:
-  GraphicsDisplay(int gridWidth = 396, int gridHeight = 648, int winWidth = 612, int winHeight = 648);
+  GraphicsDisplay();
   void notify(Subject<Info, State> &whoNotified, Grid &g) override;
 };
 #endif

@@ -8,8 +8,7 @@
 #include "cell.h"
 using namespace std;
 
-GraphicsDisplay::GraphicsDisplay(int gridWidth, int gridHeight, int winWidth, int winHeight):
- gridWidth{gridWidth}, gridHeight{gridHeight}, winWidth{winWidth}, winHeight{winHeight}, xw{winWidth, winHeight} {
+GraphicsDisplay::GraphicsDisplay():xw{winWidth, winHeight} {
   xw.fillRectangle(0, 0, winWidth - gridWidth, winHeight, Xwindow::Brown);
   xw.fillRectangle(216, 0, gridWidth, winHeight, Xwindow::White);
   xw.drawString(30, 50, "Level:", Xwindow::Cyan);

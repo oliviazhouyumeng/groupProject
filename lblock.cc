@@ -19,7 +19,7 @@ LBlock::LBlock(Grid &g, int level): Block{level, "A"} {
         if (!g.checkWhite(p.x, p.y)) {g.endGame();}
     }
     for (auto p : pos) g.setColour(p.x, p.y, Colour::Blue);
-        }
+}
 
 void LBlock::left(Grid &g) {
     for (auto p : pos) {
@@ -161,7 +161,7 @@ void LBlock::counterclockwise(Grid &g) {
         }
     } else if (type == "D") {
         if (pos[1].y != 10 && g.checkWhite(pos[0].x+1, pos[0].y) &&
-            g.checkWhite(pos[0].x+2, pos[1].y) && g.checkWhite(pos[2].x, pos[2].y+1)) {
+            g.checkWhite(pos[0].x+2, pos[0].y) && g.checkWhite(pos[2].x, pos[2].y+1)) {
             ccwtype();
             for (auto p : pos) g.setColour(p.x, p.y, Colour::White);
             pos[0].x+=2;
